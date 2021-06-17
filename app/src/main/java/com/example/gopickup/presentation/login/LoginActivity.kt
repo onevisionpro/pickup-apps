@@ -28,11 +28,16 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         binding.layoutParent.setOnClickListener { hideKeyboard() }
 
         binding.btnLogin.setOnClickListener {
-            val username = binding.edtUsername.text.toString()
+            val username = binding.edtEmail.text.toString()
             val password = binding.edtPassword.text.toString()
 
             when {
-                username.isEmpty() -> binding.edtUsername.error = "Please input your username"
+                username.isEmpty() && password.isEmpty() -> {
+                    binding.edtEmail.error = "Please input your email"
+                    binding.edtEmail.requestFocus()
+                    binding.edtPassword.error = "Please input your password"
+                }
+                username.isEmpty() -> binding.edtEmail.error = "Please input your email"
                 password.isEmpty() -> binding.edtPassword.error = "Please input your password"
                 else -> presenter.postLogin(username = username, password = password)
             }
@@ -42,7 +47,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun showLoginSuccess(message: String) {
         showToast(message)
 
-        NavigationUtils.navigateToMainActivity(this)
+        NavigationUtils.navigateToOTPActivity(this)
         finish()
     }
 

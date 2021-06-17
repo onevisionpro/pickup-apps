@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

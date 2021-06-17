@@ -8,7 +8,7 @@ class LoginPresenter(private val view: LoginContract.View) : LoginContract.Prese
 
     override fun postLogin(username: String, password: String) {
         if (username == "admin" && password == "admin") {
-            view.showLoginSuccess("Welcome...")
+            view.showLoginSuccess("Success Login")
         } else {
             view.showLoginFailed("Username or Password is incorrect")
         }
