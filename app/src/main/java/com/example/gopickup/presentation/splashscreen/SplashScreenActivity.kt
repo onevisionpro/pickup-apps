@@ -29,7 +29,8 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
 
         // navigate to login activity
         Handler(Looper.getMainLooper()).postDelayed({
-            NavigationUtils.navigateToLoginActivity(this)
+//            NavigationUtils.navigateToLoginActivity(this)
+            NavigationUtils.navigateToMainActivity(this)
             finish()
         }, 2000)
     }
