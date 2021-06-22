@@ -9,6 +9,7 @@ import com.example.gopickup.presentation.history.HistoryFragment
 import com.example.gopickup.presentation.home.HomeFragment
 import com.example.gopickup.presentation.more.MoreFragment
 import com.example.gopickup.presentation.profile.ProfileFragment
+import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.showToast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -50,6 +51,14 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.background = null
         binding.bottomNavigationView.menu.getItem(2).isEnabled = false
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelected)
+
+        initView()
+    }
+
+    private fun initView() {
+        binding.fab.setOnClickListener {
+            NavigationUtils.navigateToCreateOrderActivity(this)
+        }
     }
 
     private fun loadFragment(fragment: Fragment) {
