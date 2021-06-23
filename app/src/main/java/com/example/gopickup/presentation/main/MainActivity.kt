@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.fab.setOnClickListener {
-            NavigationUtils.navigateToCreateOrderActivity(this)
+            NavigationUtils.navigateToOrderActivity(this)
         }
     }
 
