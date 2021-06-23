@@ -2,6 +2,7 @@ package com.example.gopickup.utils
 
 import com.example.gopickup.R
 import com.example.gopickup.model.dummy.Item
+import com.example.gopickup.model.dummy.MyOrder
 import com.example.gopickup.model.dummy.RecentOrder
 
 object DummyData {
@@ -94,5 +95,83 @@ object DummyData {
         )
 
         return recentOrderItems
+    }
+
+    fun generateMyOrders(): List<MyOrder> {
+        val myOrders = mutableListOf<MyOrder>()
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        myOrders.add(
+            MyOrder(
+                warehouseName = "Warehouse Bogor",
+                estimate = "2021/06/03",
+                orderId = "123333-123321-12",
+                date = "6th July"
+            )
+        )
+
+        return myOrders
     }
 }

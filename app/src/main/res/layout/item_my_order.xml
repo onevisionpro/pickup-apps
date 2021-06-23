@@ -10,9 +10,9 @@
         android:id="@+id/view_status_color"
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:layout_centerVertical="true"
         android:layout_marginStart="8dp"
-        android:background="@drawable/view_circle_green" />
+        android:layout_marginTop="6dp"
+        android:background="@drawable/view_circle_red" />
 
     <TextView
         android:id="@+id/tv_warehouse_name"
@@ -25,27 +25,39 @@
         android:textStyle="bold"
         tools:text="Warehouse Bogor" />
 
-    <TextView
-        android:id="@+id/tv_order_id"
+    <LinearLayout
+        android:id="@+id/layout_estimate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_warehouse_name"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/view_status_color"
-        tools:text="Order ID #123123123-12" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estimasi"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_estimate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2021/06/03"
+            android:layout_marginStart="4dp"/>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_order_id"
+        android:layout_below="@id/layout_estimate"
+        android:text="Order ID #12312-123123"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:id="@+id/tv_order_id"
         android:layout_toEndOf="@id/view_status_color"
-        android:textColor="@color/green"
-        android:textStyle="bold"
-        tools:text="Selesai" />
+        android:layout_marginTop="8dp"/>
 
     <TextView
         android:id="@+id/tv_date"
@@ -58,7 +70,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/tv_status"
+        android:layout_below="@id/tv_order_id"
         android:layout_marginTop="16dp"
         android:background="@color/gray" />
 

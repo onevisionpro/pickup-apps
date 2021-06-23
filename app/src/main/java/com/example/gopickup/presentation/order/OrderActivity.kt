@@ -30,7 +30,7 @@ class OrderActivity : AppCompatActivity() {
         }
 
         binding.myOrders.setOnClickListener {
-            showToast("my orders clicked")
+            NavigationUtils.navigateToMyOrdersActivity(this)
         }
 
         binding.openOrder.setOnClickListener {
