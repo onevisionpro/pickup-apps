@@ -10,6 +10,7 @@ import com.example.gopickup.databinding.ActivityMainBinding
 import com.example.gopickup.databinding.ActivityMyOrdersBinding
 import com.example.gopickup.model.dummy.MyOrder
 import com.example.gopickup.utils.DummyData
+import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.showToast
 
 class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
@@ -20,7 +21,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private lateinit var presenter: MyOrdersPresenter
 
     private val myOrdersAdapter = MyOrdersAdapter {
-        showToast("clicked")
+        NavigationUtils.navigateToChangeOrderActivity(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

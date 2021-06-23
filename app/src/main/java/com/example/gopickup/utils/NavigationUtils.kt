@@ -2,6 +2,7 @@ package com.example.gopickup.utils
 
 import android.app.Activity
 import android.content.Intent
+import com.example.gopickup.presentation.change_order.ChangeOrderActivity
 import com.example.gopickup.presentation.create_order.CreateOrderActivity
 import com.example.gopickup.presentation.login.LoginActivity
 import com.example.gopickup.presentation.main.MainActivity
@@ -33,5 +34,9 @@ object NavigationUtils {
 
     fun navigateToMyOrdersActivity(activity: Activity) {
         activity.startActivity(Intent(activity, MyOrdersActivity::class.java))
+    }
+
+    fun navigateToChangeOrderActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, ChangeOrderActivity::class.java))
     }
 }

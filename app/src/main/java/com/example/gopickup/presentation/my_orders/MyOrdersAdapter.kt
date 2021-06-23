@@ -28,6 +28,7 @@ class MyOrdersAdapter(private val onItemClick: (myOrder: MyOrder) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val myOrder = myOrderList[position]
         holder.bind(myOrder)
+        holder.itemView.setOnClickListener { onItemClick(myOrder) }
     }
 
     inner class ViewHolder(private val binding: ItemMyOrderBinding) :
