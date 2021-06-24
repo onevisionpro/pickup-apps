@@ -2,12 +2,14 @@ package com.example.gopickup.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.gopickup.R
 import com.example.gopickup.databinding.ActivityMainBinding
 import com.example.gopickup.presentation.history.HistoryFragment
 import com.example.gopickup.presentation.home.HomeFragment
 import com.example.gopickup.presentation.more.MoreFragment
+import com.example.gopickup.presentation.order.OrderFragment
 import com.example.gopickup.presentation.profile.ProfileFragment
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.showToast
@@ -57,7 +59,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.fab.setOnClickListener {
-            NavigationUtils.navigateToOrderActivity(this)
+//            NavigationUtils.navigateToOrderActivity(this)
+            loadFragment(OrderFragment())
         }
     }
 
@@ -65,12 +68,20 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.main_container, fragment)
+            .addToBackStack(fragment.javaClass.name)
             .commit()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()
+//        Log.d("TAG", "onBackPressed: size: ${supportFragmentManager.backStackEntryCount}")
+//        if (supportFragmentManager.backStackEntryCount > 1) {
+//            supportFragmentManager.popBackStack()
+//        } else {
+//            super.onBackPressed()
+//            finishAffinity()
+//        }
     }
 
     override fun onDestroy() {

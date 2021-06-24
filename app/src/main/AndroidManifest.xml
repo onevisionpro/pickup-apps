@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoPickup">
-        <activity android:name=".presentation.change_order.ChangeOrderActivity"></activity>
+        <activity android:name=".presentation.detail_order_wh.DetailOrderWHActivity"></activity>
+        <activity android:name=".presentation.change_order.ChangeOrderActivity" />
         <activity android:name=".presentation.my_orders.MyOrdersActivity" />
         <activity android:name=".presentation.order.OrderActivity" />
         <activity android:name=".presentation.create_order.CreateOrderActivity" />

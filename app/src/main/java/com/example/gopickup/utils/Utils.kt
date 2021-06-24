@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.gopickup.R
 import com.google.android.material.snackbar.Snackbar
 
 /* Hide Keyboard */
@@ -25,6 +26,22 @@ fun AppCompatActivity.showToast(message: String) {
 
 fun Fragment.showToast(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+}
+
+fun Fragment.navigateBack() {
+    activity?.supportFragmentManager?.popBackStack()
+}
+
+fun AppCompatActivity.navigateBack() {
+    this.supportFragmentManager.popBackStack()
+}
+
+fun Fragment.loadFragment(fragment: Fragment) {
+    activity?.supportFragmentManager
+        ?.beginTransaction()
+        ?.replace(R.id.main_container, fragment)
+        ?.addToBackStack(fragment.javaClass.name)
+        ?.commit()
 }
 
 fun View.show() {
