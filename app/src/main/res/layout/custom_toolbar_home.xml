@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:layout_marginTop="16dp"
         android:id="@+id/tv_toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,15 +27,11 @@
         android:text="Warehouse Bogor!" />
 
     <ImageView
+        android:layout_marginTop="32dp"
         android:id="@+id/ic_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="8dp"
         android:src="@drawable/ic_baseline_notifications_24" />
 
 </RelativeLayout>
