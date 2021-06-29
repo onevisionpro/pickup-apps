@@ -59,8 +59,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.fab.setOnClickListener {
-//            NavigationUtils.navigateToOrderActivity(this)
-            loadFragment(OrderFragment())
+            NavigationUtils.navigateToOrderActivity(this)
+//            loadFragment(OrderFragment())
         }
     }
 
