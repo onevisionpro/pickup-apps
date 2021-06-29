@@ -1,6 +1,7 @@
 package com.example.gopickup.utils
 
 import com.example.gopickup.R
+import com.example.gopickup.model.dummy.History
 import com.example.gopickup.model.dummy.Item
 import com.example.gopickup.model.dummy.MyOrder
 import com.example.gopickup.model.dummy.RecentOrder
@@ -174,4 +175,81 @@ object DummyData {
 
         return myOrders
     }
+
+    fun generateHistories(): List<History> {
+        val histories = mutableListOf<History>()
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "On Progress - Konfirmasi Mitra",
+                date = "6th June",
+                status = "On Progress"
+            )
+        )
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "Selesai",
+                date = "6th June",
+                status = "Selesai"
+            )
+        )
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "Selesai",
+                date = "6th June",
+                status = "Selesai"
+            )
+        )
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "Selesai",
+                date = "6th June",
+                status = "Selesai"
+            )
+        )
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "On Progress - Konfirmasi Mitra",
+                date = "6th June",
+                status = "On Progress"
+            )
+        )
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "On Progress - Konfirmasi Mitra",
+                date = "6th June",
+                status = "On Progress"
+            )
+        )
+
+        histories.add(
+            History(
+                warehouseName = "Warehouse Bogor",
+                orderId = "123123123-123-123",
+                statusDesc = "On Progress - Konfirmasi Mitra",
+                date = "6th June",
+                status = "On Progress"
+            )
+        )
+
+        return histories
+    }
+
 }

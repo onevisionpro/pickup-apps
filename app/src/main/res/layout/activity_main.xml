@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.main.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/img_bg_main"
-        android:fitsSystemWindows="true"
-        android:scaleType="centerCrop" />
-
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
@@ -46,7 +39,7 @@
         android:layout_height="wrap_content"
         app:tint="@color/white"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_baseline_add_24"
+        android:src="@drawable/ic_order"
         app:layout_anchor="@id/bottomAppBar" />
 
 
