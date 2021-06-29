@@ -1,10 +1,7 @@
 package com.example.gopickup.utils
 
 import com.example.gopickup.R
-import com.example.gopickup.model.dummy.History
-import com.example.gopickup.model.dummy.Item
-import com.example.gopickup.model.dummy.MyOrder
-import com.example.gopickup.model.dummy.RecentOrder
+import com.example.gopickup.model.dummy.*
 
 object DummyData {
 
@@ -250,6 +247,17 @@ object DummyData {
         )
 
         return histories
+    }
+
+    fun generateDummyProfile(): Profile {
+        return Profile(
+            name = "Dwiki Firmansyah",
+            mitraKerja = "Warehourse Bogor",
+            phone = "08123123123",
+            email = "faoqi@email.com",
+            role = "Warehouse SO",
+            confirmPassword = "admin"
+        )
     }
 
 }
