@@ -3,6 +3,7 @@ package com.example.gopickup.presentation.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.gopickup.R
 import com.example.gopickup.databinding.ActivityMainBinding
@@ -11,6 +12,7 @@ import com.example.gopickup.presentation.home.HomeFragment
 import com.example.gopickup.presentation.more.MoreFragment
 import com.example.gopickup.presentation.order.OrderFragment
 import com.example.gopickup.presentation.profile.ProfileFragment
+import com.example.gopickup.utils.Constant
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.showToast
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -82,6 +84,17 @@ class MainActivity : AppCompatActivity() {
 //            super.onBackPressed()
 //            finishAffinity()
 //        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // navigate after got trigger from dialog order
+        when (intent.getStringExtra(Constant.NAVIGATE_TO)) {
+            Constant.HISTORY -> {
+                val view: View = binding.bottomNavigationView.findViewById(R.id.nav_history)
+                view.performClick()
+            }
+        }
     }
 
     override fun onDestroy() {

@@ -63,3 +63,11 @@ fun View.showGreenSnackbar(message: String, duration: Int = Snackbar.LENGTH_LONG
 //    snackbar.setBackgroundTint(ContextCompat.getColor(context, R.color.colorPrimary))
     snackbar.show()
 }
+
+fun AppCompatActivity.loadFragment(fragment: Fragment) {
+    supportFragmentManager
+        .beginTransaction()
+        .replace(R.id.main_container, fragment)
+        .addToBackStack(fragment.javaClass.name)
+        .commit()
+}
