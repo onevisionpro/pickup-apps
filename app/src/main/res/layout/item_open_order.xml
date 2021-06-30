@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/view_status_color"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/view_circle_red" />
+
+    <TextView
+        android:id="@+id/tv_warehouse_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/view_status_color"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Warehouse Bogor" />
+
+    <LinearLayout
+        android:id="@+id/layout_estimate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_warehouse_name"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/view_status_color"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estimasi"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_estimate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2021/06/03"
+            android:layout_marginStart="4dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_estimate"
+        android:text="Order ID #12312-123123"
+        android:layout_marginStart="16dp"
+        android:id="@+id/tv_order_id"
+        android:layout_toEndOf="@id/view_status_color"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        tools:text="6th July" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tv_order_id"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray" />
+
+</RelativeLayout>

@@ -37,7 +37,7 @@ class OrderActivity : BaseActivity(), OrderContract.View {
         }
 
         binding.openOrder.setOnClickListener {
-            showToast("open order clicked")
+            NavigationUtils.navigateToOpenOrderActivity(this)
         }
     }
 

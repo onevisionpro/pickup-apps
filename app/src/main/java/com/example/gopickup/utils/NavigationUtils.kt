@@ -8,6 +8,7 @@ import com.example.gopickup.presentation.create_order.CreateOrderActivity
 import com.example.gopickup.presentation.login.LoginActivity
 import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.presentation.my_orders.MyOrdersActivity
+import com.example.gopickup.presentation.open_order.OpenOrderActivity
 import com.example.gopickup.presentation.order.OrderActivity
 import com.example.gopickup.presentation.otp.OTPActivity
 import com.example.gopickup.presentation.track_my_order.TrackMyOrderActivity
@@ -48,5 +49,9 @@ object NavigationUtils {
 
     fun navigateToAboutAppsActivity(activity: Activity) {
         activity.startActivity(Intent(activity, AboutAppsActivity::class.java))
+    }
+
+    fun navigateToOpenOrderActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, OpenOrderActivity::class.java))
     }
 }
