@@ -3,9 +3,7 @@ package com.example.gopickup.presentation.login
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityLoginBinding
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.hideKeyboard
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 class LoginActivity : BaseActivity(), LoginContract.View {
 
@@ -44,7 +42,20 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         }
     }
 
-    override fun showLoginSuccess(message: String) {
+    override fun showLoginSuccessAsMitra(message: String) {
+        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
+        preference.saveString(Constant.KEY_USER_TYPE, UserType.MITRA)
+
+        showToast(message)
+
+        NavigationUtils.navigateToOTPActivity(this)
+        finish()
+    }
+
+    override fun showLoginSuccessAsWarehouse(message: String) {
+        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
+        preference.saveString(Constant.KEY_USER_TYPE, UserType.WAREHOUSE)
+
         showToast(message)
 
         NavigationUtils.navigateToOTPActivity(this)

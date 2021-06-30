@@ -1,29 +1,32 @@
 package com.example.gopickup.presentation.order
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.gopickup.R
+import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityOrderBinding
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
-class OrderActivity : AppCompatActivity() {
+class OrderActivity : BaseActivity(), OrderContract.View {
 
     private var _binding: ActivityOrderBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var presenter: OrderPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initView()
-
+        presenter = OrderPresenter(this)
+        presenter.start()
     }
 
-    private fun initView() {
+    override fun initView() {
+        super.initView()
         binding.toolbar.tvToolbarTitle.text = "Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
+
+        setupUserType()
 
         binding.createOrder.setOnClickListener {
             NavigationUtils.navigateToCreateOrderActivity(this)
@@ -38,8 +41,23 @@ class OrderActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupUserType() {
+        when (preference.getString(Constant.KEY_USER_TYPE)) {
+            UserType.MITRA -> {
+                binding.myOrders.show()
+                binding.openOrder.show()
+            }
+            UserType.WAREHOUSE -> {
+                binding.createOrder.show()
+                binding.myOrders.show()
+                binding.openOrder.show()
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        presenter.onDestroy()
     }
 }

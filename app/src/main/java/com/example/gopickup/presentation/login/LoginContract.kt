@@ -6,7 +6,8 @@ import com.example.gopickup.base.BaseView
 interface LoginContract {
 
     interface View : BaseView {
-        fun showLoginSuccess(message: String)
+        fun showLoginSuccessAsMitra(message: String)
+        fun showLoginSuccessAsWarehouse(message: String)
         fun showLoginFailed(message: String)
     }
 

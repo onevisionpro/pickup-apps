@@ -13,6 +13,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/create_order"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -59,6 +60,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:visibility="gone"
         android:id="@+id/my_orders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,6 +108,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
+        android:visibility="gone"
         android:id="@+id/open_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
