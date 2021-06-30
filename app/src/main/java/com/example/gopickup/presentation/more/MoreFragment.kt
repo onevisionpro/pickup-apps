@@ -28,10 +28,17 @@ class MoreFragment : BaseFragment(), MoreContract.View {
     override fun initView() {
         super.initView()
         binding.toolbar.tvToolbarTitle.text = "More"
-        binding.btnLogout.setOnClickListener { showToast("clicked") }
 
         binding.trackingMyOrder.setOnClickListener {
             NavigationUtils.navigateToTrackMyOrderActivity(requireActivity())
+        }
+
+        binding.aboutApps.setOnClickListener {
+            NavigationUtils.navigateToAboutAppsActivity(requireActivity())
+        }
+
+        binding.btnLogout.setOnClickListener {
+            NavigationUtils.navigateToLoginActivity(requireActivity())
         }
     }
 
