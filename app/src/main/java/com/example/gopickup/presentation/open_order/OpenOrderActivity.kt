@@ -9,6 +9,7 @@ import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityOpenOrderBinding
 import com.example.gopickup.model.dummy.MyOrder
 import com.example.gopickup.utils.DummyData
+import com.example.gopickup.utils.NavigationUtils
 
 class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
 
@@ -18,7 +19,7 @@ class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
     private lateinit var presenter: OpenOrderPresenter
 
     private val openOrderAdapter = OpenOrderAdapter {
-
+        NavigationUtils.navigateToDetailOrderPartnerActivity(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
