@@ -9,6 +9,7 @@ import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.presentation.my_orders.MyOrdersActivity
 import com.example.gopickup.presentation.order.OrderActivity
 import com.example.gopickup.presentation.otp.OTPActivity
+import com.example.gopickup.presentation.track_my_order.TrackMyOrderActivity
 
 object NavigationUtils {
 
@@ -38,5 +39,9 @@ object NavigationUtils {
 
     fun navigateToChangeOrderActivity(activity: Activity) {
         activity.startActivity(Intent(activity, ChangeOrderActivity::class.java))
+    }
+
+    fun navigateToTrackMyOrderActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, TrackMyOrderActivity::class.java))
     }
 }
