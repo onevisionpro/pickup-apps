@@ -43,6 +43,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_toEndOf="@id/ic_tracking_my_order"
                 android:text="Tracking My Order"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -90,6 +91,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_toEndOf="@id/ic_create_order"
                 android:text="About Apps"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
