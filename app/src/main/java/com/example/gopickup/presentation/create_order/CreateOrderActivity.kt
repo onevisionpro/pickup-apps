@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityCreateOrderBinding
-import com.example.gopickup.presentation.history.HistoryFragment
 import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.dialog.DialogUtils
-import com.example.gopickup.utils.dialog.IOnDialogCreateOrderClicked
-import com.example.gopickup.utils.loadFragment
+import com.example.gopickup.utils.dialog.listener.IOnDialogCreateOrderListener
 
 class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
 
@@ -33,7 +31,7 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
         binding.toolbar.icBack.setOnClickListener { finish() }
 
         binding.btnOrder.setOnClickListener {
-            DialogUtils.showDialogCreateOrder(this, object : IOnDialogCreateOrderClicked {
+            DialogUtils.showDialogCreateOrder(this, object : IOnDialogCreateOrderListener {
                 override fun onHistoryOrderClicked() {
                     val intent = Intent(this@CreateOrderActivity, MainActivity::class.java)
                     intent.putExtra("NAVIGATE_TO", "HISTORY")
