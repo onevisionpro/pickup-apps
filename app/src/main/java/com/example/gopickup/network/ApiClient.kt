@@ -2,6 +2,8 @@ package com.example.gopickup.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.Credentials
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,7 +14,22 @@ import java.util.concurrent.TimeUnit
 class ApiClient {
 
     companion object {
-        const val BASE_URL = "https://hdrapi.muhfahmia.site/"
+        const val BASE_URL = "https://subsystem.indihome.co.id/pickup-system/api/"
+    }
+
+    private fun provideBasicAuth(): String {
+        return Credentials.basic("pickup_mobile", "7069636b75705f6d6f62696c65")
+    }
+
+    private fun provideInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            val request = chain.request()
+            val newRequest = request.newBuilder()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", provideBasicAuth())
+                .build()
+            chain.proceed(newRequest)
+        }
     }
 
     private fun provideOkHttpInterceptor(): HttpLoggingInterceptor {
@@ -26,6 +43,7 @@ class ApiClient {
 
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(provideOkHttpInterceptor())
+            .addInterceptor(provideInterceptor())
             .connectTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)

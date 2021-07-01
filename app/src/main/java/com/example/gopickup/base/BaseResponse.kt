@@ -5,11 +5,9 @@ import kotlin.Int
 
 data class BaseResponse<T>(
     @Json(name = "code")
-    val code: Int? = null,
+    val code: String? = null,
     @Json(name = "data")
     val data: T? = null,
-    @Json(name = "message")
-    val message: String? = null,
-    @Json(name = "success")
-    val success: Boolean? = null
+    @Json(name = "info")
+    val info: String? = null
 )

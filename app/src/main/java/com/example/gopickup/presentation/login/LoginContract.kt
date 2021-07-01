@@ -2,16 +2,16 @@ package com.example.gopickup.presentation.login
 
 import com.example.gopickup.base.BasePresenter
 import com.example.gopickup.base.BaseView
+import com.example.gopickup.model.request.Login
 
 interface LoginContract {
 
     interface View : BaseView {
-        fun showLoginSuccessAsMitra(message: String)
-        fun showLoginSuccessAsWarehouse(message: String)
-        fun showLoginFailed(message: String)
+        fun showSendOTPSuccess(message: String)
+        fun showSendOTPFailed(message: String)
     }
 
     interface Presenter : BasePresenter {
-        fun postLogin(username: String, password: String)
+        fun postLogin(login: Login)
     }
 }

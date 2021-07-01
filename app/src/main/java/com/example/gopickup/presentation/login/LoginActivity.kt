@@ -3,6 +3,8 @@ package com.example.gopickup.presentation.login
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityLoginBinding
+import com.example.gopickup.model.request.Data
+import com.example.gopickup.model.request.Login
 import com.example.gopickup.utils.*
 
 class LoginActivity : BaseActivity(), LoginContract.View {
@@ -17,52 +19,50 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = LoginPresenter(this)
+        presenter = LoginPresenter(this, callApi())
         presenter.start()
     }
 
     override fun initView() {
         super.initView()
         binding.layoutParent.setOnClickListener { hideKeyboard() }
+        initProgressBar(binding.progressBar)
 
         binding.btnLogin.setOnClickListener {
-            val username = binding.edtEmail.text.toString()
+            val email = binding.edtEmail.text.toString()
             val password = binding.edtPassword.text.toString()
 
             when {
-                username.isEmpty() && password.isEmpty() -> {
+                email.isEmpty() && password.isEmpty() -> {
                     binding.edtEmail.error = "Please input your email"
                     binding.edtEmail.requestFocus()
                     binding.edtPassword.error = "Please input your password"
                 }
-                username.isEmpty() -> binding.edtEmail.error = "Please input your email"
+                email.isEmpty() -> binding.edtEmail.error = "Please input your email"
                 password.isEmpty() -> binding.edtPassword.error = "Please input your password"
-                else -> presenter.postLogin(username = username, password = password)
+                else -> {
+                    val data = Data(
+                        devid = "123123",
+                        email = email,
+                        password = password,
+                        otp = ""
+                    )
+                    val login = Login(
+                        data = data
+                    )
+                    presenter.postLogin(login = login)
+                }
             }
         }
     }
 
-    override fun showLoginSuccessAsMitra(message: String) {
-        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
-        preference.saveString(Constant.KEY_USER_TYPE, UserType.MITRA)
-
+    override fun showSendOTPSuccess(message: String) {
         showToast(message)
-
         NavigationUtils.navigateToOTPActivity(this)
         finish()
     }
 
-    override fun showLoginSuccessAsWarehouse(message: String) {
-        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
-        preference.saveString(Constant.KEY_USER_TYPE, UserType.WAREHOUSE)
-
-        showToast(message)
-
-        NavigationUtils.navigateToOTPActivity(this)
-        finish()
-    }
-
-    override fun showLoginFailed(message: String) {
+    override fun showSendOTPFailed(message: String) {
         showToast(message)
     }
 
