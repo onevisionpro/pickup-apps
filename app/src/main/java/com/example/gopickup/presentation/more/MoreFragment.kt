@@ -38,7 +38,10 @@ class MoreFragment : BaseFragment(), MoreContract.View {
         }
 
         binding.btnLogout.setOnClickListener {
+            preference.clearPreference()
+
             NavigationUtils.navigateToLoginActivity(requireActivity())
+            requireActivity().finish()
         }
     }
 
