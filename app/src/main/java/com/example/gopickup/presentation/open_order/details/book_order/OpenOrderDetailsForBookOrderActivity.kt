@@ -1,14 +1,13 @@
-package com.example.gopickup.presentation.open_order.details
+package com.example.gopickup.presentation.open_order.details.book_order
 
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
-import com.example.gopickup.databinding.ActivityOpenOrderBinding
 import com.example.gopickup.databinding.ActivityOpenOrderDetailsBinding
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogOrderBookedListener
 
-class OpenOrderDetailsActivity : BaseActivity(), OpenOrderDetailsContract.View {
+class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsContract.View {
 
     private var _binding: ActivityOpenOrderDetailsBinding? = null
     private val binding get() = _binding!!
@@ -33,7 +32,7 @@ class OpenOrderDetailsActivity : BaseActivity(), OpenOrderDetailsContract.View {
         binding.btnBookOrder.setOnClickListener {
             DialogUtils.showDialogOrderBooked(this, object : IOnDialogOrderBookedListener {
                 override fun onBackToHomeClicked() {
-                    NavigationUtils.navigateToMainActivity(this@OpenOrderDetailsActivity)
+                    NavigationUtils.navigateToMainActivity(this@OpenOrderDetailsForBookOrderActivity)
                     finish()
                 }
 

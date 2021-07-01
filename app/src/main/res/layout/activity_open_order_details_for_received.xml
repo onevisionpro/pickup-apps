@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.open_order.details.book_order.OpenOrderDetailsForBookOrderActivity">
+    tools:context=".presentation.open_order.details.received.OpenOrderDetailsForReceivedActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -272,8 +272,81 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Evidence Item"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:gravity="bottom"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_margin="4dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/img_poster_sample"
+                                android:scaleType="centerCrop" />
+
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_margin="4dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.4"
+                        app:cardCornerRadius="50dp">
+
+                        <RelativeLayout
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/redPrimary">
+
+                            <ImageView
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_baseline_photo_camera_24" />
+
+                        </RelativeLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Photos of items that have been reveived by the warehouse" />
+
                 <Button
-                    android:id="@+id/btn_book_order"
+                    android:id="@+id/btn_received"
                     style="@style/ButtonRoundedPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -281,12 +354,13 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Book Order" />
+                    android:text="Received" />
 
             </LinearLayout>
 
         </ScrollView>
 
     </LinearLayout>
+
 
 </RelativeLayout>

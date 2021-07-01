@@ -1,10 +1,8 @@
 package com.example.gopickup.presentation.open_order
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityOpenOrderBinding
 import com.example.gopickup.model.dummy.MyOrder
@@ -19,7 +17,7 @@ class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
     private lateinit var presenter: OpenOrderPresenter
 
     private val openOrderAdapter = OpenOrderAdapter {
-        NavigationUtils.navigateToDetailOrderPartnerActivity(this)
+        NavigationUtils.navigateToOpenOrderDetailsForBookOrderActivity(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
