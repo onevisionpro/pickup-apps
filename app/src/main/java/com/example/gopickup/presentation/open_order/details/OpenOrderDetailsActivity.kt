@@ -1,28 +1,26 @@
-package com.example.gopickup.presentation.detail_order_partner
+package com.example.gopickup.presentation.open_order.details
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
-import com.example.gopickup.databinding.ActivityDetailOrderPartnerBinding
+import com.example.gopickup.databinding.ActivityOpenOrderBinding
+import com.example.gopickup.databinding.ActivityOpenOrderDetailsBinding
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogOrderBookedListener
-import com.example.gopickup.utils.showToast
 
-class DetailOrderPartnerActivity : BaseActivity(), DetailOrderPartnerContract.View {
+class OpenOrderDetailsActivity : BaseActivity(), OpenOrderDetailsContract.View {
 
-    private var _binding: ActivityDetailOrderPartnerBinding? = null
+    private var _binding: ActivityOpenOrderDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var presenter: DetailOrderPartnerPresenter
+    private lateinit var presenter: OpenOrderDetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityDetailOrderPartnerBinding.inflate(layoutInflater)
+        _binding = ActivityOpenOrderDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = DetailOrderPartnerPresenter(this)
+        presenter = OpenOrderDetailsPresenter(this)
         presenter.start()
 
     }
@@ -35,7 +33,7 @@ class DetailOrderPartnerActivity : BaseActivity(), DetailOrderPartnerContract.Vi
         binding.btnBookOrder.setOnClickListener {
             DialogUtils.showDialogOrderBooked(this, object : IOnDialogOrderBookedListener {
                 override fun onBackToHomeClicked() {
-                    NavigationUtils.navigateToMainActivity(this@DetailOrderPartnerActivity)
+                    NavigationUtils.navigateToMainActivity(this@OpenOrderDetailsActivity)
                     finish()
                 }
 
