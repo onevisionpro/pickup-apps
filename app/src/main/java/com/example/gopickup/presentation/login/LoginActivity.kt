@@ -65,6 +65,10 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun showLoginSuccessForWarehouse(baseResponse: BaseResponse<User>) {
         showToast(baseResponse.info!!)
 
+        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
+        preference.saveString(Constant.KEY_USER_TYPE, UserType.WAREHOUSE)
+        preference.saveString(Constant.KEY_TOKEN, baseResponse.data?.token!!)
+
         NavigationUtils.navigateToMainActivity(this)
         finish()
     }

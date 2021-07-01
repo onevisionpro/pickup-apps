@@ -43,7 +43,7 @@ class OrderActivity : BaseActivity(), OrderContract.View {
 
     private fun setupUserType() {
         when (preference.getString(Constant.KEY_USER_TYPE)) {
-            UserType.MITRA -> {
+            UserType.PARTNER -> {
                 binding.myOrders.show()
                 binding.openOrder.show()
             }

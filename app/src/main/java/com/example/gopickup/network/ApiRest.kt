@@ -1,7 +1,9 @@
 package com.example.gopickup.network
 
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.request.ResendOTPRequest
 import com.example.gopickup.model.response.User
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -12,8 +14,11 @@ import retrofit2.http.Part
 interface ApiRest {
 
     @POST("login")
-    fun postLogin(@Body login: Login) : Observable<BaseResponse<User>>
+    fun postLogin(@Body login: Login): Observable<BaseResponse<User>>
 
     @POST("login")
-    fun postOTP(@Body login: Login) : Observable<BaseResponse<User>>
+    fun postOTP(@Body login: Login): Observable<BaseResponse<User>>
+
+    @POST("login/resendOTP")
+    fun postResendOTP(@Body baseRequest: BaseRequest<ResendOTPRequest>): Observable<BaseResponse<Any>>
 }

@@ -9,14 +9,13 @@ import android.view.View
 import android.widget.EditText
 import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityOTPBinding
 import com.example.gopickup.model.request.Data
 import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.request.ResendOTPRequest
 import com.example.gopickup.model.response.User
-import com.example.gopickup.utils.Constant
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.hideKeyboard
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 class OTPActivity : BaseActivity(), OTPContract.View {
 
@@ -44,6 +43,7 @@ class OTPActivity : BaseActivity(), OTPContract.View {
         val phoneNumber = intent.getStringExtra(Constant.KEY_PHONE_NUMBER)
         binding.tvMessage.text = "Please check your mobile number $phoneNumber\ncontinue to reset your password"
 
+        // button next
         binding.btnNext.setOnClickListener {
             val edt1 = binding.edt1.text.toString()
             val edt2 = binding.edt2.text.toString()
@@ -68,14 +68,35 @@ class OTPActivity : BaseActivity(), OTPContract.View {
             }
 
         }
+
+        // button click here - Resend OTP
+        binding.tvClickHere.setOnClickListener {
+            val resendOTPRequest = ResendOTPRequest(
+                email = preference.getString(Constant.KEY_EMAIL),
+                hash = StringUtils.toMd5(input = "${Constant.RESEND_OTP}-${preference.getString(Constant.KEY_EMAIL)}")
+            )
+            presenter.postResendOTP(resendOTPRequest = BaseRequest(data = resendOTPRequest))
+        }
     }
 
     override fun showOTPSuccess(user: User) {
+        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
+        preference.saveString(Constant.KEY_USER_TYPE, UserType.PARTNER)
+        preference.saveString(Constant.KEY_TOKEN, user.token!!)
+
         NavigationUtils.navigateToMainActivity(this)
         finish()
     }
 
     override fun showOTPFailed(message: String) {
+        showToast(message)
+    }
+
+    override fun showResendOTPSuccess(message: String) {
+        showToast(message)
+    }
+
+    override fun showResendOTPFailed(message: String) {
         showToast(message)
     }
 

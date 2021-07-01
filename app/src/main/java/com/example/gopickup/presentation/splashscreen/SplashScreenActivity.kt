@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivitySplashScreenBinding
+import com.example.gopickup.utils.Constant
 import com.example.gopickup.utils.NavigationUtils
 
 class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
@@ -29,9 +30,16 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
 
         // navigate to login activity
         Handler(Looper.getMainLooper()).postDelayed({
-            NavigationUtils.navigateToLoginActivity(this)
-//            NavigationUtils.navigateToMainActivity(this)
-            finish()
+            when (preference.getBoolean(Constant.KEY_IS_LOGGED_IN)) {
+                true -> {
+                    NavigationUtils.navigateToMainActivity(this)
+                    finish()
+                }
+                false -> {
+                    NavigationUtils.navigateToLoginActivity(this)
+                    finish()
+                }
+            }
         }, 2000)
     }
 
