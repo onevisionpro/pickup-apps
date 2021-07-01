@@ -29,7 +29,8 @@ class LoginPresenter(
                 {
                     view.hideLoading()
                     when (it.code) {
-                        StatusCode.SUCCESS -> view.showSendOTPSuccess(it.info!!)
+                        StatusCode.SUCCESS_LOGIN_PARTNER -> view.showSendOTPSuccess(it.info!!)
+                        StatusCode.SUCCESS_LOGIN_WAREHOUSE -> view.showLoginSuccessForWarehouse(it)
                         else -> view.showSendOTPFailed(it.info!!)
                     }
                 },
@@ -42,6 +43,6 @@ class LoginPresenter(
     }
 
     override fun onDestroy() {
-
+        compositeDisposable.dispose()
     }
 }

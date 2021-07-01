@@ -3,9 +3,11 @@ package com.example.gopickup.presentation.login
 import android.os.Bundle
 import android.util.Log
 import com.example.gopickup.base.BaseActivity
+import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.databinding.ActivityLoginBinding
 import com.example.gopickup.model.request.Data
 import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.response.User
 import com.example.gopickup.utils.*
 
 class LoginActivity : BaseActivity(), LoginContract.View {
@@ -58,6 +60,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                 }
             }
         }
+    }
+
+    override fun showLoginSuccessForWarehouse(baseResponse: BaseResponse<User>) {
+        showToast(baseResponse.info!!)
+
+        NavigationUtils.navigateToMainActivity(this)
+        finish()
     }
 
     override fun showSendOTPSuccess(message: String) {

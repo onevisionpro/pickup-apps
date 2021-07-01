@@ -11,4 +11,5 @@ object Constant {
     const val KEY_PHONE_NUMBER = "KEY_PHONE_NUMBER"
     const val KEY_EMAIL = "KEY_EMAIL"
     const val KEY_PASSWORD = "KEY_PASSWORD"
+    const val KEY_TOKEN = "KEY_TOKEN"
 }

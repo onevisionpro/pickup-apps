@@ -8,7 +8,7 @@ import io.reactivex.Observable
 
 class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
 
-    override fun postLoginAndOTP(login: Login): Observable<BaseResponse<Any>> {
+    override fun postLoginAndOTP(login: Login): Observable<BaseResponse<User>> {
         return apiRest.postLogin(login)
     }
 

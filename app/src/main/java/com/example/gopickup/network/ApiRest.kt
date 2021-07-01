@@ -12,7 +12,7 @@ import retrofit2.http.Part
 interface ApiRest {
 
     @POST("login")
-    fun postLogin(@Body login: Login) : Observable<BaseResponse<Any>>
+    fun postLogin(@Body login: Login) : Observable<BaseResponse<User>>
 
     @POST("login")
     fun postOTP(@Body login: Login) : Observable<BaseResponse<User>>
