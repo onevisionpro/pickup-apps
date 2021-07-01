@@ -5,6 +5,7 @@ import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.model.request.Login
 import com.example.gopickup.model.request.ResendOTPRequest
 import com.example.gopickup.model.response.User
+import com.example.gopickup.model.response.VersionChecker
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.Multipart
@@ -21,4 +22,7 @@ interface ApiRest {
 
     @POST("login/resendOTP")
     fun postResendOTP(@Body baseRequest: BaseRequest<ResendOTPRequest>): Observable<BaseResponse<Any>>
+
+    @POST("version/checker")
+    fun postVersionChecker(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<VersionChecker>>
 }

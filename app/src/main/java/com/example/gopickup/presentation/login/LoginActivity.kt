@@ -2,13 +2,18 @@ package com.example.gopickup.presentation.login
 
 import android.os.Bundle
 import android.util.Log
+import com.example.gopickup.BuildConfig
 import com.example.gopickup.base.BaseActivity
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.databinding.ActivityLoginBinding
 import com.example.gopickup.model.request.Data
 import com.example.gopickup.model.request.Login
 import com.example.gopickup.model.response.User
+import com.example.gopickup.model.response.VersionChecker
 import com.example.gopickup.utils.*
+import com.example.gopickup.utils.dialog.DialogUtils
+import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
 
 class LoginActivity : BaseActivity(), LoginContract.View {
 
@@ -24,6 +29,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
         presenter = LoginPresenter(this, callApi())
         presenter.start()
+        presenter.postVersionChecker(
+            baseRequest = BaseRequest(
+                guid = "OVP2021#PickUpMobile",
+                code = "0",
+                data = ""
+            )
+        )
     }
 
     override fun initView() {
@@ -58,6 +70,21 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                     preference.saveString(Constant.KEY_EMAIL, email)
                     preference.saveString(Constant.KEY_PASSWORD, password)
                 }
+            }
+        }
+    }
+
+    override fun showVersionChecker(versionChecker: VersionChecker) {
+        val versionName = BuildConfig.VERSION_NAME
+        if (versionName != versionChecker.updatedVersion) {
+            if (versionChecker.pushUpdate == PushUpdateStatus.YES) {
+                DialogUtils.showDialogNewUpdateVersion(this, versionChecker.updatedVersion!!,
+                    object : IOnDialogUpdateVersionListener {
+                        override fun onUpdateClicked() {
+                            showToast("clicked")
+                        }
+
+                    })
             }
         }
     }
