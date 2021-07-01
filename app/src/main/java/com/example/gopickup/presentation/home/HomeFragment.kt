@@ -7,13 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gopickup.BuildConfig
 import com.example.gopickup.R
 import com.example.gopickup.base.BaseFragment
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.base.BaseView
 import com.example.gopickup.databinding.FragmentHomeBinding
 import com.example.gopickup.model.dummy.Item
 import com.example.gopickup.model.dummy.RecentOrder
+import com.example.gopickup.model.response.VersionChecker
 import com.example.gopickup.utils.DummyData
+import com.example.gopickup.utils.PushUpdateStatus
+import com.example.gopickup.utils.dialog.DialogUtils
+import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
+import com.example.gopickup.utils.showToast
 
 
 class HomeFragment : BaseFragment(), HomeContract.View {
@@ -34,15 +41,36 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = HomePresenter(this)
+        presenter = HomePresenter(this, callApi())
         presenter.start()
-
+        presenter.postVersionChecker(
+            baseRequest = BaseRequest(
+                guid = "OVP2021#PickUpMobile",
+                code = "0",
+                data = ""
+            )
+        )
     }
 
     override fun initView() {
         super.initView()
         presenter.getItems(DummyData.generateItems())
         presenter.getRecentOrderItems(DummyData.generateRecentOrderItems())
+    }
+
+    override fun showVersionChecker(versionChecker: VersionChecker) {
+        val versionName = BuildConfig.VERSION_NAME
+        if (versionName != versionChecker.updatedVersion) {
+            if (versionChecker.pushUpdate == PushUpdateStatus.YES) {
+                DialogUtils.showDialogNewUpdateVersion(requireContext(), versionChecker.updatedVersion!!,
+                    object : IOnDialogUpdateVersionListener {
+                        override fun onUpdateClicked() {
+                            showToast("clicked")
+                        }
+
+                    })
+            }
+        }
     }
 
     override fun showItems(items: List<Item>?) {
@@ -78,6 +106,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        presenter.onDestroy()
     }
 
     override fun onCreateView(
