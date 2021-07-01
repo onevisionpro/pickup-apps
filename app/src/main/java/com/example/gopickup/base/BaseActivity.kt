@@ -1,5 +1,7 @@
 package com.example.gopickup.base
 
+import android.annotation.SuppressLint
+import android.provider.Settings
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,7 @@ import com.example.gopickup.network.ApiClient
 import com.example.gopickup.network.ApiRest
 import com.example.gopickup.utils.SharedPreference
 import com.example.gopickup.utils.showToast
+import java.security.Security
 
 open class BaseActivity : AppCompatActivity(), BaseView {
 
@@ -37,6 +40,11 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun showMessage(message: String?) {
         showToast(message!!)
+    }
+
+    @SuppressLint("HardwareIds")
+    fun provideDeviceId(): String {
+        return Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
     }
 
 }

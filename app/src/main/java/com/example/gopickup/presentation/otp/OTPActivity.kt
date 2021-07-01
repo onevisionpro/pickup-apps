@@ -52,7 +52,7 @@ class OTPActivity : BaseActivity(), OTPContract.View {
             when {
                 edt1.isNotEmpty() && edt2.isNotEmpty() && edt3.isNotEmpty() && edt4.isNotEmpty() -> {
                     val data = Data(
-                        devid = "123123",
+                        devid = provideDeviceId(),
                         email = preference.getString(Constant.KEY_EMAIL),
                         password = preference.getString(Constant.KEY_PASSWORD),
                         otp = "$edt1$edt2$edt3$edt4"

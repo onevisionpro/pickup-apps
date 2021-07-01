@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                 password.isEmpty() -> binding.edtPassword.error = "Please input your password"
                 else -> {
                     val data = Data(
-                        devid = "123123",
+                        devid = provideDeviceId(),
                         email = email,
                         password = password,
                         otp = ""
