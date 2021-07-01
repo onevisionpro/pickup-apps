@@ -20,8 +20,10 @@ object NavigationUtils {
         activity.startActivity(Intent(activity, LoginActivity::class.java))
     }
 
-    fun navigateToOTPActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, OTPActivity::class.java))
+    fun navigateToOTPActivity(activity: Activity, phoneNumber: String) {
+        val intent = Intent(activity, OTPActivity::class.java)
+        intent.putExtra(Constant.KEY_PHONE_NUMBER, phoneNumber)
+        activity.startActivity(intent)
     }
 
     fun navigateToMainActivity(activity: Activity) {

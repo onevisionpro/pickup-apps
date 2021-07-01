@@ -1,6 +1,7 @@
 package com.example.gopickup.presentation.login
 
 import android.os.Bundle
+import android.util.Log
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityLoginBinding
 import com.example.gopickup.model.request.Data
@@ -51,6 +52,9 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                         data = data
                     )
                     presenter.postLogin(login = login)
+
+                    preference.saveString(Constant.KEY_EMAIL, email)
+                    preference.saveString(Constant.KEY_PASSWORD, password)
                 }
             }
         }
@@ -58,7 +62,9 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun showSendOTPSuccess(message: String) {
         showToast(message)
-        NavigationUtils.navigateToOTPActivity(this)
+
+        val phoneNumber = message.substring(message.indexOf("["))
+        NavigationUtils.navigateToOTPActivity(this, phoneNumber)
         finish()
     }
 

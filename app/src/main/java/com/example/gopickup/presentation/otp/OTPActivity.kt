@@ -1,6 +1,6 @@
 package com.example.gopickup.presentation.otp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,8 +10,13 @@ import android.widget.EditText
 import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityOTPBinding
+import com.example.gopickup.model.request.Data
+import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.response.User
+import com.example.gopickup.utils.Constant
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.hideKeyboard
+import com.example.gopickup.utils.showToast
 
 class OTPActivity : BaseActivity(), OTPContract.View {
 
@@ -25,19 +30,53 @@ class OTPActivity : BaseActivity(), OTPContract.View {
         _binding = ActivityOTPBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = OTPPresenter(this)
+        presenter = OTPPresenter(this, callApi())
         presenter.start()
     }
 
+    @SuppressLint("SetTextI18n")
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.layoutParent.setOnClickListener { hideKeyboard() }
         setupEditText()
 
+        val phoneNumber = intent.getStringExtra(Constant.KEY_PHONE_NUMBER)
+        binding.tvMessage.text = "Please check your mobile number $phoneNumber\ncontinue to reset your password"
+
         binding.btnNext.setOnClickListener {
-            NavigationUtils.navigateToMainActivity(this)
-            finish()
+            val edt1 = binding.edt1.text.toString()
+            val edt2 = binding.edt2.text.toString()
+            val edt3 = binding.edt3.text.toString()
+            val edt4 = binding.edt4.text.toString()
+            when {
+                edt1.isNotEmpty() && edt2.isNotEmpty() && edt3.isNotEmpty() && edt4.isNotEmpty() -> {
+                    val data = Data(
+                        devid = "123123",
+                        email = preference.getString(Constant.KEY_EMAIL),
+                        password = preference.getString(Constant.KEY_PASSWORD),
+                        otp = "$edt1$edt2$edt3$edt4"
+                    )
+                    val login = Login(
+                        data = data
+                    )
+                    presenter.postOTP(login = login)
+                }
+                else -> {
+                    showToast("Please fill the OTP")
+                }
+            }
+
         }
+    }
+
+    override fun showOTPSuccess(user: User) {
+        NavigationUtils.navigateToMainActivity(this)
+        finish()
+    }
+
+    override fun showOTPFailed(message: String) {
+        showToast(message)
     }
 
     private fun setupEditText() {
@@ -59,6 +98,7 @@ class OTPActivity : BaseActivity(), OTPContract.View {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        presenter.onDestroy()
     }
 }
 

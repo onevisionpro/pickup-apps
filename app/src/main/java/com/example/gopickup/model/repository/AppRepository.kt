@@ -9,4 +9,5 @@ interface AppRepository {
 
     fun postLoginAndOTP(login: Login): Observable<BaseResponse<Any>>
 
+    fun postOTP(login: Login): Observable<BaseResponse<User>>
 }
