@@ -1,13 +1,21 @@
 package com.example.gopickup.presentation.history.details
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityHistoryDetailsBinding
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.HistoryOrderDetails
+import com.example.gopickup.model.response.ItemOrder
 import com.example.gopickup.utils.OrderStatus
 
 class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
@@ -54,6 +62,7 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
             }
 
             tvWarehouseTo.text = details.orderTo
+            setupItemsLayout(details.items)
             tvEstimateArrived.text = "estimate date"
             tvOrderIdDetails.text = details.trackId
             tvReceipt.text = details.resiCode
@@ -62,12 +71,27 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
         }
     }
 
+    private fun setupItemsLayout(items: List<ItemOrder>?) {
+        val itemOrderAdapter = ItemOrderAdapter()
+
+        items?.let {
+            itemOrderAdapter.addItems(it)
+            binding.rvItems.apply {
+                layoutManager = LinearLayoutManager(
+                    this@HistoryDetailsActivity,
+                    RecyclerView.VERTICAL,
+                    false
+                )
+                adapter = itemOrderAdapter
+            }
+            binding.rvItems.isNestedScrollingEnabled = false
+        }
+    }
+
     private fun setupStatusOrderFinish() {
-        binding.viewStatusColor.setBackgroundColor(
-            ContextCompat.getColor(
-                this@HistoryDetailsActivity,
-                R.color.green
-            )
+        binding.viewStatusColor.background = ContextCompat.getDrawable(
+            this@HistoryDetailsActivity,
+            R.drawable.view_circle_green
         )
         binding.tvStatusHead.setTextColor(
             ContextCompat.getColor(
@@ -78,11 +102,9 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
     }
 
     private fun setupStatusOrderCancel() {
-        binding.viewStatusColor.setBackgroundColor(
-            ContextCompat.getColor(
-                this@HistoryDetailsActivity,
-                R.color.redPrimary
-            )
+        binding.viewStatusColor.background = ContextCompat.getDrawable(
+            this@HistoryDetailsActivity,
+            R.drawable.view_circle_red
         )
         binding.tvStatusHead.setTextColor(
             ContextCompat.getColor(
