@@ -54,9 +54,9 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
 
             binding.edtUsername.setText(profile.nama)
             binding.edtWorkPartner.setText(profile.companyName)
-            binding.edtPhone.setText("08123123123")
+            binding.edtPhone.setText(profile.msisdn)
             binding.edtEmail.setText(profile.email)
-            binding.edtRole.setText(profile.msisdn)
+            binding.edtRole.setText(profile.role)
             binding.edtConfirmPassword.setText("password")
         }
 
