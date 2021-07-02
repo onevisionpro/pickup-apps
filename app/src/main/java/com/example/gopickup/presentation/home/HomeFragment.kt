@@ -15,6 +15,8 @@ import com.example.gopickup.model.response.*
 import com.example.gopickup.utils.PushUpdateStatus
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
+import com.example.gopickup.utils.hide
+import com.example.gopickup.utils.show
 import com.example.gopickup.utils.showToast
 import java.util.*
 
@@ -115,15 +117,20 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
     override fun showRecentOrderItems(recentOrderItems: List<RecentOrderItem>?) {
         recentOrderItems?.let {
-            recentOrderAdapter.addItems(it)
+            if (it.isNotEmpty()) {
+                recentOrderAdapter.addItems(it)
 
-            binding.rvRecentOrdersItems.apply {
-                layoutManager = LinearLayoutManager(
-                    requireContext(),
-                    RecyclerView.VERTICAL,
-                    false
-                )
-                adapter = recentOrderAdapter
+                binding.rvRecentOrdersItems.apply {
+                    layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    adapter = recentOrderAdapter
+                }
+            } else {
+                binding.tvNoRecentOrderItems.show()
+                binding.rvRecentOrdersItems.hide()
             }
         }
     }
