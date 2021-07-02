@@ -47,7 +47,10 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "History"
 
-        binding.filter.setOnClickListener { showToast("clicked") }
+        binding.filter.setOnClickListener {
+            val bottomSheetFilter = HistoryFilterFragment()
+            bottomSheetFilter.show(activity?.supportFragmentManager!!, bottomSheetFilter.tag)
+        }
         binding.done.setOnClickListener { showToast("clicked") }
         binding.date.setOnClickListener { showToast("clicked") }
     }
