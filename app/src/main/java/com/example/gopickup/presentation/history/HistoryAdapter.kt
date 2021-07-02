@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemHistoryBinding
 import com.example.gopickup.model.dummy.History
+import com.example.gopickup.model.response.HistoryOrder
+import com.example.gopickup.utils.DateUtils
+import com.example.gopickup.utils.OrderStatus
 
-class HistoryAdapter(private val onItemClick: (history: History) -> Unit) :
+class HistoryAdapter(private val onItemClick: (history: HistoryOrder) -> Unit) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private val historyList = mutableListOf<History>()
+    private val historyList = mutableListOf<HistoryOrder>()
 
-    fun addItems(historyList: List<History>) {
+    fun addItems(historyList: List<HistoryOrder>) {
         this.historyList.clear()
         this.historyList.addAll(historyList)
         notifyDataSetChanged()
@@ -34,15 +37,15 @@ class HistoryAdapter(private val onItemClick: (history: History) -> Unit) :
     inner class ViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(history: History) {
+        fun bind(history: HistoryOrder) {
             with(binding) {
-                tvWarehouseName.text = history.warehouseName
-                tvOrderId.text = history.orderId
-                tvStatus.text = history.statusDesc
-                tvDate.text = history.date
+                tvWarehouseName.text = history.orderTo
+                tvOrderId.text = history.trackId
+                tvStatus.text = history.status
+                tvDate.text = DateUtils.toFormatDate(history.createDtm!!)
 
                 when (history.status) {
-                    "Selesai" -> {
+                    OrderStatus.FINISH -> {
                         viewStatusColor.background = ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_green)
                         tvStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
                     }

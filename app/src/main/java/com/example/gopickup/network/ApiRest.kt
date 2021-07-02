@@ -5,6 +5,7 @@ import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.model.request.Login
 import com.example.gopickup.model.request.RecentOrder
 import com.example.gopickup.model.request.ResendOTPRequest
+import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.*
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -38,4 +39,10 @@ interface ApiRest {
      */
     @POST("profile/information")
     fun getProfile(@Body profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>>
+
+    /**
+     * History Order
+     */
+    @POST("order/historyOrder")
+    fun getHistoryOrderList(@Body historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
 }

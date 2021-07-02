@@ -9,9 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
 import com.example.gopickup.base.BaseFragment
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentHistoryBinding
 import com.example.gopickup.model.dummy.History
+import com.example.gopickup.model.request.TrackId
+import com.example.gopickup.model.response.HistoryOrder
 import com.example.gopickup.utils.DummyData
+import com.example.gopickup.utils.hide
+import com.example.gopickup.utils.show
 import com.example.gopickup.utils.showToast
 
 
@@ -29,14 +34,20 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = HistoryPresenter(this)
+        presenter = HistoryPresenter(this, callApi())
         presenter.start()
-        presenter.getHistories(DummyData.generateHistories())
+        presenter.getHistoriesOrder(
+            historyOrderRequest = BaseRequest(
+                guid = provideGUID(),
+                data = TrackId(trackId = "")
+            )
+        )
 
     }
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "History"
 
         binding.filter.setOnClickListener { showToast("clicked") }
@@ -44,17 +55,22 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
         binding.date.setOnClickListener { showToast("clicked") }
     }
 
-    override fun showHistories(historyList: List<History>?) {
-        historyList?.let {
-            historyAdapter.addItems(it)
+    override fun showHistoriesOrder(historyOrderList: List<HistoryOrder>?) {
+        historyOrderList?.let {
+            if (it.isNotEmpty()) {
+                historyAdapter.addItems(it)
 
-            binding.rvHistories.apply {
-                layoutManager = LinearLayoutManager(
-                    requireContext(),
-                    RecyclerView.VERTICAL,
-                    false
-                )
-                adapter = historyAdapter
+                binding.rvHistories.apply {
+                    layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    adapter = historyAdapter
+                }
+            } else {
+                binding.tvNoHistoryOrderItems.show()
+                binding.rvHistories.hide()
             }
         }
     }
@@ -62,6 +78,7 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        presenter.onDestroy()
     }
 
     override fun onCreateView(
