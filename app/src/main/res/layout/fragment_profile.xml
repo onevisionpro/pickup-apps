@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.profile.ProfileFragment">
 
     <include
@@ -28,7 +28,7 @@
                 android:id="@+id/img_profile"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/img_poster_sample" />
+                tools:src="@drawable/img_poster_sample" />
 
             <TextView
                 android:id="@+id/tv_edit_profile"
@@ -45,124 +45,130 @@
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dwiki Firmansyah"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Dwiki Firmansyah" />
 
             <TextView
+                android:id="@+id/tv_warehouse_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:hint="Name"
-                android:text="Warehouse Bogor" />
+                tools:text="Warehouse Bogor" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_username"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_rounded_50_gray"
+                    android:focusable="false"
                     android:hint="Username"
-                    android:textSize="14sp"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:layout_height="wrap_content" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_work_partner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_rounded_50_gray"
+                    android:focusable="false"
                     android:hint="Mitra Kerja"
-                    android:textSize="14sp"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:layout_height="wrap_content" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_rounded_50_gray"
+                    android:focusable="false"
                     android:hint="Phone"
-                    android:textSize="14sp"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:layout_height="wrap_content" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_rounded_50_gray"
+                    android:focusable="false"
                     android:hint="Email"
-                    android:textSize="14sp"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:layout_height="wrap_content" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_rounded_50_gray"
+                    android:focusable="false"
                     android:hint="Role"
-                    android:textSize="14sp"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:layout_height="wrap_content" />
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_rounded_50_gray"
+                    android:focusable="false"
                     android:hint="Confirm Password"
-                    android:textSize="14sp"
+                    android:inputType="textPassword"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,5 +184,13 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:theme="@style/ProgressBarTheme"
+        android:visibility="gone" />
 
 </RelativeLayout>

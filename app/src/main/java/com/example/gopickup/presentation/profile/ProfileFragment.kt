@@ -1,14 +1,14 @@
 package com.example.gopickup.presentation.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gopickup.R
+import com.bumptech.glide.Glide
 import com.example.gopickup.base.BaseFragment
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentProfileBinding
-import com.example.gopickup.model.dummy.Profile
+import com.example.gopickup.model.response.Profile
 import com.example.gopickup.utils.DummyData
 import com.example.gopickup.utils.showToast
 
@@ -23,27 +23,42 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = ProfilePresenter(this)
+        presenter = ProfilePresenter(this, callApi())
         presenter.start()
-        presenter.getProfile(DummyData.generateDummyProfile())
+        presenter.getProfile(
+            profileRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "0",
+                data = ""
+            )
+        )
 
     }
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Profile"
         binding.toolbar.icShop.setOnClickListener { showToast("clicked") }
 
         binding.tvEditProfile.setOnClickListener { showToast("clicked") }
     }
 
-    override fun showProfile(profile: Profile) {
-        binding.edtUsername.setText(profile.name)
-        binding.edtWorkPartner.setText(profile.mitraKerja)
-        binding.edtPhone.setText(profile.phone)
-        binding.edtEmail.setText(profile.email)
-        binding.edtRole.setText(profile.role)
-        binding.edtConfirmPassword.setText(profile.confirmPassword)
+    override fun showProfile(profile: Profile?) {
+        profile?.let {
+            Glide.with(requireContext())
+                .load(profile.imageProfile)
+                .into(binding.imgProfile)
+            binding.tvUsername.text = profile.nama
+            binding.tvWarehouseName.text = profile.companyName
+
+            binding.edtUsername.setText(profile.nama)
+            binding.edtWorkPartner.setText(profile.companyName)
+            binding.edtPhone.setText("08123123123")
+            binding.edtEmail.setText(profile.email)
+            binding.edtRole.setText(profile.msisdn)
+            binding.edtConfirmPassword.setText("password")
+        }
 
         binding.btnSave.setOnClickListener { showToast("save") }
     }
@@ -51,6 +66,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        presenter.onDestroy()
     }
 
     override fun onCreateView(

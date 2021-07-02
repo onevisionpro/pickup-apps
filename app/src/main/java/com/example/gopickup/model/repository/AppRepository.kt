@@ -5,10 +5,7 @@ import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.model.request.Login
 import com.example.gopickup.model.request.RecentOrder
 import com.example.gopickup.model.request.ResendOTPRequest
-import com.example.gopickup.model.response.HomeInformation
-import com.example.gopickup.model.response.RecentOrderItem
-import com.example.gopickup.model.response.User
-import com.example.gopickup.model.response.VersionChecker
+import com.example.gopickup.model.response.*
 import io.reactivex.Observable
 
 interface AppRepository {
@@ -24,4 +21,6 @@ interface AppRepository {
     fun getHomeInformation(baseRequest: BaseRequest<String>): Observable<BaseResponse<HomeInformation>>
 
     fun getRecentOrderItems(recentOrder: BaseRequest<RecentOrder>): Observable<BaseResponse<List<RecentOrderItem>>>
+
+    fun getProfile(profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>>
 }

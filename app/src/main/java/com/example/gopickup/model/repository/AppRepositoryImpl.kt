@@ -5,10 +5,7 @@ import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.model.request.Login
 import com.example.gopickup.model.request.RecentOrder
 import com.example.gopickup.model.request.ResendOTPRequest
-import com.example.gopickup.model.response.HomeInformation
-import com.example.gopickup.model.response.RecentOrderItem
-import com.example.gopickup.model.response.User
-import com.example.gopickup.model.response.VersionChecker
+import com.example.gopickup.model.response.*
 import com.example.gopickup.network.ApiRest
 import io.reactivex.Observable
 
@@ -36,6 +33,10 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
 
     override fun getRecentOrderItems(recentOrder: BaseRequest<RecentOrder>): Observable<BaseResponse<List<RecentOrderItem>>> {
         return apiRest.getRecentOrderItems(recentOrder)
+    }
+
+    override fun getProfile(profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>> {
+        return apiRest.getProfile(profileRequest)
     }
 
 }
