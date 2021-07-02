@@ -8,6 +8,7 @@ import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemRecentOrderBinding
 import com.example.gopickup.model.response.RecentOrderItem
 import com.example.gopickup.utils.DateUtils
+import com.example.gopickup.utils.OrderStatus
 
 class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem) -> Unit) :
     RecyclerView.Adapter<RecentOrderAdapter.ViewHolder>() {
@@ -44,7 +45,7 @@ class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem)
                 tvDate.text = DateUtils.toFormatDate(recentOrder.createDtm!!)
 
                 when (recentOrder.status) {
-                    "Selesai" -> {
+                    OrderStatus.FINISH -> {
                         viewStatusColor.background = ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_green)
                         tvStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
                     }
