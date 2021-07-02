@@ -3,8 +3,9 @@ package com.example.gopickup.presentation.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gopickup.databinding.ItemItemsHomeBinding
-import com.example.gopickup.model.dummy.Item
+import com.example.gopickup.model.response.Item
 
 class ItemsAdapter(private val onItemClick: (item: Item) -> Unit) :
     RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
@@ -35,8 +36,10 @@ class ItemsAdapter(private val onItemClick: (item: Item) -> Unit) :
 
         fun bind(item: Item) {
             with(binding) {
-                imgItem.setImageResource(item.image!!)
-                tvNameItem.text = item.name
+                Glide.with(itemView.context)
+                    .load(item.image)
+                    .into(imgItem)
+                tvNameItem.text = item.label
             }
         }
     }

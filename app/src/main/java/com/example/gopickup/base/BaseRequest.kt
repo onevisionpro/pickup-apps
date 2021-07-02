@@ -7,7 +7,7 @@ data class BaseRequest<T>(
     @Json(name = "guid")
     val guid: String? = "",
     @Json(name = "code")
-    val code: String? = "",
+    val code: String? = "0",
     @Json(name = "data")
     var data: T? = null
 )

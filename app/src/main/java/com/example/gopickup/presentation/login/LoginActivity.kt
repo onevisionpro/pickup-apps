@@ -1,7 +1,6 @@
 package com.example.gopickup.presentation.login
 
 import android.os.Bundle
-import android.util.Log
 import com.example.gopickup.BuildConfig
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest

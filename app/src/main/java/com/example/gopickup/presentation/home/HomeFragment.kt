@@ -1,22 +1,20 @@
 package com.example.gopickup.presentation.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.BuildConfig
-import com.example.gopickup.R
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
-import com.example.gopickup.base.BaseView
 import com.example.gopickup.databinding.FragmentHomeBinding
-import com.example.gopickup.model.dummy.Item
-import com.example.gopickup.model.dummy.RecentOrder
+import com.example.gopickup.model.request.RecentOrder
+import com.example.gopickup.model.response.Banner
+import com.example.gopickup.model.response.Item
+import com.example.gopickup.model.response.RecentOrderItem
 import com.example.gopickup.model.response.VersionChecker
-import com.example.gopickup.utils.DummyData
 import com.example.gopickup.utils.PushUpdateStatus
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
@@ -50,12 +48,24 @@ class HomeFragment : BaseFragment(), HomeContract.View {
                 data = ""
             )
         )
+        presenter.getHomeInformation(
+            baseRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "0",
+                data = ""
+            )
+        )
+        presenter.getRecentOrderItems(
+            BaseRequest(
+                guid = provideGUID(),
+                data = RecentOrder(limit = "5")
+            )
+        )
     }
 
     override fun initView() {
         super.initView()
-        presenter.getItems(DummyData.generateItems())
-        presenter.getRecentOrderItems(DummyData.generateRecentOrderItems())
+        initProgressBar(binding.progressBar)
     }
 
     override fun showVersionChecker(versionChecker: VersionChecker) {
@@ -73,8 +83,17 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         }
     }
 
-    override fun showItems(items: List<Item>?) {
-        items?.let {
+    override fun showBanners(bannerList: List<Banner>?) {
+        bannerList?.let {
+            val bannerAdapter = TopBannerAdapter(requireContext(), it)
+            binding.viewPager.apply {
+                adapter = bannerAdapter
+            }
+        }
+    }
+
+    override fun showItems(itemList: List<Item>?) {
+        itemList?.let {
             itemsAdapter.addItems(it)
 
             binding.rvItems.apply {
@@ -88,7 +107,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         }
     }
 
-    override fun showRecentOrderItems(recentOrderItems: List<RecentOrder>?) {
+    override fun showRecentOrderItems(recentOrderItems: List<RecentOrderItem>?) {
         recentOrderItems?.let {
             recentOrderAdapter.addItems(it)
 

@@ -28,11 +28,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+            <androidx.viewpager.widget.ViewPager
                 android:layout_width="match_parent"
                 android:layout_height="225dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_poster_sample" />
+                android:id="@+id/view_pager" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,5 +98,13 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:theme="@style/ProgressBarTheme"/>
 
 </RelativeLayout>

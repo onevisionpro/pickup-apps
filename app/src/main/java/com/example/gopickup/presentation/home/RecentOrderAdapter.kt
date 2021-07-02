@@ -6,14 +6,15 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemRecentOrderBinding
-import com.example.gopickup.model.dummy.RecentOrder
+import com.example.gopickup.model.response.RecentOrderItem
+import com.example.gopickup.utils.DateUtils
 
-class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrder) -> Unit) :
+class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem) -> Unit) :
     RecyclerView.Adapter<RecentOrderAdapter.ViewHolder>() {
 
-    private val recentOrderList = mutableListOf<RecentOrder>()
+    private val recentOrderList = mutableListOf<RecentOrderItem>()
 
-    fun addItems(recentOrderList: List<RecentOrder>) {
+    fun addItems(recentOrderList: List<RecentOrderItem>) {
         this.recentOrderList.clear()
         this.recentOrderList.addAll(recentOrderList)
         notifyDataSetChanged()
@@ -35,12 +36,12 @@ class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrder) -> 
     inner class ViewHolder(private val binding: ItemRecentOrderBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(recentOrder: RecentOrder) {
+        fun bind(recentOrder: RecentOrderItem) {
             with(binding) {
-                tvWarehouseName.text = recentOrder.warehouseName
-                tvOrderId.text = recentOrder.orderId
-                tvStatus.text = recentOrder.statusDesc
-                tvDate.text = recentOrder.date
+                tvWarehouseName.text = recentOrder.orderTo
+                tvOrderId.text = recentOrder.trackId
+                tvStatus.text = recentOrder.status
+                tvDate.text = DateUtils.toFormatDate(recentOrder.createDtm!!)
 
                 when (recentOrder.status) {
                     "Selesai" -> {
