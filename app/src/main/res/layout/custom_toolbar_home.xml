@@ -14,16 +14,17 @@
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:text="Good morning" />
+        tools:text="Good morning" />
 
     <TextView
+        android:id="@+id/tv_company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_toolbar_title"
         android:layout_marginTop="4dp"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:text="Warehouse Bogor!" />
+        tools:text="Warehouse Bogor!" />
 
     <ImageView
         android:layout_centerVertical="true"

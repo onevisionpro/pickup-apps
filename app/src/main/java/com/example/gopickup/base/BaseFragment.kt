@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.network.ApiClient
 import com.example.gopickup.network.ApiRest
-import com.example.gopickup.utils.Constant
+import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.SharedPreference
 import com.example.gopickup.utils.StringUtils
 import com.example.gopickup.utils.showToast
@@ -53,7 +53,7 @@ open class BaseFragment: Fragment(), BaseView {
     }
 
     fun provideGUID(): String {
-        val token = preference.getString(Constant.KEY_TOKEN)
+        val token = preference.getString(Constants.KEY_TOKEN)
         val devId = provideDeviceId()
         return StringUtils.toMd5("$token$devId")
     }

@@ -22,7 +22,7 @@ object NavigationUtils {
 
     fun navigateToOTPActivity(activity: Activity, phoneNumber: String) {
         val intent = Intent(activity, OTPActivity::class.java)
-        intent.putExtra(Constant.KEY_PHONE_NUMBER, phoneNumber)
+        intent.putExtra(Constants.KEY_PHONE_NUMBER, phoneNumber)
         activity.startActivity(intent)
     }
 

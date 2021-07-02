@@ -1,6 +1,6 @@
 package com.example.gopickup.utils
 
-object Constant {
+object Constants {
     const val DEFAULT_ERROR_MSG = "Sorry, something went wrong..."
     const val DEFAULT_SESSION_EXPIRED_MSG = "Session Expired"
 
@@ -9,6 +9,7 @@ object Constant {
     const val TRACK_MY_ORDER = "TRACK_MY_ORDER"
     const val RESEND_OTP = "OVPPICKUP"
 
+    const val KEY_COMPANY_NAME = "KEY_COMPANY_NAME"
     const val KEY_IS_LOGGED_IN = "KEY_IS_LOGGED_IN"
     const val KEY_USER_TYPE = "KEY_USER_TYPE"
     const val KEY_PHONE_NUMBER = "KEY_PHONE_NUMBER"

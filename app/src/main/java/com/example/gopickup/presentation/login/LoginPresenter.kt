@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.model.request.Login
-import com.example.gopickup.utils.Constant
+import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -33,18 +33,20 @@ class LoginPresenter(
                     }
                 },
                 {
-                    view.showMessage(Constant.DEFAULT_ERROR_MSG)
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("LoginPresenter", "ERROR, postVersionChecker: ${it.localizedMessage}")
                 }
             ))
     }
 
     override fun postLogin(login: Login) {
+        view.showLoading()
         compositeDisposable.add(appRepositoryImpl.postLoginAndOTP(login)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {
+                    view.hideLoading()
                     when (it.code) {
                         StatusCode.SUCCESS_LOGIN_PARTNER -> view.showSendOTPSuccess(it.info!!)
                         StatusCode.SUCCESS_LOGIN_WAREHOUSE -> view.showLoginSuccessForWarehouse(it)
@@ -52,7 +54,8 @@ class LoginPresenter(
                     }
                 },
                 {
-                    view.showMessage(Constant.DEFAULT_ERROR_MSG)
+                    view.hideLoading()
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("LoginPresenter", "ERROR, postLogin: ${it.localizedMessage}")
                 }
             ))

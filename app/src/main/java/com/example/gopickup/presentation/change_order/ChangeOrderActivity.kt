@@ -1,16 +1,12 @@
 package com.example.gopickup.presentation.change_order
 
-import android.content.Intent
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityChangeOrderBinding
-import com.example.gopickup.presentation.main.MainActivity
-import com.example.gopickup.utils.Constant
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogCancelOrderListener
 import com.example.gopickup.utils.dialog.listener.IOnDialogChangeMyOrderListener
-import com.example.gopickup.utils.showToast
 
 class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
 

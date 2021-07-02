@@ -11,14 +11,12 @@ import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentHomeBinding
 import com.example.gopickup.model.request.RecentOrder
-import com.example.gopickup.model.response.Banner
-import com.example.gopickup.model.response.Item
-import com.example.gopickup.model.response.RecentOrderItem
-import com.example.gopickup.model.response.VersionChecker
+import com.example.gopickup.model.response.*
 import com.example.gopickup.utils.PushUpdateStatus
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
 import com.example.gopickup.utils.showToast
+import java.util.*
 
 
 class HomeFragment : BaseFragment(), HomeContract.View {
@@ -61,11 +59,19 @@ class HomeFragment : BaseFragment(), HomeContract.View {
                 data = RecentOrder(limit = "5")
             )
         )
+        presenter.getProfile(
+            profileRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "0",
+                data = ""
+            )
+        )
     }
 
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
+        binding.toolbar.tvToolbarTitle.text = setGreetingMessage()
     }
 
     override fun showVersionChecker(versionChecker: VersionChecker) {
@@ -119,6 +125,23 @@ class HomeFragment : BaseFragment(), HomeContract.View {
                 )
                 adapter = recentOrderAdapter
             }
+        }
+    }
+
+    override fun showProfile(profile: Profile?) {
+        profile?.let {
+            binding.toolbar.tvCompanyName.text = it.companyName
+        }
+    }
+
+    private fun setGreetingMessage(): String {
+        val c = Calendar.getInstance()
+
+        return when (c.get(Calendar.HOUR_OF_DAY)) {
+            in 0..13 -> "Good Morning"
+            in 14..17 -> "Good Afternoon"
+            in 18..23 -> "Selamat Evening"
+            else -> "Halo"
         }
     }
 

@@ -5,7 +5,7 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.model.request.Login
 import com.example.gopickup.model.request.ResendOTPRequest
-import com.example.gopickup.utils.Constant
+import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -37,7 +37,7 @@ class OTPPresenter(
                 },
                 {
                     view.hideLoading()
-                    view.showMessage(Constant.DEFAULT_ERROR_MSG)
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("OTPPresenter", "ERROR, postOTP: ${it.localizedMessage}" )
                 }
             ))
@@ -58,7 +58,7 @@ class OTPPresenter(
                 },
                 {
                     view.hideLoading()
-                    view.showMessage(Constant.DEFAULT_ERROR_MSG)
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("OTPPresenter", "ERROR, postResendOTP: ${it.localizedMessage}" )
                 }
             ))    }

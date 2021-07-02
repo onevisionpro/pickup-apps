@@ -40,7 +40,7 @@ class OTPActivity : BaseActivity(), OTPContract.View {
         binding.layoutParent.setOnClickListener { hideKeyboard() }
         setupEditText()
 
-        val phoneNumber = intent.getStringExtra(Constant.KEY_PHONE_NUMBER)
+        val phoneNumber = intent.getStringExtra(Constants.KEY_PHONE_NUMBER)
         binding.tvMessage.text = "Please check your mobile number $phoneNumber\ncontinue to reset your password"
 
         // button next
@@ -53,8 +53,8 @@ class OTPActivity : BaseActivity(), OTPContract.View {
                 edt1.isNotEmpty() && edt2.isNotEmpty() && edt3.isNotEmpty() && edt4.isNotEmpty() -> {
                     val data = Data(
                         devid = provideDeviceId(),
-                        email = preference.getString(Constant.KEY_EMAIL),
-                        password = preference.getString(Constant.KEY_PASSWORD),
+                        email = preference.getString(Constants.KEY_EMAIL),
+                        password = preference.getString(Constants.KEY_PASSWORD),
                         otp = "$edt1$edt2$edt3$edt4"
                     )
                     val login = Login(
@@ -72,17 +72,17 @@ class OTPActivity : BaseActivity(), OTPContract.View {
         // button click here - Resend OTP
         binding.tvClickHere.setOnClickListener {
             val resendOTPRequest = ResendOTPRequest(
-                email = preference.getString(Constant.KEY_EMAIL),
-                hash = StringUtils.toMd5(input = "${Constant.RESEND_OTP}-${preference.getString(Constant.KEY_EMAIL)}")
+                email = preference.getString(Constants.KEY_EMAIL),
+                hash = StringUtils.toMd5(input = "${Constants.RESEND_OTP}-${preference.getString(Constants.KEY_EMAIL)}")
             )
             presenter.postResendOTP(resendOTPRequest = BaseRequest(data = resendOTPRequest))
         }
     }
 
     override fun showOTPSuccess(user: User) {
-        preference.saveBoolean(Constant.KEY_IS_LOGGED_IN, true)
-        preference.saveString(Constant.KEY_USER_TYPE, UserType.PARTNER)
-        preference.saveString(Constant.KEY_TOKEN, user.token!!)
+        preference.saveBoolean(Constants.KEY_IS_LOGGED_IN, true)
+        preference.saveString(Constants.KEY_USER_TYPE, UserType.PARTNER)
+        preference.saveString(Constants.KEY_TOKEN, user.token!!)
 
         NavigationUtils.navigateToMainActivity(this)
         finish()
