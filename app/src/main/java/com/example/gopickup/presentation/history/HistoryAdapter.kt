@@ -32,6 +32,7 @@ class HistoryAdapter(private val onItemClick: (history: HistoryOrder) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val history = historyList[position]
         holder.bind(history)
+        holder.itemView.setOnClickListener { onItemClick(history) }
     }
 
     inner class ViewHolder(private val binding: ItemHistoryBinding) :

@@ -45,4 +45,8 @@ interface ApiRest {
      */
     @POST("order/historyOrder")
     fun getHistoryOrderList(@Body historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
+
+    @POST("order/historyOrder")
+    fun getHistoryOrderDetails(@Body historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>>
+
 }

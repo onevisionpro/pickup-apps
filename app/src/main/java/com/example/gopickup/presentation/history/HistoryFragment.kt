@@ -14,10 +14,7 @@ import com.example.gopickup.databinding.FragmentHistoryBinding
 import com.example.gopickup.model.dummy.History
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.HistoryOrder
-import com.example.gopickup.utils.DummyData
-import com.example.gopickup.utils.hide
-import com.example.gopickup.utils.show
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 
 class HistoryFragment : BaseFragment(), HistoryContract.View {
@@ -28,7 +25,7 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     private lateinit var presenter: HistoryPresenter
 
     private val historyAdapter = HistoryAdapter {
-
+        NavigationUtils.navigateToHistoryDetailsActivity(requireActivity(), trackId = it.trackId!!)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

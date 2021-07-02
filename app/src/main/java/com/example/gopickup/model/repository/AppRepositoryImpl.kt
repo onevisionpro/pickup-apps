@@ -44,4 +44,8 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getHistoryOrderList(historyOrderRequest)
     }
 
+    override fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>> {
+        return apiRest.getHistoryOrderDetails(historyOrderRequest)
+    }
+
 }
