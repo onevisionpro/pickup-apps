@@ -13,40 +13,48 @@ import retrofit2.http.POST
 
 interface ApiRest {
 
-    @POST("login")
+    @POST("api/login")
     fun postLogin(@Body login: Login): Observable<BaseResponse<User>>
 
-    @POST("login")
+    @POST("api/login")
     fun postOTP(@Body login: Login): Observable<BaseResponse<User>>
 
-    @POST("login/resendOTP")
+    @POST("api/login/resendOTP")
     fun postResendOTP(@Body baseRequest: BaseRequest<ResendOTPRequest>): Observable<BaseResponse<Any>>
 
-    @POST("version/checker")
+    @POST("api/version/checker")
     fun postVersionChecker(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<VersionChecker>>
 
     /**
      * Home Page
      */
-    @POST("home/information")
+    @POST("api/home/information")
     fun getHomeInformation(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<HomeInformation>>
 
-    @POST("home/recentOrder")
+    @POST("api/home/recentOrder")
     fun getRecentOrderItems(@Body recentOrderRequest: BaseRequest<RecentOrder>): Observable<BaseResponse<List<RecentOrderItem>>>
 
     /**
      * Profile
      */
-    @POST("profile/information")
+    @POST("api/profile/information")
     fun getProfile(@Body profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>>
 
     /**
      * History Order
      */
-    @POST("order/historyOrder")
+    @POST("api/order/historyOrder")
     fun getHistoryOrderList(@Body historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
 
     @POST("order/historyOrder")
     fun getHistoryOrderDetails(@Body historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>>
 
+    /**
+     * Order
+     */
+    @POST("utility/getData/warehouses")
+    fun getWarehouses(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<List<Warehouse>>>
+
+    @POST("utility/getData/items")
+    fun getItemsWarehouse(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<List<ItemWarehouse>>>
 }

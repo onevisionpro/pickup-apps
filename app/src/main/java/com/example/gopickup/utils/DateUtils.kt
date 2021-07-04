@@ -2,6 +2,7 @@ package com.example.gopickup.utils
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
+import java.util.*
 
 object DateUtils {
     @SuppressLint("SimpleDateFormat")
@@ -9,5 +10,11 @@ object DateUtils {
         val from = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
         val format = SimpleDateFormat("yyyy-MM-dd")
         return format.format(from.parse(date))
+    }
+
+    fun formatDate(cal: Date): String {
+        val myFormat = "MM/dd/yyyy" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        return sdf.format(cal.time)
     }
 }

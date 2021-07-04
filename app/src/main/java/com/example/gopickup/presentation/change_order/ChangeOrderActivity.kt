@@ -3,6 +3,7 @@ package com.example.gopickup.presentation.change_order
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityChangeOrderBinding
+import com.example.gopickup.model.response.Warehouse
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogCancelOrderListener
@@ -22,6 +23,7 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
 
         presenter = ChangeOrderPresenter(this)
         presenter.start()
+
     }
 
     override fun initView() {

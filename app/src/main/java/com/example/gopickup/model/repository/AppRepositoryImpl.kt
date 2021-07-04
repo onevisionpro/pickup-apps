@@ -48,4 +48,12 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getHistoryOrderDetails(historyOrderRequest)
     }
 
+    override fun getWarehouseList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<Warehouse>>> {
+        return apiRest.getWarehouses(baseRequest)
+    }
+
+    override fun getItemListWarehouse(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<ItemWarehouse>>> {
+        return apiRest.getItemsWarehouse(baseRequest)
+    }
+
 }

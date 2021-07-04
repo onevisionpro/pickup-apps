@@ -6,10 +6,8 @@ import com.example.gopickup.base.BaseView
 interface ChangeOrderContract {
 
     interface View : BaseView {
-
     }
 
     interface Presenter : BasePresenter {
-
     }
 }
