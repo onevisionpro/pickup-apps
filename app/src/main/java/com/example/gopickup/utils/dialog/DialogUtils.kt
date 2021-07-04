@@ -21,7 +21,7 @@ import java.util.*
 
 object DialogUtils {
 
-    fun showDialogCreateOrder(context: Context, listener: IOnDialogCreateOrderListener) {
+    fun showDialogCreateOrder(context: Context, trackId: String, listener: IOnDialogCreateOrderListener) {
         val dialog = Dialog(context)
         val binding = DialogCreateOrderBinding.inflate(LayoutInflater.from(context))
 
@@ -30,6 +30,8 @@ object DialogUtils {
         dialog.setContentView(binding.root)
         Objects.requireNonNull(dialog.window)
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOrderId.text = trackId
 
         binding.btnHistoryOrder.setOnClickListener {
             dialog.hide()
@@ -197,7 +199,6 @@ object DialogUtils {
 
         val datePickerDialog = DatePickerDialog(
             context,
-            R.style.DialogTheme,
             dateSetListener,
             YEAR,
             MONTH,

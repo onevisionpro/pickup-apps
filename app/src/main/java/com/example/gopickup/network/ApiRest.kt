@@ -2,10 +2,7 @@ package com.example.gopickup.network
 
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.base.BaseResponse
-import com.example.gopickup.model.request.Login
-import com.example.gopickup.model.request.RecentOrder
-import com.example.gopickup.model.request.ResendOTPRequest
-import com.example.gopickup.model.request.TrackId
+import com.example.gopickup.model.request.*
 import com.example.gopickup.model.response.*
 import io.reactivex.Observable
 import retrofit2.http.Body
@@ -57,4 +54,7 @@ interface ApiRest {
 
     @POST("utility/getData/items")
     fun getItemsWarehouse(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<List<ItemWarehouse>>>
+
+    @POST("api/order/createOrder")
+    fun postCreateOrder(@Body createOrder: BaseRequest<CreateOrder>): Observable<BaseResponse<TrackId>>
 }

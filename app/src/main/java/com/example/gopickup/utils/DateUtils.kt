@@ -13,7 +13,7 @@ object DateUtils {
     }
 
     fun formatDate(cal: Date): String {
-        val myFormat = "MM/dd/yyyy" // mention the format you need
+        val myFormat = "yyyy/MM/dd" // mention the format you need
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         return sdf.format(cal.time)
     }

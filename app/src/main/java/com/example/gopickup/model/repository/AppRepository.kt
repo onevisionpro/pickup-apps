@@ -2,10 +2,7 @@ package com.example.gopickup.model.repository
 
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.base.BaseResponse
-import com.example.gopickup.model.request.Login
-import com.example.gopickup.model.request.RecentOrder
-import com.example.gopickup.model.request.ResendOTPRequest
-import com.example.gopickup.model.request.TrackId
+import com.example.gopickup.model.request.*
 import com.example.gopickup.model.response.*
 import io.reactivex.Observable
 
@@ -32,4 +29,6 @@ interface AppRepository {
     fun getWarehouseList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<Warehouse>>>
 
     fun getItemListWarehouse(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<ItemWarehouse>>>
+
+    fun postCreateOrder(createOrder: BaseRequest<CreateOrder>): Observable<BaseResponse<TrackId>>
 }

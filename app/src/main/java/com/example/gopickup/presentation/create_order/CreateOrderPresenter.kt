@@ -3,6 +3,7 @@ package com.example.gopickup.presentation.create_order
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
+import com.example.gopickup.model.request.CreateOrder
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -60,6 +61,28 @@ class CreateOrderPresenter(
                     view.hideLoading()
                     view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("ChangeOrderPresenter", "ERROR, getItemList: ${it.localizedMessage}")
+                }
+            ))
+    }
+
+    override fun postCreateOrder(createOrder: BaseRequest<CreateOrder>) {
+        view.showLoading()
+        compositeDisposable.add(appRepositoryImpl.postCreateOrder(createOrder)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    view.hideLoading()
+                    when (it.code) {
+                        StatusCode.SUCCESS -> view.showCreateOrderSuccess(it.data?.trackId!!)
+                        StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
+                        else -> view.showMessage(it.info)
+                    }
+                },
+                {
+                    view.hideLoading()
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
+                    Log.e("CreateOrderPresenter", "ERROR, postCreateOrder: ${it.localizedMessage}")
                 }
             ))
     }

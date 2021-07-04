@@ -9,6 +9,8 @@ import android.widget.AdapterView
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityCreateOrderBinding
+import com.example.gopickup.model.request.CreateOrder
+import com.example.gopickup.model.request.Item
 import com.example.gopickup.model.response.ItemWarehouse
 import com.example.gopickup.model.response.Warehouse
 import com.example.gopickup.presentation.main.MainActivity
@@ -27,6 +29,8 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
     private val binding get() = _binding!!
 
     private lateinit var presenter: CreateOrderPresenter
+    private var createOrder = CreateOrder()
+    private var items = arrayListOf<Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,45 +82,23 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             }
         }
 
-        val cal = Calendar.getInstance()
-        val dateSetListener =
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                binding.edtEstimatedDate.setText(DateUtils.formatDate(cal.time))
-            }
+
         binding.edtEstimatedDate.setOnClickListener {
-//            DatePickerDialog(
-//                this,
-//                dateSetListener,
-//                cal.get(Calendar.YEAR),
-//                cal.get(Calendar.MONTH),
-//                cal.get(Calendar.DAY_OF_MONTH)
-//            ).show()
             DialogUtils.showDialogCalendar(this, object : IOnItemClicked<Date> {
                 override fun onItemClicked(data: Date) {
                     binding.edtEstimatedDate.setText(DateUtils.formatDate(data))
+                    createOrder.arrivalDate = binding.edtEstimatedDate.text.toString()
                 }
 
             })
         }
 
         binding.btnOrder.setOnClickListener {
-            DialogUtils.showDialogCreateOrder(this, object : IOnDialogCreateOrderListener {
-                override fun onHistoryOrderClicked() {
-                    val intent = Intent(this@CreateOrderActivity, MainActivity::class.java)
-                    intent.putExtra("NAVIGATE_TO", "HISTORY")
-                    startActivity(intent)
-                    finish()
-                }
-
-                override fun onBackToHomeClicked() {
-                    NavigationUtils.navigateToMainActivity(this@CreateOrderActivity)
-                    finish()
-                }
-
-            })
+            presenter.postCreateOrder(createOrder = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = createOrder
+            ))
         }
     }
 
@@ -126,7 +108,8 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
                 object : IOnItemClicked<Warehouse> {
                     override fun onItemClicked(data: Warehouse) {
                         binding.edtChooseWarehouse.setText(data.whName)
-                        showToast("id warehouse : ${data.idWarehouse}")
+
+                        createOrder.idWarehouse = data.idWarehouse
                     }
 
                 })
@@ -134,16 +117,34 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
     }
 
     override fun showItemList(itemList: List<ItemWarehouse>?) {
-        Log.d("TAG", "showItemList: $itemList")
         itemList?.let {
             DialogUtils.showDialogItems(this, it, object : IOnItemClicked<ItemWarehouse> {
                 override fun onItemClicked(data: ItemWarehouse) {
                     binding.edtChooseItem.setText(data.itemName)
-                    showToast("id item : ${data.idItem}")
+
+                    items.add(Item(idItem = data.idItem, jumlah = "${binding.tvQtyCounter.text}"))
+                    createOrder.items = items
                 }
 
             })
         }
+    }
+
+    override fun showCreateOrderSuccess(trackId: String) {
+        DialogUtils.showDialogCreateOrder(this, trackId, object : IOnDialogCreateOrderListener {
+            override fun onHistoryOrderClicked() {
+                val intent = Intent(this@CreateOrderActivity, MainActivity::class.java)
+                intent.putExtra("NAVIGATE_TO", "HISTORY")
+                startActivity(intent)
+                finish()
+            }
+
+            override fun onBackToHomeClicked() {
+                NavigationUtils.navigateToMainActivity(this@CreateOrderActivity)
+                finish()
+            }
+
+        })
     }
 
     override fun onDestroy() {
