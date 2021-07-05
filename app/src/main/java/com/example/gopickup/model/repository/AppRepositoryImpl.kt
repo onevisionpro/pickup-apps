@@ -37,6 +37,10 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getProfile(profileRequest)
     }
 
+    override fun postEditProfile(profile: BaseRequest<Profile>): Observable<BaseResponse<Any>> {
+        return apiRest.postEditProfile(profile)
+    }
+
     override fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>> {
         return apiRest.getHistoryOrderList(historyOrderRequest)
     }

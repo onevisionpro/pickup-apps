@@ -10,6 +10,7 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentProfileBinding
 import com.example.gopickup.model.response.Profile
 import com.example.gopickup.utils.DummyData
+import com.example.gopickup.utils.hideKeyboard
 import com.example.gopickup.utils.showToast
 
 
@@ -38,10 +39,13 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
+        binding.layoutParent.setOnClickListener { requireActivity().hideKeyboard() }
         binding.toolbar.tvToolbarTitle.text = "Profile"
         binding.toolbar.icShop.setOnClickListener { showToast("clicked") }
 
-        binding.tvEditProfile.setOnClickListener { showToast("clicked") }
+        binding.tvEditProfile.setOnClickListener {
+            setupEditable()
+        }
     }
 
     override fun showProfile(profile: Profile?) {
@@ -57,10 +61,41 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
             binding.edtPhone.setText(profile.msisdn)
             binding.edtEmail.setText(profile.email)
             binding.edtRole.setText(profile.role)
-            binding.edtConfirmPassword.setText("password")
         }
 
-        binding.btnSave.setOnClickListener { showToast("save") }
+        binding.btnSave.setOnClickListener {
+            val profile = Profile(
+                nama = binding.edtUsername.text.toString(),
+                companyName = binding.edtWorkPartner.text.toString(),
+                msisdn = binding.edtPhone.text.toString(),
+                email = binding.edtEmail.text.toString(),
+                role = binding.edtRole.text.toString()
+            )
+            presenter.postEditProfile(profile = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = profile
+            ))
+        }
+    }
+
+    override fun showEditProfileSuccess(message: String) {
+        showToast(message)
+    }
+
+    private fun setupEditable() {
+        binding.edtUsername.isFocusableInTouchMode = true
+        binding.edtUsername.isFocusable = true
+        binding.edtUsername.requestFocus()
+
+        binding.edtWorkPartner.isFocusableInTouchMode = true
+        binding.edtWorkPartner.isFocusable = true
+        binding.edtPhone.isFocusableInTouchMode = true
+        binding.edtPhone.isFocusable = true
+        binding.edtEmail.isFocusableInTouchMode = true
+        binding.edtEmail.isFocusable = true
+        binding.edtRole.isFocusableInTouchMode = true
+        binding.edtRole.isFocusable = true
     }
 
     override fun onDestroyView() {

@@ -9,9 +9,11 @@ interface ProfileContract {
 
     interface View : BaseView {
         fun showProfile(profile: Profile?)
+        fun showEditProfileSuccess(message: String)
     }
 
     interface Presenter : BasePresenter {
         fun getProfile(profileRequest: BaseRequest<String>)
+        fun postEditProfile(profile: BaseRequest<Profile>)
     }
 }

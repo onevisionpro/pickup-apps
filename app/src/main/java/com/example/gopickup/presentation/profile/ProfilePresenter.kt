@@ -3,6 +3,7 @@ package com.example.gopickup.presentation.profile
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
+import com.example.gopickup.model.response.Profile
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,6 +39,28 @@ class ProfilePresenter(
                     view.hideLoading()
                     view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("ProfilePresenter", "ERROR, getProfile: ${it.localizedMessage}")
+                }
+            ))
+    }
+
+    override fun postEditProfile(profile: BaseRequest<Profile>) {
+        view.showLoading()
+        compositeDisposable.add(appRepositoryImpl.postEditProfile(profile)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    view.hideLoading()
+                    when (it.code) {
+                        StatusCode.SUCCESS -> view.showEditProfileSuccess(it.info!!)
+                        StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
+                        else -> view.showMessage(it.info)
+                    }
+                },
+                {
+                    view.hideLoading()
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
+                    Log.e("ProfilePresenter", "ERROR, postEditProfile: ${it.localizedMessage}")
                 }
             ))
     }

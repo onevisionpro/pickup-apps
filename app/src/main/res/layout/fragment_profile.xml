@@ -16,6 +16,7 @@
         android:layout_below="@id/toolbar">
 
         <LinearLayout
+            android:id="@+id/layout_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -152,25 +153,15 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:boxStrokeWidth="0dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:focusable="false"
-                    android:hint="Confirm Password"
-                    android:inputType="textPassword"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
-                    android:textSize="14sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:text="Reset Password"
+                android:textStyle="bold"
+                android:textColor="@color/redPrimary"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:padding="16dp"/>
 
             <Button
                 android:id="@+id/btn_save"

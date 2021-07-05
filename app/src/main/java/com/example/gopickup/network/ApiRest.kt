@@ -37,6 +37,9 @@ interface ApiRest {
     @POST("api/profile/information")
     fun getProfile(@Body profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>>
 
+    @POST("api/profile/changeProfile")
+    fun postEditProfile(@Body profile: BaseRequest<Profile>): Observable<BaseResponse<Any>>
+
     /**
      * History Order
      */

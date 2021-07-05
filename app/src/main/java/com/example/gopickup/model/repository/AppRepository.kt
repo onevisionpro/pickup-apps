@@ -22,6 +22,8 @@ interface AppRepository {
 
     fun getProfile(profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>>
 
+    fun postEditProfile(profile: BaseRequest<Profile>): Observable<BaseResponse<Any>>
+
     fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
 
     fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>>
