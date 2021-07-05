@@ -111,6 +111,11 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         showToast(message)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

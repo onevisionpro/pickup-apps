@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.network.ApiClient
 import com.example.gopickup.network.ApiRest
-import com.example.gopickup.utils.Constants
-import com.example.gopickup.utils.SharedPreference
-import com.example.gopickup.utils.StringUtils
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 open class BaseActivity : AppCompatActivity(), BaseView {
 
@@ -45,6 +42,11 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun showSessionExpired(message: String?) {
         showToast(message!!)
+
+        NavigationUtils.navigateToLoginActivity(this)
+        finish()
+
+        preference.clearPreference()
     }
 
     @SuppressLint("HardwareIds")
@@ -55,6 +57,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
     fun provideGUID(): String {
         val token = preference.getString(Constants.KEY_TOKEN)
         val devId = provideDeviceId()
-        return StringUtils.toMd5("$token$devId")    }
+        return StringUtils.toMd5("$token$devId")
+    }
 
 }

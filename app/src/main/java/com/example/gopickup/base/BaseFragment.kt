@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.network.ApiClient
 import com.example.gopickup.network.ApiRest
-import com.example.gopickup.utils.Constants
-import com.example.gopickup.utils.SharedPreference
-import com.example.gopickup.utils.StringUtils
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 open class BaseFragment: Fragment(), BaseView {
 
@@ -45,6 +42,11 @@ open class BaseFragment: Fragment(), BaseView {
 
     override fun showSessionExpired(message: String?) {
         showToast(message!!)
+
+        NavigationUtils.navigateToLoginActivity(requireActivity())
+        activity?.finish()
+
+        preference.clearPreference()
     }
 
     @SuppressLint("HardwareIds")
