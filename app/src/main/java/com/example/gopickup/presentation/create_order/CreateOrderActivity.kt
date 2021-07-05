@@ -1,26 +1,23 @@
 package com.example.gopickup.presentation.create_order
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityCreateOrderBinding
+import com.example.gopickup.model.SelectedItem
 import com.example.gopickup.model.request.CreateOrder
 import com.example.gopickup.model.request.Item
 import com.example.gopickup.model.response.ItemWarehouse
 import com.example.gopickup.model.response.Warehouse
 import com.example.gopickup.presentation.main.MainActivity
-import com.example.gopickup.utils.DateUtils
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.StringUtils
+import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogCreateOrderListener
 import com.example.gopickup.utils.dialog.listener.IOnItemClicked
-import com.example.gopickup.utils.showToast
 import java.util.*
 
 class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
@@ -30,7 +27,37 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
 
     private lateinit var presenter: CreateOrderPresenter
     private var createOrder = CreateOrder()
+    private var item = Item()
     private var items = arrayListOf<Item>()
+    private var selectedItems = arrayListOf<SelectedItem>()
+
+    private val selectedItemsAdapter = SelectedItemsAdapter(object : IOnButtonCounter {
+        override fun onMinusClicked(selectedItem: SelectedItem, position: Int) {
+            if (selectedItem.quantity == "1") {
+                selectedItems.remove(selectedItem)
+
+                item = Item(idItem = selectedItem.itemId, jumlah = selectedItem.quantity)
+                items.remove(item)
+
+                updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+            } else {
+                updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+            }
+            Log.d("TAG", "onMinusClicked: ${selectedItems.size}")
+        }
+
+        override fun onPlusClicked(selectedItem: SelectedItem) {
+            updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+        }
+
+    })
+
+    private fun updateSelectedItem(id: String, qty: String) {
+        selectedItems.filter { item -> item.itemId == id }
+            .forEach { it.quantity = qty }
+        items.filter { item -> item.idItem == id }
+            .forEach { it.jumlah = qty }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +66,20 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
 
         presenter = CreateOrderPresenter(this, callApi())
         presenter.start()
+        presenter.getWarehouseList(
+            baseRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = ""
+            )
+        )
+        presenter.getItemList(
+            baseRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = ""
+            )
+        )
     }
 
     override fun initView() {
@@ -47,42 +88,7 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
         binding.toolbar.tvToolbarTitle.text = "Create Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
-        binding.edtChooseWarehouse.setOnClickListener {
-            presenter.getWarehouseList(
-                baseRequest = BaseRequest(
-                    guid = provideGUID(),
-                    code = "",
-                    data = ""
-                )
-            )
-        }
-
-        binding.edtChooseItem.setOnClickListener {
-            presenter.getItemList(
-                baseRequest = BaseRequest(
-                    guid = provideGUID(),
-                    code = "",
-                    data = ""
-                )
-            )
-        }
-
-        var qty = binding.tvQtyCounter.text.toString().toInt()
-        binding.btnQtyPlus.setOnClickListener {
-            if (qty > 0) {
-                qty++
-                binding.tvQtyCounter.text = qty.toString()
-            }
-        }
-
-        binding.btnQtyMinus.setOnClickListener {
-            if (qty > 1) {
-                qty--
-                binding.tvQtyCounter.text = qty.toString()
-            }
-        }
-
-
+        // button estimated date
         binding.edtEstimatedDate.setOnClickListener {
             DialogUtils.showDialogCalendar(this, object : IOnItemClicked<Date> {
                 override fun onItemClicked(data: Date) {
@@ -93,40 +99,74 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             })
         }
 
+        // button add items
+        binding.btnAddItem.setOnClickListener {
+            val warehouse = binding.edtChooseWarehouse.text.toString()
+            val itemName = binding.edtChooseItem.text.toString()
+            val qty = binding.tvQtyCounter.text.toString()
+
+            if (warehouse.isNotEmpty() && itemName.isNotEmpty()) {
+                items.add(this.item)
+                createOrder.items = items
+
+                val selectedItem = SelectedItem(
+                    itemId = item.idItem!!,
+                    itemName = itemName,
+                    quantity = qty
+                )
+                selectedItems.add(selectedItem)
+                presenter.addToSelectedItems(selectedItems)
+
+                Log.d("TAG", "ITEM: $selectedItems")
+            } else {
+                showToast("Pilih warehouse dan item terlebih dahulu!")
+            }
+        }
+
         binding.btnOrder.setOnClickListener {
-            presenter.postCreateOrder(createOrder = BaseRequest(
-                guid = provideGUID(),
-                code = "",
-                data = createOrder
-            ))
+            val estimated = binding.edtEstimatedDate.text.toString()
+            if (estimated.isNotEmpty()) {
+                presenter.postCreateOrder(
+                    createOrder = BaseRequest(
+                        guid = provideGUID(),
+                        code = "",
+                        data = createOrder
+                    )
+                )
+            } else {
+                showToast("Harap masukan estimasi terlebih dahulu")
+            }
+            Log.d("TAG", "initView: $createOrder")
         }
     }
 
     override fun showWarehouseList(warehouseList: List<Warehouse>?) {
         warehouseList?.let {
-            DialogUtils.showDialogWarehouse(this, it,
-                object : IOnItemClicked<Warehouse> {
-                    override fun onItemClicked(data: Warehouse) {
-                        binding.edtChooseWarehouse.setText(data.whName)
+            binding.edtChooseWarehouse.setOnClickListener {
+                DialogUtils.showDialogWarehouse(this, warehouseList,
+                    object : IOnItemClicked<Warehouse> {
+                        override fun onItemClicked(data: Warehouse) {
+                            binding.edtChooseWarehouse.setText(data.whName)
 
-                        createOrder.idWarehouse = data.idWarehouse
-                    }
+                            createOrder.idWarehouse = data.idWarehouse
+                        }
 
-                })
+                    })
+            }
         }
     }
 
     override fun showItemList(itemList: List<ItemWarehouse>?) {
         itemList?.let {
-            DialogUtils.showDialogItems(this, it, object : IOnItemClicked<ItemWarehouse> {
-                override fun onItemClicked(data: ItemWarehouse) {
-                    binding.edtChooseItem.setText(data.itemName)
+            binding.edtChooseItem.setOnClickListener {
+                DialogUtils.showDialogItems(this, itemList, object : IOnItemClicked<ItemWarehouse> {
+                    override fun onItemClicked(data: ItemWarehouse) {
+                        binding.edtChooseItem.setText(data.itemName)
+                        item = Item(idItem = data.idItem, jumlah = "1")
+                    }
 
-                    items.add(Item(idItem = data.idItem, jumlah = "${binding.tvQtyCounter.text}"))
-                    createOrder.items = items
-                }
-
-            })
+                })
+            }
         }
     }
 
@@ -145,6 +185,27 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             }
 
         })
+    }
+
+    override fun showSelectedItemList(selectedItemList: List<SelectedItem>?) {
+        selectedItemList?.let {
+            if (it.isNotEmpty()) {
+                binding.layoutSelectedItems.show()
+
+                selectedItemsAdapter.addItems(it)
+                binding.rvSelectedItems.apply {
+                    layoutManager = LinearLayoutManager(
+                        this@CreateOrderActivity,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    adapter = selectedItemsAdapter
+                }
+            } else {
+                binding.layoutSelectedItems.hide()
+                binding.rvSelectedItems.hide()
+            }
+        }
     }
 
     override fun onDestroy() {

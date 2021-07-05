@@ -2,6 +2,7 @@ package com.example.gopickup.presentation.create_order
 
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
+import com.example.gopickup.model.SelectedItem
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.model.request.CreateOrder
 import com.example.gopickup.utils.Constants
@@ -85,6 +86,10 @@ class CreateOrderPresenter(
                     Log.e("CreateOrderPresenter", "ERROR, postCreateOrder: ${it.localizedMessage}")
                 }
             ))
+    }
+
+    override fun addToSelectedItems(selectedItemList: List<SelectedItem>) {
+        view.showSelectedItemList(selectedItemList)
     }
 
     override fun onDestroy() {
