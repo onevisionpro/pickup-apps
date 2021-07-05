@@ -40,6 +40,9 @@ interface ApiRest {
     @POST("api/profile/changeProfile")
     fun postEditProfile(@Body profile: BaseRequest<Profile>): Observable<BaseResponse<Any>>
 
+    @POST("api/profile/changePassword")
+    fun postResetPassword(@Body resetPassword: BaseRequest<ResetPassword>): Observable<BaseResponse<Any>>
+
     /**
      * History Order
      */

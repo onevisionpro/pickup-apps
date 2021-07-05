@@ -10,9 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.GoPickup">
-        <activity android:name=".presentation.history.details.HistoryDetailsActivity"></activity>
+        android:theme="@style/Theme.GoPickup"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".presentation.reset_password.ResetPasswordActivity"></activity>
+        <activity android:name=".presentation.history.details.HistoryDetailsActivity" />
         <activity android:name=".presentation.open_order.details.received.OpenOrderDetailsForReceivedActivity" />
         <activity android:name=".presentation.my_orders.details.partner.MyOrderDetailsActivity" />
         <activity android:name=".presentation.open_order.details.book_order.OpenOrderDetailsForBookOrderActivity" />

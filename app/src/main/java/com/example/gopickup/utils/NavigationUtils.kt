@@ -13,6 +13,7 @@ import com.example.gopickup.presentation.my_orders.MyOrdersActivity
 import com.example.gopickup.presentation.open_order.OpenOrderActivity
 import com.example.gopickup.presentation.order.OrderActivity
 import com.example.gopickup.presentation.otp.OTPActivity
+import com.example.gopickup.presentation.reset_password.ResetPasswordActivity
 import com.example.gopickup.presentation.track_my_order.TrackMyOrderActivity
 
 object NavigationUtils {
@@ -68,4 +69,9 @@ object NavigationUtils {
         intent.putExtra(HistoryDetailsActivity.TRACK_ID, trackId)
         activity.startActivity(intent)
     }
+
+    fun navigateToResetPasswordActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, ResetPasswordActivity::class.java))
+    }
+
 }

@@ -41,6 +41,10 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postEditProfile(profile)
     }
 
+    override fun postResetPassword(resetPassword: BaseRequest<ResetPassword>): Observable<BaseResponse<Any>> {
+        return apiRest.postResetPassword(resetPassword)
+    }
+
     override fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>> {
         return apiRest.getHistoryOrderList(historyOrderRequest)
     }

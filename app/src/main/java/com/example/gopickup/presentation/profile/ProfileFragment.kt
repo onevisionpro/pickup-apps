@@ -10,6 +10,7 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentProfileBinding
 import com.example.gopickup.model.response.Profile
 import com.example.gopickup.utils.DummyData
+import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.hideKeyboard
 import com.example.gopickup.utils.showToast
 
@@ -45,6 +46,10 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
 
         binding.tvEditProfile.setOnClickListener {
             setupEditable()
+        }
+
+        binding.tvResetPassword.setOnClickListener {
+            NavigationUtils.navigateToResetPasswordActivity(requireActivity())
         }
     }
 

@@ -24,6 +24,8 @@ interface AppRepository {
 
     fun postEditProfile(profile: BaseRequest<Profile>): Observable<BaseResponse<Any>>
 
+    fun postResetPassword(resetPassword: BaseRequest<ResetPassword>): Observable<BaseResponse<Any>>
+
     fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
 
     fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>>
