@@ -3,6 +3,7 @@ package com.example.gopickup.presentation.profile
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
+import com.example.gopickup.model.request.EditProfile
 import com.example.gopickup.model.response.Profile
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
@@ -43,7 +44,7 @@ class ProfilePresenter(
             ))
     }
 
-    override fun postEditProfile(profile: BaseRequest<Profile>) {
+    override fun postEditProfile(profile: BaseRequest<EditProfile>) {
         view.showLoading()
         compositeDisposable.add(appRepositoryImpl.postEditProfile(profile)
             .observeOn(AndroidSchedulers.mainThread())

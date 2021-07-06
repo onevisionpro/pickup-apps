@@ -22,7 +22,7 @@ interface AppRepository {
 
     fun getProfile(profileRequest: BaseRequest<String>): Observable<BaseResponse<Profile>>
 
-    fun postEditProfile(profile: BaseRequest<Profile>): Observable<BaseResponse<Any>>
+    fun postEditProfile(profile: BaseRequest<EditProfile>): Observable<BaseResponse<Any>>
 
     fun postResetPassword(resetPassword: BaseRequest<ResetPassword>): Observable<BaseResponse<Any>>
 

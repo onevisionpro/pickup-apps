@@ -8,8 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentProfileBinding
+import com.example.gopickup.model.request.EditProfile
 import com.example.gopickup.model.response.Profile
-import com.example.gopickup.utils.DummyData
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.hideKeyboard
 import com.example.gopickup.utils.showToast
@@ -69,23 +69,22 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         }
 
         binding.btnSave.setOnClickListener {
-            val profile = Profile(
-                nama = binding.edtUsername.text.toString(),
-                companyName = binding.edtWorkPartner.text.toString(),
+            val editProfile = EditProfile(
+                name = binding.edtUsername.text.toString(),
                 msisdn = binding.edtPhone.text.toString(),
-                email = binding.edtEmail.text.toString(),
-                role = binding.edtRole.text.toString()
+                email = binding.edtEmail.text.toString()
             )
             presenter.postEditProfile(profile = BaseRequest(
                 guid = provideGUID(),
                 code = "",
-                data = profile
+                data = editProfile
             ))
         }
     }
 
     override fun showEditProfileSuccess(message: String) {
         showToast(message)
+        setupNotEditable()
     }
 
     private fun setupEditable() {
@@ -93,14 +92,21 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         binding.edtUsername.isFocusable = true
         binding.edtUsername.requestFocus()
 
-        binding.edtWorkPartner.isFocusableInTouchMode = true
-        binding.edtWorkPartner.isFocusable = true
         binding.edtPhone.isFocusableInTouchMode = true
         binding.edtPhone.isFocusable = true
         binding.edtEmail.isFocusableInTouchMode = true
         binding.edtEmail.isFocusable = true
-        binding.edtRole.isFocusableInTouchMode = true
-        binding.edtRole.isFocusable = true
+    }
+
+    private fun setupNotEditable() {
+        binding.edtUsername.isFocusableInTouchMode = false
+        binding.edtUsername.isFocusable = false
+        binding.edtUsername.requestFocus()
+
+        binding.edtPhone.isFocusableInTouchMode = false
+        binding.edtPhone.isFocusable = false
+        binding.edtEmail.isFocusableInTouchMode = false
+        binding.edtEmail.isFocusable = false
     }
 
     override fun onDestroyView() {
