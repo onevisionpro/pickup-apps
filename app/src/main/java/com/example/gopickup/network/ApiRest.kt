@@ -82,6 +82,9 @@ interface ApiRest {
     @POST("api/order/openOrder")
     fun getOpenOrderDetails(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>>
 
+    @POST("api/order/bookOrder")
+    fun postBookOrder(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>>
+
     /**
      * More
      */

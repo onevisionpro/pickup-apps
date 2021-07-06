@@ -32,11 +32,13 @@ class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsCon
 
         presenter = OpenOrderDetailsPresenter(this, callApi())
         presenter.start()
-        presenter.getOpenOrderDetails(trackId = BaseRequest(
-            guid = provideGUID(),
-            code = "",
-            data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
-        ))
+        presenter.getOpenOrderDetails(
+            trackId = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
+            )
+        )
     }
 
     override fun initView() {
@@ -44,16 +46,6 @@ class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsCon
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Detail Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
-
-        binding.btnBookOrder.setOnClickListener {
-//            DialogUtils.showDialogOrderBooked(this, object : IOnDialogOrderBookedListener {
-//                override fun onBackToHomeClicked() {
-//                    NavigationUtils.navigateToMainActivity(this@OpenOrderDetailsForBookOrderActivity)
-//                    finish()
-//                }
-//
-//            })
-        }
     }
 
     override fun showOpenOrderDetails(orderDetails: OrderDetails) {
@@ -65,8 +57,25 @@ class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsCon
         binding.tvOrderIdCard.text = orderDetails.trackId
 
         binding.btnBookOrder.setOnClickListener {
-
+            presenter.postBookOrder(
+                trackId = BaseRequest(
+                    guid = provideGUID(),
+                    code = "",
+                    data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
+                )
+            )
         }
+    }
+
+    override fun showBookOrderSuccess(message: String) {
+        val trackId = intent.getStringExtra(TRACK_ID)
+        DialogUtils.showDialogOrderBooked(this, trackId!!, object : IOnDialogOrderBookedListener {
+            override fun onBackToHomeClicked() {
+                NavigationUtils.navigateToMainActivity(this@OpenOrderDetailsForBookOrderActivity)
+                finish()
+            }
+
+        })
     }
 
     private fun setupItemsLayout(items: List<ItemOrder>?) {

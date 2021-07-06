@@ -89,7 +89,7 @@ object DialogUtils {
         dialog.show()
     }
 
-    fun showDialogOrderBooked(context: Context, listener: IOnDialogOrderBookedListener) {
+    fun showDialogOrderBooked(context: Context, trackId: String, listener: IOnDialogOrderBookedListener) {
         val dialog = Dialog(context)
         val binding = DialogOrderBookedBinding.inflate(LayoutInflater.from(context))
 
@@ -99,6 +99,7 @@ object DialogUtils {
         Objects.requireNonNull(dialog.window)
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        binding.tvOrderId.text = trackId
         binding.btnBackToHome.setOnClickListener {
             listener.onBackToHomeClicked()
             dialog.hide()

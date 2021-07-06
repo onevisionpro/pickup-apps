@@ -93,4 +93,8 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getOpenOrderDetails(trackId)
     }
 
+    override fun postBookOrder(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>> {
+        return apiRest.postBookOrder(trackId)
+    }
+
 }

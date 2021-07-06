@@ -10,9 +10,11 @@ interface OpenOrderDetailsContract {
 
     interface View : BaseView {
         fun showOpenOrderDetails(orderDetails: OrderDetails)
+        fun showBookOrderSuccess(message: String)
     }
 
     interface Presenter : BasePresenter {
         fun getOpenOrderDetails(trackId: BaseRequest<TrackId>)
+        fun postBookOrder(trackId: BaseRequest<TrackId>)
     }
 }
