@@ -35,4 +35,6 @@ interface AppRepository {
     fun getItemListWarehouse(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<ItemWarehouse>>>
 
     fun postCreateOrder(createOrder: BaseRequest<CreateOrder>): Observable<BaseResponse<TrackId>>
+
+    fun getWordings(moreType: BaseRequest<Type>): Observable<BaseResponse<List<AboutApps>>>
 }

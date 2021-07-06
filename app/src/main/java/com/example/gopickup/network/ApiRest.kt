@@ -63,4 +63,10 @@ interface ApiRest {
 
     @POST("api/order/createOrder")
     fun postCreateOrder(@Body createOrder: BaseRequest<CreateOrder>): Observable<BaseResponse<TrackId>>
+
+    /**
+     * More
+     */
+    @POST("utility/getData/extentionWording")
+    fun getWordings(@Body moreType: BaseRequest<Type>): Observable<BaseResponse<List<AboutApps>>>
 }

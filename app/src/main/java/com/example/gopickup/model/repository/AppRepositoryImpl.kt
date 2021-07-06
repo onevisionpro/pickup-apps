@@ -65,4 +65,8 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postCreateOrder(createOrder)
     }
 
+    override fun getWordings(moreType: BaseRequest<Type>): Observable<BaseResponse<List<AboutApps>>> {
+        return apiRest.getWordings(moreType)
+    }
+
 }

@@ -33,10 +33,11 @@
                     android:src="@drawable/view_circle_red_8" />
 
                 <TextView
+                    android:id="@+id/tv_wording"
                     android:layout_marginStart="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lorem_ipsum_text" />
+                    tools:text="@string/lorem_ipsum_text" />
 
             </LinearLayout>
 
@@ -53,15 +54,24 @@
                     android:src="@drawable/view_circle_red_8" />
 
                 <TextView
+                    android:id="@+id/tv_html"
                     android:layout_marginStart="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/lorem_ipsum_text" />
+                    tools:text="@string/lorem_ipsum_text" />
 
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:theme="@style/ProgressBarTheme"/>
 
 </RelativeLayout>
