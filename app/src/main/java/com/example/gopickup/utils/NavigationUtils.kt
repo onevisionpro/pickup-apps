@@ -44,8 +44,10 @@ object NavigationUtils {
         activity.startActivity(Intent(activity, MyOrdersActivity::class.java))
     }
 
-    fun navigateToChangeOrderActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, ChangeOrderActivity::class.java))
+    fun navigateToChangeOrderActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, ChangeOrderActivity::class.java)
+        intent.putExtra(ChangeOrderActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)
     }
 
     fun navigateToTrackMyOrderActivity(activity: Activity) {

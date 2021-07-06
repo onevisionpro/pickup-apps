@@ -3,7 +3,13 @@ package com.example.gopickup.model.response
 
 import com.squareup.moshi.Json
 
-data class HistoryOrderDetails(
+data class OrderDetails(
+    @Json(name = "id_warehouse_to")
+    val idWarehouseTo: String? = null,
+    @Json(name = "id_warehouse_from")
+    val idWarehouseFrom: String? = null,
+    @Json(name = "arrival_estimate")
+    val arrivalEstimate: String? = null,
     @Json(name = "create_by")
     val createBy: String? = "",
     @Json(name = "create_dtm")
@@ -27,6 +33,8 @@ data class HistoryOrderDetails(
 )
 
 data class ItemOrder(
+    @Json(name = "id_item")
+    val idItem: String? = null,
     @Json(name = "item_name")
     val itemName: String? = "",
     @Json(name = "jumlah")

@@ -46,7 +46,7 @@ object DialogUtils {
         dialog.show()
     }
 
-    fun showDialogChangeMyOrder(context: Context, listener: IOnDialogChangeMyOrderListener) {
+    fun showDialogChangeMyOrder(context: Context, orderId: String, listener: IOnDialogChangeMyOrderListener) {
         val dialog = Dialog(context)
         val binding = DialogChangeOrderBinding.inflate(LayoutInflater.from(context))
 
@@ -56,6 +56,7 @@ object DialogUtils {
         Objects.requireNonNull(dialog.window)
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        binding.tvOrderId.text = orderId
         binding.btnTrackMyOrder.setOnClickListener {
             dialog.hide()
             listener.onTrackMyOrderClicked()

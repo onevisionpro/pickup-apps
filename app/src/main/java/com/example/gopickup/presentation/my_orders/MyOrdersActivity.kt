@@ -20,7 +20,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private lateinit var presenter: MyOrdersPresenter
 
     private val myOrdersAdapter = MyOrdersAdapter {
-        NavigationUtils.navigateToChangeOrderActivity(this)
+        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

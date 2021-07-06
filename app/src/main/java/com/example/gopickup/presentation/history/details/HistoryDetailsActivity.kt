@@ -1,7 +1,6 @@
 package com.example.gopickup.presentation.history.details
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +9,8 @@ import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityHistoryDetailsBinding
 import com.example.gopickup.model.request.TrackId
-import com.example.gopickup.model.response.HistoryOrderDetails
+import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.model.response.ItemOrder
-import com.example.gopickup.model.response.ItemWarehouse
 import com.example.gopickup.utils.OrderStatus
 
 class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
@@ -48,7 +46,7 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
         binding.toolbar.icBack.setOnClickListener { finish() }
     }
 
-    override fun showHistoryOrderDetails(details: HistoryOrderDetails) {
+    override fun showHistoryOrderDetails(details: OrderDetails) {
         binding.apply {
             tvWarehouseFrom.text = details.orderFrom
             tvOrderId.text = "Order ID #${details.trackId}"

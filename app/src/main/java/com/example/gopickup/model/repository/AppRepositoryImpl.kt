@@ -49,7 +49,7 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getHistoryOrderList(historyOrderRequest)
     }
 
-    override fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>> {
+    override fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>> {
         return apiRest.getHistoryOrderDetails(historyOrderRequest)
     }
 
@@ -71,6 +71,14 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
 
     override fun getMyOrderList(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<Order>>> {
         return apiRest.getMyOrderList(trackId)
+    }
+
+    override fun getOrderDetails(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>> {
+        return apiRest.getMyOrderDetails(trackId)
+    }
+
+    override fun postEditOrder(editOrder: BaseRequest<EditOrder>): Observable<BaseResponse<OrderId>> {
+        return apiRest.postEditOrder(editOrder)
     }
 
 }

@@ -28,7 +28,7 @@ interface AppRepository {
 
     fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
 
-    fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrderDetails>>>
+    fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>>
 
     fun getWarehouseList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<Warehouse>>>
 
@@ -39,4 +39,8 @@ interface AppRepository {
     fun getWordings(moreType: BaseRequest<Type>): Observable<BaseResponse<List<AboutApps>>>
 
     fun getMyOrderList(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<Order>>>
+
+    fun getOrderDetails(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>>
+
+    fun postEditOrder(editOrder: BaseRequest<EditOrder>): Observable<BaseResponse<OrderId>>
 }
