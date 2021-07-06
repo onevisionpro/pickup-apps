@@ -62,8 +62,10 @@ object NavigationUtils {
         activity.startActivity(Intent(activity, OpenOrderActivity::class.java))
     }
 
-    fun navigateToOpenOrderDetailsForBookOrderActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, OpenOrderDetailsForBookOrderActivity::class.java))
+    fun navigateToOpenOrderDetailsForBookOrderActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, OpenOrderDetailsForBookOrderActivity::class.java)
+        intent.putExtra(ChangeOrderActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)
     }
 
     fun navigateToHistoryDetailsActivity(activity: Activity, trackId: String) {

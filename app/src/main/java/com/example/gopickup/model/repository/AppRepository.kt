@@ -47,4 +47,6 @@ interface AppRepository {
     fun postCancelOrder(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>>
 
     fun getOpenOrderList(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<Order>>>
+
+    fun getOpenOrderDetails(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>>
 }

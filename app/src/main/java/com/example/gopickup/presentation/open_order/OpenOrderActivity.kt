@@ -22,7 +22,7 @@ class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
     private lateinit var presenter: OpenOrderPresenter
 
     private val openOrderAdapter = OpenOrderAdapter {
-        NavigationUtils.navigateToOpenOrderDetailsForBookOrderActivity(this)
+        NavigationUtils.navigateToOpenOrderDetailsForBookOrderActivity(this, it.trackId!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
