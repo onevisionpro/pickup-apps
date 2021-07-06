@@ -1,4 +1,4 @@
-package com.example.gopickup.presentation.my_orders.details.partner
+package com.example.gopickup.presentation.my_orders.details.warehouse
 
 class MyOrderDetailsPresenter(private val view: MyOrderDetailsContract.View)
     : MyOrderDetailsContract.Presenter {

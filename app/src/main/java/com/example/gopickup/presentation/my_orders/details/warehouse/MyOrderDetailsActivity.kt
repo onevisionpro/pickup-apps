@@ -1,8 +1,6 @@
-package com.example.gopickup.presentation.my_orders.details.partner
+package com.example.gopickup.presentation.my_orders.details.warehouse
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivityMyOrderDetailsBinding
 
