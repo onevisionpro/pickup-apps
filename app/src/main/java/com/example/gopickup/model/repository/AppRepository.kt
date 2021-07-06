@@ -37,4 +37,6 @@ interface AppRepository {
     fun postCreateOrder(createOrder: BaseRequest<CreateOrder>): Observable<BaseResponse<TrackId>>
 
     fun getWordings(moreType: BaseRequest<Type>): Observable<BaseResponse<List<AboutApps>>>
+
+    fun getMyOrderList(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<Order>>>
 }

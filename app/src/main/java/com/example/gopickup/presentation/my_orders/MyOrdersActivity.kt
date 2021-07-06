@@ -1,17 +1,16 @@
 package com.example.gopickup.presentation.my_orders
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gopickup.R
 import com.example.gopickup.base.BaseActivity
-import com.example.gopickup.databinding.ActivityMainBinding
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityMyOrdersBinding
-import com.example.gopickup.model.dummy.MyOrder
-import com.example.gopickup.utils.DummyData
+import com.example.gopickup.model.request.TrackId
+import com.example.gopickup.model.response.Order
 import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.hide
+import com.example.gopickup.utils.show
 
 class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
 
@@ -29,29 +28,38 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
         _binding = ActivityMyOrdersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = MyOrdersPresenter(this)
+        presenter = MyOrdersPresenter(this, callApi())
         presenter.start()
-        presenter.getMyOrderList(myOrderList = DummyData.generateMyOrders())
-
+        presenter.getMyOrderList(trackId = BaseRequest(
+            guid = provideGUID(),
+            code = "",
+            data = TrackId(trackId = "")
+        ))
     }
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "My Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
     }
 
-    override fun showMyOrderList(myOrderList: List<MyOrder>?) {
+    override fun showMyOrderList(myOrderList: List<Order>?) {
         myOrderList?.let {
-            myOrdersAdapter.addItems(it)
+            if (it.isNotEmpty()) {
+                myOrdersAdapter.addItems(it)
 
-            binding.rvMyOrders.apply {
-                layoutManager = LinearLayoutManager(
-                    this@MyOrdersActivity,
-                    RecyclerView.VERTICAL,
-                    false
-                )
-                adapter = myOrdersAdapter
+                binding.rvMyOrders.apply {
+                    layoutManager = LinearLayoutManager(
+                        this@MyOrdersActivity,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    adapter = myOrdersAdapter
+                }
+            } else {
+                binding.tvNoOrderItems.show()
+                binding.rvMyOrders.hide()
             }
         }
     }
@@ -59,5 +67,6 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        presenter.onDestroy()
     }
 }

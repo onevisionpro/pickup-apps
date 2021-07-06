@@ -69,4 +69,8 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getWordings(moreType)
     }
 
+    override fun getMyOrderList(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<Order>>> {
+        return apiRest.getMyOrderList(trackId)
+    }
+
 }
