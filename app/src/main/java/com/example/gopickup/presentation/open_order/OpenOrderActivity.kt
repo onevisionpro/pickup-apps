@@ -4,10 +4,15 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.base.BaseActivity
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityOpenOrderBinding
 import com.example.gopickup.model.dummy.MyOrder
+import com.example.gopickup.model.request.TrackId
+import com.example.gopickup.model.response.Order
 import com.example.gopickup.utils.DummyData
 import com.example.gopickup.utils.NavigationUtils
+import com.example.gopickup.utils.hide
+import com.example.gopickup.utils.show
 
 class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
 
@@ -25,28 +30,38 @@ class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
         _binding = ActivityOpenOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = OpenOrderPresenter(this)
+        presenter = OpenOrderPresenter(this, callApi())
         presenter.start()
-        presenter.getOpenOrders(DummyData.generateMyOrders())
+        presenter.getOpenOrderList(trackId = BaseRequest(
+            guid = provideGUID(),
+            code = "",
+            data = TrackId(trackId = "")
+        ))
     }
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Open Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
     }
 
-    override fun showOpenOrders(openOrderList: List<MyOrder>?) {
+    override fun showOpenOrderList(openOrderList: List<Order>?) {
         openOrderList?.let {
-            openOrderAdapter.addItems(it)
+            if (it.isNotEmpty()) {
+                openOrderAdapter.addItems(it)
 
-            binding.rvOpenOrder.apply {
-                layoutManager = LinearLayoutManager(
-                    this@OpenOrderActivity,
-                    RecyclerView.VERTICAL,
-                    false
-                )
-                adapter = openOrderAdapter
+                binding.rvOpenOrder.apply {
+                    layoutManager = LinearLayoutManager(
+                        this@OpenOrderActivity,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    adapter = openOrderAdapter
+                }
+            } else {
+                binding.tvNoOrderItems.show()
+                binding.rvOpenOrder.hide()
             }
         }
     }

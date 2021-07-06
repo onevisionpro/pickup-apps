@@ -91,8 +91,15 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun showLoginSuccessForWarehouse(baseResponse: BaseResponse<User>) {
         showToast(baseResponse.info!!)
 
+        when (baseResponse.data?.role) {
+            UserType.PARTNER -> {
+                preference.saveString(Constants.KEY_USER_TYPE, UserType.PARTNER)
+            }
+            UserType.WAREHOUSE -> {
+                preference.saveString(Constants.KEY_USER_TYPE, UserType.WAREHOUSE)
+            }
+        }
         preference.saveBoolean(Constants.KEY_IS_LOGGED_IN, true)
-        preference.saveString(Constants.KEY_USER_TYPE, UserType.WAREHOUSE)
         preference.saveString(Constants.KEY_TOKEN, baseResponse.data?.token!!)
 
         NavigationUtils.navigateToMainActivity(this)
