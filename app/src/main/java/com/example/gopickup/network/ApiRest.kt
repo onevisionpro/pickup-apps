@@ -73,6 +73,9 @@ interface ApiRest {
     @POST("api/order/editOrder")
     fun postEditOrder(@Body editOrder: BaseRequest<EditOrder>): Observable<BaseResponse<OrderId>>
 
+    @POST("api/order/cancelOrder")
+    fun postCancelOrder(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>>
+
     /**
      * More
      */

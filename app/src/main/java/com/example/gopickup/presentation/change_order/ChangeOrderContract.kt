@@ -18,6 +18,7 @@ interface ChangeOrderContract {
         fun showItemList(itemList: List<ItemWarehouse>?)
         fun showSelectedItemList(selectedItemList: List<SelectedItem>?)
         fun showEditOrderSuccess(orderId: String)
+        fun showCancelOrderSuccess(message: String)
     }
 
     interface Presenter : BasePresenter {
@@ -26,5 +27,6 @@ interface ChangeOrderContract {
         fun getItemList(baseRequest: BaseRequest<String>)
         fun getSelectedItems(selectedItemList: List<SelectedItem>)
         fun postEditOrder(editOrder: BaseRequest<EditOrder>)
+        fun postCancelOrder(trackId: BaseRequest<TrackId>)
     }
 }

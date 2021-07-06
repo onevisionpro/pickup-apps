@@ -121,13 +121,11 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
         }
 
         binding.btnCancelOrder.setOnClickListener {
-            DialogUtils.showDialogCancelOrder(this, object : IOnDialogCancelOrderListener {
-                override fun onBackToHomeClicked() {
-                    NavigationUtils.navigateToMainActivity(this@ChangeOrderActivity)
-                    finish()
-                }
-
-            })
+            presenter.postCancelOrder(trackId = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
+            ))
         }
     }
 
@@ -225,6 +223,17 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
                 finish()
             }
 
+            override fun onBackToHomeClicked() {
+                NavigationUtils.navigateToMainActivity(this@ChangeOrderActivity)
+                finish()
+            }
+
+        })
+    }
+
+    override fun showCancelOrderSuccess(message: String) {
+        val orderId = intent.getStringExtra(TRACK_ID)!!
+        DialogUtils.showDialogCancelOrder(this, orderId, object : IOnDialogCancelOrderListener {
             override fun onBackToHomeClicked() {
                 NavigationUtils.navigateToMainActivity(this@ChangeOrderActivity)
                 finish()

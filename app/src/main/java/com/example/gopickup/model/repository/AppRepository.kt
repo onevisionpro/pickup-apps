@@ -43,4 +43,6 @@ interface AppRepository {
     fun getOrderDetails(trackId: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>>
 
     fun postEditOrder(editOrder: BaseRequest<EditOrder>): Observable<BaseResponse<OrderId>>
+
+    fun postCancelOrder(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>>
 }

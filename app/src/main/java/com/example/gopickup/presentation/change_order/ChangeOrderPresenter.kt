@@ -115,6 +115,28 @@ class ChangeOrderPresenter(
             ))
     }
 
+    override fun postCancelOrder(trackId: BaseRequest<TrackId>) {
+        view.showLoading()
+        compositeDisposable.add(appRepositoryImpl.postCancelOrder(trackId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    view.hideLoading()
+                    when (it.code) {
+                        StatusCode.SUCCESS -> view.showCancelOrderSuccess(it.info!!)
+                        StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
+                        else -> view.showMessage(it.info)
+                    }
+                },
+                {
+                    view.hideLoading()
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
+                    Log.e("ChangeOrderPresenter", "ERROR, postCancelOrder: ${it.localizedMessage}")
+                }
+            ))
+    }
+
     override fun onDestroy() {
         compositeDisposable.dispose()
     }

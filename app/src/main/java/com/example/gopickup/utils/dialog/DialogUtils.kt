@@ -70,7 +70,7 @@ object DialogUtils {
         dialog.show()
     }
 
-    fun showDialogCancelOrder(context: Context, listener: IOnDialogCancelOrderListener) {
+    fun showDialogCancelOrder(context: Context, orderId: String, listener: IOnDialogCancelOrderListener) {
         val dialog = Dialog(context)
         val binding = DialogCancelOrderBinding.inflate(LayoutInflater.from(context))
 
@@ -80,6 +80,7 @@ object DialogUtils {
         Objects.requireNonNull(dialog.window)
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        binding.tvOrderId.text = orderId
         binding.btnBackToHome.setOnClickListener {
             dialog.hide()
             listener.onBackToHomeClicked()

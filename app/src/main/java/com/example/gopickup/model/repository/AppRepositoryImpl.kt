@@ -81,4 +81,8 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postEditOrder(editOrder)
     }
 
+    override fun postCancelOrder(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>> {
+        return apiRest.postCancelOrder(trackId)
+    }
+
 }
