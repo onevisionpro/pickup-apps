@@ -30,7 +30,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
                 }
             }
             UserType.PARTNER -> {
-                NavigationUtils.navigateToMyOrderDetailsActivity(this, it.trackId!!)
+                NavigationUtils.navigateToMyOrderDetailsActivity(this, it.trackId!!, it.status!!)
             }
         }
     }

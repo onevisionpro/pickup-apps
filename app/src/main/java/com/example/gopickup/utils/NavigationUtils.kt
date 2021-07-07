@@ -53,9 +53,10 @@ object NavigationUtils {
         activity.startActivity(intent)
     }
 
-    fun navigateToMyOrderDetailsActivity(activity: Activity, trackId: String) {
+    fun navigateToMyOrderDetailsActivity(activity: Activity, trackId: String, status: String) {
         val intent = Intent(activity, MyOrderDetailsActivity::class.java)
         intent.putExtra(MyOrderDetailsActivity.TRACK_ID, trackId)
+        intent.putExtra(MyOrderDetailsActivity.STATUS, status)
         activity.startActivity(intent)
     }
 

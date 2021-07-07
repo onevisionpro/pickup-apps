@@ -23,10 +23,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            tools:text="Warehouse Bogor"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Warehouse Bogor" />
 
         <TextView
             android:id="@+id/tv_order_id"
@@ -89,10 +89,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                tools:text="Warehouse Bogor"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                tools:text="Warehouse Bogor" />
 
                         </LinearLayout>
 
@@ -144,10 +144,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                tools:text="2021/06/03"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                tools:text="2021/06/03" />
 
                         </LinearLayout>
 
@@ -187,10 +187,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                tools:text="#1231201230-123"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                tools:text="#1231201230-123" />
 
                         </LinearLayout>
 
@@ -204,79 +204,201 @@
 
                 </LinearLayout>
 
+                <!-- layout take item-->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/layout_take_item"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Resi"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" (Optional)" />
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/edt_receipt"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_edt_rounded_50_gray"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textCursorDrawable="@drawable/color_cursor"
+                        tools:hint="CGK-20030032107018" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Resi"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:text="Note"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
+                    <EditText
+                        android:id="@+id/edt_note"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_edt_rounded_50_gray"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textCursorDrawable="@drawable/color_cursor" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" (Optional)" />
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Note can be used for the profile of the courier\ndelivered the order" />
+
+                    <Button
+                        android:id="@+id/btn_take_item"
+                        style="@style/ButtonRoundedPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Take Item" />
 
                 </LinearLayout>
+                <!-- end layout take item-->
 
-                <EditText
-                    android:id="@+id/edt_receipt"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    tools:hint="CGK-20030032107018"
-                    android:maxLines="1"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textCursorDrawable="@drawable/color_cursor" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Note"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edt_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textCursorDrawable="@drawable/color_cursor" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Note can be used for the profile of the courier\ndelivered the order" />
-
-                <Button
-                    android:id="@+id/btn_take_item"
-                    style="@style/ButtonRoundedPrimary"
+                <!-- layout received-->
+                <LinearLayout
+                    android:id="@+id/layout_received"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Take Item" />
+                    android:layout_marginTop="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Evidence Item"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="0.6"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_rounded_gray_stroke">
+
+                                <ImageView
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_baseline_add_a_photo_24" />
+
+                            </RelativeLayout>
+
+
+                            <ImageView
+                                android:id="@+id/img_item"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                tools:src="@drawable/img_poster_sample" />
+
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_weight="0.3"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="4dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/redPrimary">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/ic_baseline_photo_camera_24" />
+
+                            </RelativeLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Photo of items that have been received by the warehouse" />
+
+                    <Button
+                        android:id="@+id/btn_received"
+                        style="@style/ButtonRoundedPrimary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="Received" />
+
+                </LinearLayout>
+                <!-- end layout received-->
 
             </LinearLayout>
 
@@ -289,7 +411,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:theme="@style/ProgressBarTheme"/>
+        android:theme="@style/ProgressBarTheme"
+        android:visibility="gone" />
 
 </RelativeLayout>

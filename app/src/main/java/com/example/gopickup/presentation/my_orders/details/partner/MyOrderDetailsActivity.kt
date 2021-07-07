@@ -11,14 +11,13 @@ import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemOrder
 import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.presentation.history.details.ItemOrderAdapter
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.hideKeyboard
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
 
     companion object {
         const val TRACK_ID = "TRACK_ID"
+        const val STATUS = "STATUS"
     }
 
     private var _binding: ActivityMyOrderDetailsBinding? = null
@@ -48,8 +47,12 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Detail Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
-
         binding.layoutParent.setOnClickListener { hideKeyboard() }
+
+        when (intent.getStringExtra(STATUS)) {
+            OrderStatus.BOOKED -> binding.layoutTakeItem.show()
+            OrderStatus.ARRIVED -> binding.layoutReceived.show()
+        }
     }
 
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
