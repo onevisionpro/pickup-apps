@@ -128,5 +128,6 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        presenter.onDestroy()
     }
 }
