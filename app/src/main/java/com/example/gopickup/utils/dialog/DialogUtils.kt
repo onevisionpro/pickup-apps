@@ -209,4 +209,23 @@ object DialogUtils {
         )
         datePickerDialog.show()
     }
+
+    fun showDialogSendOrder(context: Context, trackId: String, listener: IOnDialogSendOrderListener) {
+        val dialog = Dialog(context)
+        val binding = DialogSendOrderBinding.inflate(LayoutInflater.from(context))
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(binding.root)
+        Objects.requireNonNull(dialog.window)
+            ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOrderId.text = trackId
+        binding.btnBackToHome.setOnClickListener {
+            listener.onBackToHomeClicked()
+            dialog.hide()
+        }
+
+        dialog.show()
+    }
 }

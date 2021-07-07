@@ -53,4 +53,8 @@ interface AppRepository {
     fun postBookOrder(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>>
 
     fun postTakeOrder(takeOrder: BaseRequest<TakeOrder>): Observable<BaseResponse<Any>>
+
+    fun getPreviewBA(trackId: BaseRequest<TrackId>): Observable<BaseResponse<PreviewBA>>
+
+    fun postSendOrder(sendOrder: BaseRequest<SendOrder>): Observable<BaseResponse<Any>>
 }

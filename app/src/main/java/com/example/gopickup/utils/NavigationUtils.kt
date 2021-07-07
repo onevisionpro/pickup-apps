@@ -11,6 +11,7 @@ import com.example.gopickup.presentation.login.LoginActivity
 import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.presentation.my_orders.MyOrdersActivity
 import com.example.gopickup.presentation.my_orders.details.partner.MyOrderDetailsActivity
+import com.example.gopickup.presentation.my_orders.details.partner.ba_details.SubmitBATakeOrderActivity
 import com.example.gopickup.presentation.open_order.OpenOrderActivity
 import com.example.gopickup.presentation.order.OrderActivity
 import com.example.gopickup.presentation.otp.OTPActivity
@@ -85,4 +86,9 @@ object NavigationUtils {
         activity.startActivity(Intent(activity, ResetPasswordActivity::class.java))
     }
 
+    fun navigateToSubmitBATakeOrderActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, SubmitBATakeOrderActivity::class.java)
+        intent.putExtra(SubmitBATakeOrderActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)
+    }
 }

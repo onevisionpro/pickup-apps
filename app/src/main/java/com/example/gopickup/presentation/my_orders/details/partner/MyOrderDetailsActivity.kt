@@ -11,6 +11,7 @@ import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemOrder
 import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.presentation.history.details.ItemOrderAdapter
+import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.hideKeyboard
 import com.example.gopickup.utils.showToast
 
@@ -32,11 +33,13 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
 
         presenter = MyOrderDetailsPresenter(this, callApi())
         presenter.start()
-        presenter.getMyOrderDetails(trackId = BaseRequest(
-            guid = provideGUID(),
-            code = "",
-            data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
-        ))
+        presenter.getMyOrderDetails(
+            trackId = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
+            )
+        )
     }
 
     override fun initView() {
@@ -73,11 +76,13 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
                         resiCode = receipt,
                         notes = notes
                     )
-                    presenter.postTakeOrder(takeOrder = BaseRequest(
-                        guid = provideGUID(),
-                        code = "",
-                        data = takeOrder
-                    ))
+                    presenter.postTakeOrder(
+                        takeOrder = BaseRequest(
+                            guid = provideGUID(),
+                            code = "",
+                            data = takeOrder
+                        )
+                    )
                 }
             }
         }
@@ -85,6 +90,7 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
 
     override fun showTakeOrderSuccess(message: String) {
         showToast(message)
+        NavigationUtils.navigateToSubmitBATakeOrderActivity(this, intent.getStringExtra(TRACK_ID)!!)
     }
 
     private fun setupItemsLayout(items: List<ItemOrder>?) {
