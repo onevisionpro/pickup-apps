@@ -25,6 +25,7 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
     private val binding get() = _binding!!
 
     private lateinit var presenter: MyOrderDetailsPresenter
+    private lateinit var warehouseName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,7 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
     }
 
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
+        warehouseName = orderDetails.orderTo!!
         binding.tvWarehouseName.text = orderDetails.orderTo
         binding.tvOrderId.text = "Order ID #${orderDetails.trackId}"
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
@@ -90,7 +92,11 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
 
     override fun showTakeOrderSuccess(message: String) {
         showToast(message)
-        NavigationUtils.navigateToSubmitBATakeOrderActivity(this, intent.getStringExtra(TRACK_ID)!!)
+        NavigationUtils.navigateToSubmitBATakeOrderActivity(
+            this,
+            trackId =  intent.getStringExtra(TRACK_ID)!!,
+            warehouseName = warehouseName
+        )
     }
 
     private fun setupItemsLayout(items: List<ItemOrder>?) {

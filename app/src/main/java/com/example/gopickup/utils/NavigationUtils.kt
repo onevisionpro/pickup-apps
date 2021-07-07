@@ -86,9 +86,10 @@ object NavigationUtils {
         activity.startActivity(Intent(activity, ResetPasswordActivity::class.java))
     }
 
-    fun navigateToSubmitBATakeOrderActivity(activity: Activity, trackId: String) {
+    fun navigateToSubmitBATakeOrderActivity(activity: Activity, trackId: String, warehouseName: String) {
         val intent = Intent(activity, SubmitBATakeOrderActivity::class.java)
         intent.putExtra(SubmitBATakeOrderActivity.TRACK_ID, trackId)
+        intent.putExtra(SubmitBATakeOrderActivity.WH_NAME, warehouseName)
         activity.startActivity(intent)
     }
 }

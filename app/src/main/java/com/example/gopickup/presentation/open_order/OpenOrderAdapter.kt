@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemOpenOrderBinding
 import com.example.gopickup.model.response.Order
+import com.example.gopickup.utils.DateUtils
 import com.example.gopickup.utils.OrderStatus
 
 class OpenOrderAdapter(private val onItemClick: (order: Order) -> Unit) :
@@ -42,7 +43,7 @@ class OpenOrderAdapter(private val onItemClick: (order: Order) -> Unit) :
                 tvWarehouseName.text = myOrder.orderTo
                 tvEstimate.text = myOrder.estimateArrival
                 tvOrderId.text = "Order ID #${myOrder.trackId}"
-                tvDate.text = myOrder.createDtm
+                tvDate.text = DateUtils.toFormatDate(myOrder.createDtm!!)
 
                 viewStatusColor.background = when (myOrder.status) {
                     OrderStatus.FINISH -> {

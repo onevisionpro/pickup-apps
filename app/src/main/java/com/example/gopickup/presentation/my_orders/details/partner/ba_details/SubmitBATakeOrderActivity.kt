@@ -20,6 +20,7 @@ import com.github.gcacace.signaturepad.views.SignaturePad
 class SubmitBATakeOrderActivity : BaseActivity(), SubmitBATakeOrderContract.View {
 
     companion object {
+        const val WH_NAME = "WH_NAME"
         const val TRACK_ID = "TRACK_ID"
     }
 
@@ -49,6 +50,8 @@ class SubmitBATakeOrderActivity : BaseActivity(), SubmitBATakeOrderContract.View
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Detail Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
+        binding.tvWarehouseName.text = intent.getStringExtra(WH_NAME)
+        binding.tvOrderId.text = "Order ID#${intent.getStringExtra(TRACK_ID)}"
 
         binding.btnDone.setOnClickListener {
             val signatureWarehouse = ImageUtils.toBase64(binding.signatureWarehouse.signatureBitmap)
@@ -58,7 +61,6 @@ class SubmitBATakeOrderActivity : BaseActivity(), SubmitBATakeOrderContract.View
                 ttdWarehouse = signatureWarehouse,
                 ttdMitra = signaturePartner
             )
-//            Log.d("TAG", "initView: $sendOrder")
 
             when {
                 signatureWarehouse?.isEmpty()!! -> showToast("Harap tanda tangan terlebih darhulu!")
