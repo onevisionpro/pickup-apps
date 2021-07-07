@@ -10,6 +10,7 @@ import com.example.gopickup.presentation.open_order.details.book_order.OpenOrder
 import com.example.gopickup.presentation.login.LoginActivity
 import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.presentation.my_orders.MyOrdersActivity
+import com.example.gopickup.presentation.my_orders.details.partner.MyOrderDetailsActivity
 import com.example.gopickup.presentation.open_order.OpenOrderActivity
 import com.example.gopickup.presentation.order.OrderActivity
 import com.example.gopickup.presentation.otp.OTPActivity
@@ -47,6 +48,12 @@ object NavigationUtils {
     fun navigateToChangeOrderActivity(activity: Activity, trackId: String) {
         val intent = Intent(activity, ChangeOrderActivity::class.java)
         intent.putExtra(ChangeOrderActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)
+    }
+
+    fun navigateToMyOrderDetailsActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, MyOrderDetailsActivity::class.java)
+        intent.putExtra(MyOrderDetailsActivity.TRACK_ID, trackId)
         activity.startActivity(intent)
     }
 

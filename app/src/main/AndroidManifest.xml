@@ -15,7 +15,7 @@
         <activity android:name=".presentation.reset_password.ResetPasswordActivity"></activity>
         <activity android:name=".presentation.history.details.HistoryDetailsActivity" />
         <activity android:name=".presentation.open_order.details.received.OpenOrderDetailsForReceivedActivity" />
-        <activity android:name=".presentation.my_orders.details.warehouse.MyOrderDetailsActivity" />
+        <activity android:name=".presentation.my_orders.details.partner.MyOrderDetailsActivity" />
         <activity android:name=".presentation.open_order.details.book_order.OpenOrderDetailsForBookOrderActivity" />
         <activity android:name=".presentation.open_order.OpenOrderActivity" />
         <activity android:name=".presentation.about_apps.AboutAppsActivity" />

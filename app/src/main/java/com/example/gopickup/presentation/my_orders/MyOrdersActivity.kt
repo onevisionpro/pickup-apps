@@ -8,9 +8,7 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityMyOrdersBinding
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.Order
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.hide
-import com.example.gopickup.utils.show
+import com.example.gopickup.utils.*
 
 class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
 
@@ -20,7 +18,14 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private lateinit var presenter: MyOrdersPresenter
 
     private val myOrdersAdapter = MyOrdersAdapter {
-        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+        when (preference.getString(Constants.KEY_USER_TYPE)) {
+            UserType.WAREHOUSE -> {
+                NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+            }
+            UserType.PARTNER -> {
+                NavigationUtils.navigateToMyOrderDetailsActivity(this, it.trackId!!)
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
