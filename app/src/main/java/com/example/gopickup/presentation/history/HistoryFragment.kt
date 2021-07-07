@@ -1,19 +1,19 @@
 package com.example.gopickup.presentation.history
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gopickup.R
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentHistoryBinding
-import com.example.gopickup.model.dummy.History
+import com.example.gopickup.model.request.HistoryOrderRequest
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.HistoryOrder
+import com.example.gopickup.presentation.history.filter.HistoryFilterFragment
 import com.example.gopickup.utils.*
 
 
@@ -23,6 +23,7 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     private val binding get() = _binding!!
 
     private lateinit var presenter: HistoryPresenter
+    private var historyOrderRequest =  HistoryOrderRequest()
 
     private val historyAdapter = HistoryAdapter {
         NavigationUtils.navigateToHistoryDetailsActivity(requireActivity(), trackId = it.trackId!!)
@@ -33,12 +34,8 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
 
         presenter = HistoryPresenter(this, callApi())
         presenter.start()
-        presenter.getHistoriesOrder(
-            historyOrderRequest = BaseRequest(
-                guid = provideGUID(),
-                data = TrackId(trackId = "")
-            )
-        )
+        if (arguments == null) getDataWithoutFilter()
+        else getDataWithFilter(arguments)
 
     }
 
@@ -48,7 +45,8 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
         binding.toolbar.tvToolbarTitle.text = "History"
 
         binding.filter.setOnClickListener {
-            val bottomSheetFilter = HistoryFilterFragment()
+            val bottomSheetFilter =
+                HistoryFilterFragment()
             bottomSheetFilter.show(activity?.supportFragmentManager!!, bottomSheetFilter.tag)
         }
         binding.done.setOnClickListener { showToast("clicked") }
@@ -72,6 +70,35 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
                 binding.tvNoHistoryOrderItems.show()
                 binding.rvHistories.hide()
             }
+        }
+    }
+
+    private fun getDataWithoutFilter() {
+        presenter.getHistoriesOrder(
+            historyOrderRequest = BaseRequest(
+                guid = provideGUID(),
+                data = historyOrderRequest
+            )
+        )
+    }
+
+    private fun getDataWithFilter(bundle: Bundle?) {
+        historyOrderRequest = bundle?.getParcelable("data")!!
+        presenter.getHistoriesOrder(
+            historyOrderRequest = BaseRequest(
+                guid = provideGUID(),
+                data = historyOrderRequest
+            )
+        )
+
+
+        if (!historyOrderRequest.status.equals("")) {
+            binding.layoutStatus.show()
+            binding.tvStatus.text = historyOrderRequest.status
+        }
+        if (!historyOrderRequest.startDtm.equals("") && !historyOrderRequest.endDtm.equals("")) {
+            binding.layoutDateRange.show()
+            binding.tvDateRange.text = "${historyOrderRequest.startDtm}-${historyOrderRequest.endDtm}"
         }
     }
 

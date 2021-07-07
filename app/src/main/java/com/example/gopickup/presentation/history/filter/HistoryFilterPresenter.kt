@@ -1,21 +1,18 @@
-package com.example.gopickup.presentation.history
+package com.example.gopickup.presentation.history.filter
 
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
-import com.example.gopickup.model.dummy.History
 import com.example.gopickup.model.repository.AppRepositoryImpl
-import com.example.gopickup.model.request.HistoryOrderRequest
-import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class HistoryPresenter(
-    private val view: HistoryContract.View,
+class HistoryFilterPresenter(
+    private val view: HistoryFilterContract.View,
     private val appRepositoryImpl: AppRepositoryImpl
-) : HistoryContract.Presenter {
+) : HistoryFilterContract.Presenter {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -23,16 +20,16 @@ class HistoryPresenter(
         view.initView()
     }
 
-    override fun getHistoriesOrder(historyOrderRequest: BaseRequest<HistoryOrderRequest>) {
+    override fun getStatusList(baseRequest: BaseRequest<String>) {
         view.showLoading()
-        compositeDisposable.add(appRepositoryImpl.getHistoryOrderList(historyOrderRequest)
+        compositeDisposable.add(appRepositoryImpl.getStatusList(baseRequest)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {
                     view.hideLoading()
                     when (it.code) {
-                        StatusCode.SUCCESS -> view.showHistoriesOrder(it.data!!)
+                        StatusCode.SUCCESS -> view.showStatusList(it.data!!)
                         StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
                         else -> view.showMessage(it.info)
                     }
@@ -40,7 +37,7 @@ class HistoryPresenter(
                 {
                     view.hideLoading()
                     view.showMessage(Constants.DEFAULT_ERROR_MSG)
-                    Log.e("HistoryPresenter", "ERROR, getHistoriesOrder: ${it.localizedMessage}")
+                    Log.e("HistoryFilterPresenter", "ERROR, getStatusList: ${it.localizedMessage}")
                 }
             ))
     }

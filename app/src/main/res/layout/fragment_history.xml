@@ -63,7 +63,9 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="100dp"
+                android:id="@+id/layout_status"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 app:cardCornerRadius="24dp">
@@ -79,11 +81,12 @@
                     android:paddingBottom="8dp">
 
                     <TextView
+                        android:id="@+id/tv_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="4dp"
-                        android:text="Done"
+                        tools:text="Done"
                         android:textColor="#E6E7E9"
                         android:textSize="16sp" />
 
@@ -93,6 +96,8 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_date_range"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -109,11 +114,12 @@
                     android:paddingBottom="8dp">
 
                     <TextView
+                        android:id="@+id/tv_date_range"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="4dp"
-                        android:text="08-04-2021 : 09-08-2021"
+                        tools:text="08-04-2021 : 09-08-2021"
                         android:textColor="#E6E7E9"
                         android:textSize="16sp" />
 

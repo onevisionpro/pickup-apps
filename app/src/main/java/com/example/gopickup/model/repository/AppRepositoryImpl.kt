@@ -45,7 +45,7 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postResetPassword(resetPassword)
     }
 
-    override fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>> {
+    override fun getHistoryOrderList(historyOrderRequest: BaseRequest<HistoryOrderRequest>): Observable<BaseResponse<List<HistoryOrder>>> {
         return apiRest.getHistoryOrderList(historyOrderRequest)
     }
 
@@ -119,6 +119,10 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
 
     override fun postFinishOrder(finishOrder: BaseRequest<FinishOrder>): Observable<BaseResponse<Any>> {
         return apiRest.postFinishOrder(finishOrder)
+    }
+
+    override fun getStatusList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<String>>> {
+        return apiRest.getStatus(baseRequest)
     }
 
 

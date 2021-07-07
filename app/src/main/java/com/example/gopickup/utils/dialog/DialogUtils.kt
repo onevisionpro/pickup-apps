@@ -9,12 +9,11 @@ import android.view.LayoutInflater
 import android.view.Window
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gopickup.R
 import com.example.gopickup.databinding.*
 import com.example.gopickup.model.response.ItemWarehouse
 import com.example.gopickup.model.response.Warehouse
-import com.example.gopickup.utils.DateUtils
 import com.example.gopickup.utils.dialog.adapter.ItemAdapter
+import com.example.gopickup.utils.dialog.adapter.StatusAdapter
 import com.example.gopickup.utils.dialog.adapter.WarehouseAdapter
 import com.example.gopickup.utils.dialog.listener.*
 import java.util.*
@@ -262,6 +261,33 @@ object DialogUtils {
         binding.btnBackToHome.setOnClickListener {
             listener.onBackToHomeClicked()
             dialog.hide()
+        }
+
+        dialog.show()
+    }
+
+    fun showDialogStatus(
+        context: Context,
+        itemList: List<String>,
+        listener: IOnItemClicked<String>
+    ) {
+        val dialog = Dialog(context)
+        val binding = DialogItemBinding.inflate(LayoutInflater.from(context))
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(binding.root)
+        Objects.requireNonNull(dialog.window)
+            ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val statusAdapter = StatusAdapter {
+            listener.onItemClicked(it)
+            dialog.hide()
+        }
+        statusAdapter.addItems(itemList)
+        binding.rvItems.apply {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            adapter = statusAdapter
         }
 
         dialog.show()

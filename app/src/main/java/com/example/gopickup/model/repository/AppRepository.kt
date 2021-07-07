@@ -26,7 +26,7 @@ interface AppRepository {
 
     fun postResetPassword(resetPassword: BaseRequest<ResetPassword>): Observable<BaseResponse<Any>>
 
-    fun getHistoryOrderList(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<HistoryOrder>>>
+    fun getHistoryOrderList(historyOrderRequest: BaseRequest<HistoryOrderRequest>): Observable<BaseResponse<List<HistoryOrder>>>
 
     fun getHistoryOrderDetails(historyOrderRequest: BaseRequest<TrackId>): Observable<BaseResponse<List<OrderDetails>>>
 
@@ -63,4 +63,6 @@ interface AppRepository {
     fun postReceivedOrder(receiveOrderRequest: BaseRequest<ReceiveOrderRequest>): Observable<BaseResponse<Any>>
 
     fun postFinishOrder(finishOrder: BaseRequest<FinishOrder>): Observable<BaseResponse<Any>>
+
+    fun getStatusList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<String>>>
 }
