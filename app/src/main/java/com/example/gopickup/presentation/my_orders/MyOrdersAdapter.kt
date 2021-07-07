@@ -6,7 +6,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemMyOrderBinding
-import com.example.gopickup.model.dummy.MyOrder
 import com.example.gopickup.model.response.Order
 import com.example.gopickup.utils.DateUtils
 import com.example.gopickup.utils.OrderStatus

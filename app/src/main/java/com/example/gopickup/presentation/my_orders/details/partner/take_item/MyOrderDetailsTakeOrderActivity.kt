@@ -1,4 +1,4 @@
-package com.example.gopickup.presentation.my_orders.details.partner
+package com.example.gopickup.presentation.my_orders.details.partner.take_item
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,11 +9,12 @@ import com.example.gopickup.databinding.ActivityMyOrderDetailsBinding
 import com.example.gopickup.model.request.TakeOrder
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemOrder
+import com.example.gopickup.model.response.Order
 import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.presentation.history.details.ItemOrderAdapter
 import com.example.gopickup.utils.*
 
-class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
+class MyOrderDetailsTakeOrderActivity : BaseActivity(), MyOrderDetailsContract.View {
 
     companion object {
         const val TRACK_ID = "TRACK_ID"
@@ -48,11 +49,6 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
         binding.toolbar.tvToolbarTitle.text = "Detail Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
         binding.layoutParent.setOnClickListener { hideKeyboard() }
-
-        when (intent.getStringExtra(STATUS)) {
-            OrderStatus.BOOKED -> binding.layoutTakeItem.show()
-            OrderStatus.ARRIVED -> binding.layoutReceived.show()
-        }
     }
 
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
@@ -95,10 +91,11 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
 
     override fun showTakeOrderSuccess(message: String) {
         showToast(message)
-        NavigationUtils.navigateToSubmitBATakeOrderActivity(
+        NavigationUtils.navigateToSubmitBAOrderActivity(
             this,
             trackId =  intent.getStringExtra(TRACK_ID)!!,
-            warehouseName = warehouseName
+            warehouseName = warehouseName,
+            status = OrderStatus.TAKE_ITEM
         )
     }
 
@@ -109,7 +106,7 @@ class MyOrderDetailsActivity : BaseActivity(), MyOrderDetailsContract.View {
             itemOrderAdapter.addItems(it)
             binding.rvItems.apply {
                 layoutManager = LinearLayoutManager(
-                    this@MyOrderDetailsActivity,
+                    this@MyOrderDetailsTakeOrderActivity,
                     RecyclerView.VERTICAL,
                     false
                 )

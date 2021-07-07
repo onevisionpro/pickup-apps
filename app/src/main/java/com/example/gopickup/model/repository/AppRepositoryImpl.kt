@@ -101,7 +101,7 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postTakeOrder(takeOrder)
     }
 
-    override fun getPreviewBA(trackId: BaseRequest<TrackId>): Observable<BaseResponse<PreviewBA>> {
+    override fun getPreviewBA(trackId: BaseRequest<PreviewBARequest>): Observable<BaseResponse<PreviewBA>> {
         return apiRest.getPreviewBA(trackId)
     }
 
@@ -111,6 +111,14 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
 
     override fun postOrderArrived(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>> {
         return apiRest.postOrderArrived(trackId)
+    }
+
+    override fun postReceivedOrder(receiveOrderRequest: BaseRequest<ReceiveOrderRequest>): Observable<BaseResponse<Any>> {
+        return apiRest.postReceivedOrder(receiveOrderRequest)
+    }
+
+    override fun postFinishOrder(finishOrder: BaseRequest<FinishOrder>): Observable<BaseResponse<Any>> {
+        return apiRest.postFinishOrder(finishOrder)
     }
 
 

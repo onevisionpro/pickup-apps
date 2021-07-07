@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.my_orders.details.partner.ba_details.SubmitBATakeOrderActivity">
+    tools:context=".presentation.my_orders.details.partner.ba_details.SubmitBAActivity">
 
     <include layout="@layout/custom_toolbar_back"
         android:id="@+id/toolbar"/>

@@ -1,4 +1,4 @@
-package com.example.gopickup.presentation.my_orders.details.partner
+package com.example.gopickup.presentation.my_orders.details.partner.received_item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

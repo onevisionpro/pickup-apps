@@ -25,12 +25,22 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
                         NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
                     }
                     OrderStatus.SEND_ITEM -> {
-                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
+                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
+                            this,
+                            trackId = it.trackId!!
+                        )
                     }
                 }
             }
             UserType.PARTNER -> {
-                NavigationUtils.navigateToMyOrderDetailsActivity(this, it.trackId!!, it.status!!)
+                when (it.status) {
+                    OrderStatus.BOOKED -> {
+                        NavigationUtils.navigateToMyOrderDetailsTakeOrderActivity(this, it.trackId!!)
+                    }
+                    OrderStatus.ACCEPT_WH -> {
+                        NavigationUtils.navigateToMyOrderDetailsReceivedOrderActivity(this, it.trackId!!)
+                    }
+                }
             }
         }
     }
@@ -42,11 +52,13 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
 
         presenter = MyOrdersPresenter(this, callApi())
         presenter.start()
-        presenter.getMyOrderList(trackId = BaseRequest(
-            guid = provideGUID(),
-            code = "",
-            data = TrackId(trackId = "")
-        ))
+        presenter.getMyOrderList(
+            trackId = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = TrackId(trackId = "")
+            )
+        )
     }
 
     override fun initView() {

@@ -89,13 +89,19 @@ interface ApiRest {
     fun postTakeOrder(@Body takeOrder: BaseRequest<TakeOrder>): Observable<BaseResponse<Any>>
 
     @POST("api/order/previewBA")
-    fun getPreviewBA(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<PreviewBA>>
+    fun getPreviewBA(@Body trackId: BaseRequest<PreviewBARequest>): Observable<BaseResponse<PreviewBA>>
 
     @POST("api/order/sendOrder")
     fun postSendOrder(@Body sendOrder: BaseRequest<SendOrder>): Observable<BaseResponse<Any>>
 
     @POST("api/order/arrivalOrder")
     fun postOrderArrived(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>>
+
+    @POST("api/order/receiveOrder")
+    fun postReceivedOrder(@Body receiveOrderRequest: BaseRequest<ReceiveOrderRequest>): Observable<BaseResponse<Any>>
+
+    @POST("api/order/finishOrder")
+    fun postFinishOrder(@Body finishOrder: BaseRequest<FinishOrder>): Observable<BaseResponse<Any>>
 
     /**
      * More

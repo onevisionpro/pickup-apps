@@ -3,8 +3,9 @@ package com.example.gopickup.presentation.my_orders.details.partner.ba_details
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
+import com.example.gopickup.model.request.FinishOrder
+import com.example.gopickup.model.request.PreviewBARequest
 import com.example.gopickup.model.request.SendOrder
-import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,9 +23,9 @@ class SubmitBATakeOrderPresenter(
         view.initView()
     }
 
-    override fun getPreviewBA(trackId: BaseRequest<TrackId>) {
+    override fun getPreviewBA(previewBA: BaseRequest<PreviewBARequest>) {
         view.showLoading()
-        compositeDisposable.add(appRepositoryImpl.getPreviewBA(trackId)
+        compositeDisposable.add(appRepositoryImpl.getPreviewBA(previewBA)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(
@@ -62,6 +63,28 @@ class SubmitBATakeOrderPresenter(
                     view.hideLoading()
                     view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("SubmitBATakeOrderPresenter", "ERROR, postSendOrder: ${it.localizedMessage}")
+                }
+            ))
+    }
+
+    override fun postFinishOrder(finishOrder: BaseRequest<FinishOrder>) {
+        view.showLoading()
+        compositeDisposable.add(appRepositoryImpl.postFinishOrder(finishOrder)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    view.hideLoading()
+                    when (it.code) {
+                        StatusCode.SUCCESS -> view.showFinishOrderSuccess(it.info!!)
+                        StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
+                        else -> view.showMessage(it.info)
+                    }
+                },
+                {
+                    view.hideLoading()
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
+                    Log.e("SubmitBATakeOrderPresenter", "ERROR, postFinishOrder: ${it.localizedMessage}")
                 }
             ))
     }

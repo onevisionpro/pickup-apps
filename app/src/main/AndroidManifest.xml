@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,12 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoPickup"
         android:usesCleartextTraffic="true">
-        <activity android:name=".presentation.my_orders.details.warehouse.MyOrderDetailsWarehouseActivity"></activity>
-        <activity android:name=".presentation.my_orders.details.partner.ba_details.SubmitBATakeOrderActivity" />
+        <activity android:name=".presentation.my_orders.details.partner.received_item.MyOrderDetailsReceivedOrderActivity"/>
+        <activity android:name=".presentation.my_orders.details.warehouse.MyOrderDetailsWarehouseActivity" />
+        <activity android:name=".presentation.my_orders.details.partner.ba_details.SubmitBAActivity" />
         <activity android:name=".presentation.reset_password.ResetPasswordActivity" />
         <activity android:name=".presentation.history.details.HistoryDetailsActivity" />
         <activity android:name=".presentation.open_order.details.received.OpenOrderDetailsForReceivedActivity" />
-        <activity android:name=".presentation.my_orders.details.partner.MyOrderDetailsActivity" />
+        <activity android:name=".presentation.my_orders.details.partner.take_item.MyOrderDetailsTakeOrderActivity" />
         <activity android:name=".presentation.open_order.details.book_order.OpenOrderDetailsForBookOrderActivity" />
         <activity android:name=".presentation.open_order.OpenOrderActivity" />
         <activity android:name=".presentation.about_apps.AboutAppsActivity" />

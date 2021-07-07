@@ -10,8 +10,9 @@ import com.example.gopickup.presentation.open_order.details.book_order.OpenOrder
 import com.example.gopickup.presentation.login.LoginActivity
 import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.presentation.my_orders.MyOrdersActivity
-import com.example.gopickup.presentation.my_orders.details.partner.MyOrderDetailsActivity
-import com.example.gopickup.presentation.my_orders.details.partner.ba_details.SubmitBATakeOrderActivity
+import com.example.gopickup.presentation.my_orders.details.partner.take_item.MyOrderDetailsTakeOrderActivity
+import com.example.gopickup.presentation.my_orders.details.partner.ba_details.SubmitBAActivity
+import com.example.gopickup.presentation.my_orders.details.partner.received_item.MyOrderDetailsReceivedOrderActivity
 import com.example.gopickup.presentation.my_orders.details.warehouse.MyOrderDetailsWarehouseActivity
 import com.example.gopickup.presentation.open_order.OpenOrderActivity
 import com.example.gopickup.presentation.order.OrderActivity
@@ -53,10 +54,15 @@ object NavigationUtils {
         activity.startActivity(intent)
     }
 
-    fun navigateToMyOrderDetailsActivity(activity: Activity, trackId: String, status: String) {
-        val intent = Intent(activity, MyOrderDetailsActivity::class.java)
-        intent.putExtra(MyOrderDetailsActivity.TRACK_ID, trackId)
-        intent.putExtra(MyOrderDetailsActivity.STATUS, status)
+    fun navigateToMyOrderDetailsTakeOrderActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, MyOrderDetailsTakeOrderActivity::class.java)
+        intent.putExtra(MyOrderDetailsTakeOrderActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)
+    }
+
+    fun navigateToMyOrderDetailsReceivedOrderActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, MyOrderDetailsReceivedOrderActivity::class.java)
+        intent.putExtra(MyOrderDetailsReceivedOrderActivity.TRACK_ID, trackId)
         activity.startActivity(intent)
     }
 
@@ -94,10 +100,16 @@ object NavigationUtils {
         activity.startActivity(Intent(activity, ResetPasswordActivity::class.java))
     }
 
-    fun navigateToSubmitBATakeOrderActivity(activity: Activity, trackId: String, warehouseName: String) {
-        val intent = Intent(activity, SubmitBATakeOrderActivity::class.java)
-        intent.putExtra(SubmitBATakeOrderActivity.TRACK_ID, trackId)
-        intent.putExtra(SubmitBATakeOrderActivity.WH_NAME, warehouseName)
+    fun navigateToSubmitBAOrderActivity(
+        activity: Activity,
+        trackId: String,
+        warehouseName: String,
+        status: String
+    ) {
+        val intent = Intent(activity, SubmitBAActivity::class.java)
+        intent.putExtra(SubmitBAActivity.TRACK_ID, trackId)
+        intent.putExtra(SubmitBAActivity.WH_NAME, warehouseName)
+        intent.putExtra(SubmitBAActivity.STATUS, status)
         activity.startActivity(intent)
     }
 }

@@ -1,9 +1,9 @@
-package com.example.gopickup.presentation.my_orders.details.partner
+package com.example.gopickup.presentation.my_orders.details.partner.take_item
 
 import android.util.Log
 import com.example.gopickup.base.BaseRequest
-import com.example.gopickup.model.repository.AppRepository
 import com.example.gopickup.model.repository.AppRepositoryImpl
+import com.example.gopickup.model.request.ReceiveOrderRequest
 import com.example.gopickup.model.request.TakeOrder
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.utils.Constants
