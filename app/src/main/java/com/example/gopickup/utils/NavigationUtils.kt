@@ -12,6 +12,7 @@ import com.example.gopickup.presentation.main.MainActivity
 import com.example.gopickup.presentation.my_orders.MyOrdersActivity
 import com.example.gopickup.presentation.my_orders.details.partner.MyOrderDetailsActivity
 import com.example.gopickup.presentation.my_orders.details.partner.ba_details.SubmitBATakeOrderActivity
+import com.example.gopickup.presentation.my_orders.details.warehouse.MyOrderDetailsWarehouseActivity
 import com.example.gopickup.presentation.open_order.OpenOrderActivity
 import com.example.gopickup.presentation.order.OrderActivity
 import com.example.gopickup.presentation.otp.OTPActivity
@@ -55,6 +56,12 @@ object NavigationUtils {
     fun navigateToMyOrderDetailsActivity(activity: Activity, trackId: String) {
         val intent = Intent(activity, MyOrderDetailsActivity::class.java)
         intent.putExtra(MyOrderDetailsActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)
+    }
+
+    fun navigateToMyOrderDetailsWarehouseActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, MyOrderDetailsWarehouseActivity::class.java)
+        intent.putExtra(MyOrderDetailsWarehouseActivity.TRACK_ID, trackId)
         activity.startActivity(intent)
     }
 

@@ -109,5 +109,9 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postSendOrder(sendOrder)
     }
 
+    override fun postOrderArrived(trackId: BaseRequest<TrackId>): Observable<BaseResponse<Any>> {
+        return apiRest.postOrderArrived(trackId)
+    }
+
 
 }

@@ -228,4 +228,23 @@ object DialogUtils {
 
         dialog.show()
     }
+
+    fun showDialogOrderArrived(context: Context, trackId: String, listener: IOnDialogOrderArrivedListener) {
+        val dialog = Dialog(context)
+        val binding = DialogOrderArrivedBinding.inflate(LayoutInflater.from(context))
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(binding.root)
+        Objects.requireNonNull(dialog.window)
+            ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvOrderId.text = trackId
+        binding.btnBackToHome.setOnClickListener {
+            listener.onBackToHomeClicked()
+            dialog.hide()
+        }
+
+        dialog.show()
+    }
 }

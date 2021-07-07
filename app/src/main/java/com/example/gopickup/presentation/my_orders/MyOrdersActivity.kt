@@ -20,7 +20,14 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private val myOrdersAdapter = MyOrdersAdapter {
         when (preference.getString(Constants.KEY_USER_TYPE)) {
             UserType.WAREHOUSE -> {
-                NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                when (it.status) {
+                    OrderStatus.BOOKED -> {
+                        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                    }
+                    OrderStatus.SEND_ITEM -> {
+                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
+                    }
+                }
             }
             UserType.PARTNER -> {
                 NavigationUtils.navigateToMyOrderDetailsActivity(this, it.trackId!!)
