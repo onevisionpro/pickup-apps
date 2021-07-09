@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/view_rounded_50_darker_gray"
                 android:padding="16dp"
-                android:src="@drawable/ic_baseline_calendar_today_24"
+                android:src="@drawable/ic_create_order"
                 tools:viewBindingIgnore="true" />
 
             <TextView
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/view_rounded_50_darker_gray"
                 android:padding="16dp"
-                android:src="@drawable/ic_baseline_calendar_today_24"
+                android:src="@drawable/ic_shopping"
                 tools:viewBindingIgnore="true" />
 
             <TextView
@@ -130,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/view_rounded_50_darker_gray"
                 android:padding="16dp"
-                android:src="@drawable/ic_baseline_calendar_today_24"
+                android:src="@drawable/ic_open_order"
                 tools:viewBindingIgnore="true" />
 
             <TextView

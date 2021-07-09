@@ -88,7 +88,6 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
 
     override fun showEditProfileSuccess(message: String) {
         showToast(message)
-        setupNotEditable()
     }
 
     override fun showEditPhotoProfileSuccess(message: String) {
@@ -114,28 +113,6 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
             code = "",
             data = editProfile
         ))
-    }
-
-    private fun setupEditable() {
-        binding.edtUsername.isFocusableInTouchMode = true
-        binding.edtUsername.isFocusable = true
-        binding.edtUsername.requestFocus()
-
-        binding.edtPhone.isFocusableInTouchMode = true
-        binding.edtPhone.isFocusable = true
-        binding.edtEmail.isFocusableInTouchMode = true
-        binding.edtEmail.isFocusable = true
-    }
-
-    private fun setupNotEditable() {
-        binding.edtUsername.isFocusableInTouchMode = false
-        binding.edtUsername.isFocusable = false
-        binding.edtUsername.requestFocus()
-
-        binding.edtPhone.isFocusableInTouchMode = false
-        binding.edtPhone.isFocusable = false
-        binding.edtEmail.isFocusableInTouchMode = false
-        binding.edtEmail.isFocusable = false
     }
 
     private val pickImages = registerForActivityResult(ActivityResultContracts.GetContent()){ uri: Uri? ->

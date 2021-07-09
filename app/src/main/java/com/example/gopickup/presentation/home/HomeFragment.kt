@@ -176,8 +176,8 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
         return when (c.get(Calendar.HOUR_OF_DAY)) {
             in 0..13 -> "Good Morning"
             in 14..17 -> "Good Afternoon"
-            in 18..23 -> "Selamat Evening"
-            else -> "Halo"
+            in 18..23 -> "Good Evening"
+            else -> "Hallo"
         }
     }
 

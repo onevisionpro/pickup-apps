@@ -41,7 +41,7 @@ class HistoryAdapter(private val onItemClick: (history: HistoryOrder) -> Unit) :
         fun bind(history: HistoryOrder) {
             with(binding) {
                 tvWarehouseName.text = history.orderTo
-                tvOrderId.text = history.trackId
+                tvOrderId.text = "Order ID #${history.trackId}"
                 tvStatus.text = history.status
                 tvDate.text = DateUtils.toFormatDate(history.createDtm!!)
 

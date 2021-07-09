@@ -18,7 +18,6 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private val binding get() = _binding!!
 
     private lateinit var presenter: MyOrdersPresenter
-    private var myOrderList: List<Order> = arrayListOf()
 
     private val myOrdersAdapter = MyOrdersAdapter {
         when (preference.getString(Constants.KEY_USER_TYPE)) {
@@ -119,26 +118,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
                 )
                 adapter = myOrdersAdapter
             }
-//                if (orderList.isNotEmpty()) {
-//                    myOrdersAdapter.addItems(orderList)
-//                    binding.rvMyOrders.apply {
-//                        layoutManager = LinearLayoutManager(
-//                            this@MyOrdersActivity,
-//                            RecyclerView.VERTICAL,
-//                            false
-//                        )
-//                        adapter = myOrdersAdapter
-//                    }
-//                } else {
-//                    binding.tvNoOrderItems.show()
-//                    binding.rvMyOrders.hide()
-//                }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
     override fun onDestroy() {

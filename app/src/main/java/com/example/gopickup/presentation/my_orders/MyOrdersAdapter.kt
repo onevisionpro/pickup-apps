@@ -44,18 +44,6 @@ class MyOrdersAdapter(private val onItemClick: (myOrder: Order) -> Unit) :
                 tvEstimate.text = myOrder.estimateArrival
                 tvOrderId.text = "Order ID #${myOrder.trackId}"
                 tvDate.text = DateUtils.toFormatDate(myOrder.createDtm!!)
-
-                viewStatusColor.background = when (myOrder.status) {
-                    OrderStatus.FINISH -> {
-                        ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_green)
-                    }
-                    OrderStatus.CANCEL -> {
-                        ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_red)
-                    }
-                    else -> {
-                        ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_gold)
-                    }
-                }
             }
         }
     }
