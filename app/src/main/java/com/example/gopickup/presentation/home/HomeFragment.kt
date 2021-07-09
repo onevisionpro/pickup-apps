@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.gopickup.BuildConfig
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
@@ -18,7 +19,7 @@ import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
 import java.util.*
 
 
-class HomeFragment : BaseFragment(), HomeContract.View {
+class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -83,6 +84,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         super.initView()
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = setGreetingMessage()
+        binding.swipeRefresh.setOnRefreshListener(this)
 
         binding.tvSeeAllRecentOrdersItems.setOnClickListener {
             NavigationUtils.navigateToMyOrdersActivity(requireActivity())
@@ -163,6 +165,16 @@ class HomeFragment : BaseFragment(), HomeContract.View {
             in 18..23 -> "Selamat Evening"
             else -> "Halo"
         }
+    }
+
+    override fun onRefresh() {
+        presenter.getRecentOrderItems(
+            BaseRequest(
+                guid = provideGUID(),
+                data = RecentOrder(limit = "5")
+            )
+        )
+        binding.swipeRefresh.isRefreshing = false
     }
 
     override fun onDestroyView() {

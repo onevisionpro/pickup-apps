@@ -50,7 +50,6 @@ class OrderActivity : BaseActivity(), OrderContract.View {
             UserType.WAREHOUSE -> {
                 binding.createOrder.show()
                 binding.myOrders.show()
-                binding.openOrder.show()
             }
         }
     }
