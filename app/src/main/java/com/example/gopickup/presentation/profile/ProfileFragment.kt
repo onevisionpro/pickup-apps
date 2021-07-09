@@ -53,7 +53,6 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         initProgressBar(binding.progressBar)
         binding.layoutParent.setOnClickListener { requireActivity().hideKeyboard() }
         binding.toolbar.tvToolbarTitle.text = "Profile"
-        binding.toolbar.icShop.setOnClickListener { showToast("clicked") }
 
         binding.tvEditPhoto.setOnClickListener {
 //            setupEditable()

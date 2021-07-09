@@ -31,17 +31,28 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     }
 
     private val recentOrderAdapter = RecentOrderAdapter {
-        when (it.status) {
-            OrderStatus.BOOKED -> {
-                NavigationUtils.navigateToChangeOrderActivity(
-                    requireActivity(),
-                    it.trackId!!)
+        when (preference.getString(Constants.KEY_USER_TYPE)) {
+            UserType.WAREHOUSE -> {
+                when (it.status) {
+                    OrderStatus.BOOKED -> {
+                        NavigationUtils.navigateToChangeOrderActivity(
+                            requireActivity(), it.trackId!!)
+                    }
+                    else -> {
+                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
+                            requireActivity(), it.trackId!!)
+                    }
+                }
             }
-            else -> {
-                NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
-                    requireActivity(),
-                    it.trackId!!
-                )
+            UserType.PARTNER -> {
+                when (it.status) {
+                    OrderStatus.BOOKED -> {
+                        NavigationUtils.navigateToMyOrderDetailsTakeOrderActivity(requireActivity(), it.trackId!!)
+                    }
+                    OrderStatus.ACCEPT_WH -> {
+                        NavigationUtils.navigateToMyOrderDetailsReceivedOrderActivity(requireActivity(), it.trackId!!)
+                    }
+                }
             }
         }
     }

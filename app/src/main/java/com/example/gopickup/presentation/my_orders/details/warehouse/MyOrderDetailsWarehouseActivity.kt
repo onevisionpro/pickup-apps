@@ -10,11 +10,9 @@ import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemOrder
 import com.example.gopickup.model.response.Order
 import com.example.gopickup.model.response.OrderDetails
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.OrderStatus
+import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogOrderArrivedListener
-import com.example.gopickup.utils.hide
 
 class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseContract.View {
 
@@ -57,7 +55,9 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
         binding.tvOrderIdCard.text = orderDetails.trackId
 
         // when status is not TAKE-ITEM
-        if (!orderDetails.status.equals(OrderStatus.TAKE_ITEM)) {
+        showToast(orderDetails.status!!)
+        if (orderDetails.status.equals(OrderStatus.SEND_ITEM)) {
+            binding.btnOrderArrived.show()
             binding.btnOrderArrived.setOnClickListener {
                 presenter.postOrderArrived(trackId = BaseRequest(
                     guid = provideGUID(),

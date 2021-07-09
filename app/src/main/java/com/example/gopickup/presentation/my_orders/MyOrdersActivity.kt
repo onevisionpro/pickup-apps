@@ -24,7 +24,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
                     OrderStatus.BOOKED -> {
                         NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
                     }
-                    OrderStatus.SEND_ITEM -> {
+                    else -> {
                         NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
                             this,
                             trackId = it.trackId!!
