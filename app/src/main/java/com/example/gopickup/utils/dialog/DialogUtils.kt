@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -153,6 +155,34 @@ object DialogUtils {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = warehouseAdapter
         }
+
+        // filter
+        binding.edtFindWarehouse.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val warehousesFilter = warehouseList.filter { it.whName == s.toString() }
+                warehouseAdapter.addItems(warehousesFilter)
+                binding.rvWarehouses.apply {
+                    layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                    adapter = warehouseAdapter
+                }
+
+                if (s?.length?.equals(0)!!) {
+                    warehouseAdapter.addItems(warehouseList)
+                    binding.rvWarehouses.apply {
+                        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                        adapter = warehouseAdapter
+                    }
+
+                }
+            }
+
+        })
 
         dialog.show()
     }

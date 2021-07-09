@@ -28,6 +28,17 @@
                 android:layout_marginTop="24dp"
                 android:text="Pilih Warehouse" />
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cari warehouse"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:inputType="text"
+                android:textAllCaps="true"
+                android:layout_marginTop="16dp"
+                android:id="@+id/edt_find_warehouse" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_warehouses"
                 android:layout_width="match_parent"
