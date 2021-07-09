@@ -125,5 +125,9 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.getStatus(baseRequest)
     }
 
+    override fun postEditPhotoProfile(newImage: BaseRequest<NewImage>): Observable<BaseResponse<Any>> {
+        return apiRest.postEditPhotoProfile(newImage)
+    }
+
 
 }

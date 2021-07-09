@@ -121,4 +121,5 @@ class MyOrderDetailsTakeOrderActivity : BaseActivity(), MyOrderDetailsContract.V
         _binding = null
         presenter.onDestroy()
     }
+
 }

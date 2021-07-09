@@ -32,14 +32,14 @@
                 tools:src="@drawable/img_poster_sample" />
 
             <TextView
-                android:id="@+id/tv_edit_profile"
+                android:id="@+id/tv_edit_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_edit_primary_24"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:padding="16dp"
-                android:text="Edit Profile"
+                android:text="Edit Photo"
                 android:textColor="@color/redPrimary" />
 
             <TextView
@@ -69,7 +69,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:focusable="false"
                     android:hint="Username"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
@@ -107,7 +106,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:focusable="false"
                     android:hint="Phone"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
@@ -126,7 +124,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:focusable="false"
                     android:hint="Email"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"

@@ -65,4 +65,6 @@ interface AppRepository {
     fun postFinishOrder(finishOrder: BaseRequest<FinishOrder>): Observable<BaseResponse<Any>>
 
     fun getStatusList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<String>>>
+
+    fun postEditPhotoProfile(newImage: BaseRequest<NewImage>): Observable<BaseResponse<Any>>
 }
