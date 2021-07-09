@@ -1,6 +1,7 @@
 package com.example.gopickup.presentation.my_orders.details.partner.ba_details
 
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivitySubmitBATakeOrderBinding
@@ -100,13 +101,13 @@ class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
     }
 
     override fun showPreviewBA(previewBA: PreviewBA) {
-        binding.webviewBa.loadDataWithBaseURL(
-            null,
-            previewBA.contentHtml!!,
-            "text/html",
-            "UTF-8",
-            null
-        )
+        Glide.with(this)
+            .load(previewBA.pdf_icon)
+            .into(binding.imgPreviewBa)
+
+        binding.tvPreviewBa.setOnClickListener {
+            DialogUtils.showDialogBAPreview(this, previewBA.contentHtml!!)
+        }
     }
 
     override fun showSendOrderSuccess(message: String) {

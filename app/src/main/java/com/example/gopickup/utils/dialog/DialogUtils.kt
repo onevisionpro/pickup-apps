@@ -9,8 +9,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Window
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gopickup.R
 import com.example.gopickup.databinding.*
 import com.example.gopickup.model.response.ItemWarehouse
 import com.example.gopickup.model.response.Warehouse
@@ -319,6 +322,27 @@ object DialogUtils {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             adapter = statusAdapter
         }
+
+        dialog.show()
+    }
+
+    fun showDialogBAPreview(context: Context, content: String) {
+        val dialog = Dialog(context, R.style.Theme_Dialog_Preview)
+        val binding = DialogBaPreviewBinding.inflate(LayoutInflater.from(context))
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(binding.root)
+        Objects.requireNonNull(dialog.window)?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.webview.loadDataWithBaseURL(
+            null,
+            content,
+            "text/html",
+            "UTF-8",
+            null
+        )
+
+        binding.layoutParent.setOnClickListener { dialog.dismiss() }
 
         dialog.show()
     }
