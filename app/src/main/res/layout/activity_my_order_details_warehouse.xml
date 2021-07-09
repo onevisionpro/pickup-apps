@@ -205,6 +205,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_track_my_order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -219,12 +220,13 @@
                     android:layout_marginEnd="16dp" />
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/btn_order_arrived"
                     style="@style/ButtonRoundedPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="Order Arrived" />

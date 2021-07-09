@@ -12,12 +12,9 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentHomeBinding
 import com.example.gopickup.model.request.RecentOrder
 import com.example.gopickup.model.response.*
-import com.example.gopickup.utils.PushUpdateStatus
+import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
-import com.example.gopickup.utils.hide
-import com.example.gopickup.utils.show
-import com.example.gopickup.utils.showToast
 import java.util.*
 
 
@@ -33,7 +30,19 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     private val recentOrderAdapter = RecentOrderAdapter {
-
+        when (it.status) {
+            OrderStatus.BOOKED -> {
+                NavigationUtils.navigateToChangeOrderActivity(
+                    requireActivity(),
+                    it.trackId!!)
+            }
+            else -> {
+                NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
+                    requireActivity(),
+                    it.trackId!!
+                )
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,6 +83,10 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         super.initView()
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = setGreetingMessage()
+
+        binding.tvSeeAllRecentOrdersItems.setOnClickListener {
+            NavigationUtils.navigateToMyOrdersActivity(requireActivity())
+        }
     }
 
     override fun showVersionChecker(versionChecker: VersionChecker) {

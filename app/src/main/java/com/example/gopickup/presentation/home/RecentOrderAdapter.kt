@@ -32,6 +32,7 @@ class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recentOrder = recentOrderList[position]
         holder.bind(recentOrder)
+        holder.itemView.setOnClickListener { onItemClick(recentOrder) }
     }
 
     inner class ViewHolder(private val binding: ItemRecentOrderBinding) :

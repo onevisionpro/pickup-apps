@@ -8,10 +8,13 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityMyOrderDetailsWarehouseBinding
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemOrder
+import com.example.gopickup.model.response.Order
 import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.utils.NavigationUtils
+import com.example.gopickup.utils.OrderStatus
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogOrderArrivedListener
+import com.example.gopickup.utils.hide
 
 class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseContract.View {
 
@@ -53,12 +56,15 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
         binding.tvOrderIdCard.text = orderDetails.trackId
 
-        binding.btnOrderArrived.setOnClickListener {
-            presenter.postOrderArrived(trackId = BaseRequest(
-                guid = provideGUID(),
-                code = "",
-                data = TrackId(trackId = orderDetails.trackId)
-            ))
+        // when status is not TAKE-ITEM
+        if (!orderDetails.status.equals(OrderStatus.TAKE_ITEM)) {
+            binding.btnOrderArrived.setOnClickListener {
+                presenter.postOrderArrived(trackId = BaseRequest(
+                    guid = provideGUID(),
+                    code = "",
+                    data = TrackId(trackId = orderDetails.trackId)
+                ))
+            }
         }
     }
 
