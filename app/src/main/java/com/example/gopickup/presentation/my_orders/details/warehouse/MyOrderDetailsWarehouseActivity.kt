@@ -55,7 +55,6 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
         binding.tvOrderIdCard.text = orderDetails.trackId
 
         // when status is not TAKE-ITEM
-        showToast(orderDetails.status!!)
         if (orderDetails.status.equals(OrderStatus.SEND_ITEM)) {
             binding.btnOrderArrived.show()
             binding.btnOrderArrived.setOnClickListener {

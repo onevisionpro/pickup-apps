@@ -52,6 +52,9 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
                     OrderStatus.ACCEPT_WH -> {
                         NavigationUtils.navigateToMyOrderDetailsReceivedOrderActivity(requireActivity(), it.trackId!!)
                     }
+                    else -> {
+                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(requireActivity(), it.trackId!!)
+                    }
                 }
             }
         }

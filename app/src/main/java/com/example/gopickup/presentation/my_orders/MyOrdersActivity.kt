@@ -25,10 +25,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
                         NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
                     }
                     else -> {
-                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
-                            this,
-                            trackId = it.trackId!!
-                        )
+                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
                     }
                 }
             }
@@ -39,6 +36,9 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
                     }
                     OrderStatus.ACCEPT_WH -> {
                         NavigationUtils.navigateToMyOrderDetailsReceivedOrderActivity(this, it.trackId!!)
+                    }
+                    else -> {
+                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
                     }
                 }
             }
