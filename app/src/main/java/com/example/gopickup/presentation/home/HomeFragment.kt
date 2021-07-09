@@ -150,7 +150,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
     override fun showProfile(profile: Profile?) {
         profile?.let {
-            binding.toolbar.tvCompanyName.text = it.companyName
+            binding.toolbar.tvCompanyName.text = it.nama
         }
     }
 
