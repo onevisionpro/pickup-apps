@@ -8,6 +8,8 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityMyOrdersBinding
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.Order
+import com.example.gopickup.presentation.history.filter.HistoryFilterFragment
+import com.example.gopickup.presentation.my_orders.filter.MyOrderFilterFragment
 import com.example.gopickup.utils.*
 
 class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
@@ -16,6 +18,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private val binding get() = _binding!!
 
     private lateinit var presenter: MyOrdersPresenter
+    private var myOrderList: List<Order> = arrayListOf()
 
     private val myOrdersAdapter = MyOrdersAdapter {
         when (preference.getString(Constants.KEY_USER_TYPE)) {
@@ -66,26 +69,76 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "My Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
+
+        binding.filter.setOnClickListener {
+            val bottomSheetFilter = MyOrderFilterFragment()
+            bottomSheetFilter.show(supportFragmentManager, bottomSheetFilter.tag)
+        }
     }
 
     override fun showMyOrderList(myOrderList: List<Order>?) {
-        myOrderList?.let {
-            if (it.isNotEmpty()) {
-                myOrdersAdapter.addItems(it)
+        myOrderList?.let { orderList ->
+            val trackId = intent.getStringExtra("track_id")
+            val status = intent.getStringExtra("status")
+            when {
+                !trackId.isNullOrEmpty() && !status.isNullOrEmpty() -> {
+                    val myOrderListFilter = myOrderList.filter { it.trackId == trackId && it.status == status}
+                    myOrdersAdapter.addItems(myOrderListFilter)
+                    if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
 
-                binding.rvMyOrders.apply {
-                    layoutManager = LinearLayoutManager(
-                        this@MyOrdersActivity,
-                        RecyclerView.VERTICAL,
-                        false
-                    )
-                    adapter = myOrdersAdapter
+                    binding.layoutStatus.show()
+                    binding.tvStatus.text = status
+                    binding.layoutTrackId.show()
+                    binding.tvTrackId.text = trackId
                 }
-            } else {
-                binding.tvNoOrderItems.show()
-                binding.rvMyOrders.hide()
+                !trackId.isNullOrEmpty() -> {
+                    val myOrderListFilter = myOrderList.filter { it.trackId == trackId }
+                    myOrdersAdapter.addItems(myOrderListFilter)
+                    if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
+
+                    binding.layoutTrackId.show()
+                    binding.tvTrackId.text = trackId
+                }
+                !status.isNullOrEmpty() -> {
+                    val myOrderListFilter = myOrderList.filter { it.status == status }
+                    myOrdersAdapter.addItems(myOrderListFilter)
+                    if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
+
+                    binding.layoutStatus.show()
+                    binding.tvStatus.text = status
+                }
+                else -> {
+                    myOrdersAdapter.addItems(orderList)
+                }
             }
+            binding.rvMyOrders.apply {
+                layoutManager = LinearLayoutManager(
+                    this@MyOrdersActivity,
+                    RecyclerView.VERTICAL,
+                    false
+                )
+                adapter = myOrdersAdapter
+            }
+//                if (orderList.isNotEmpty()) {
+//                    myOrdersAdapter.addItems(orderList)
+//                    binding.rvMyOrders.apply {
+//                        layoutManager = LinearLayoutManager(
+//                            this@MyOrdersActivity,
+//                            RecyclerView.VERTICAL,
+//                            false
+//                        )
+//                        adapter = myOrdersAdapter
+//                    }
+//                } else {
+//                    binding.tvNoOrderItems.show()
+//                    binding.rvMyOrders.hide()
+//                }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     override fun onDestroy() {
