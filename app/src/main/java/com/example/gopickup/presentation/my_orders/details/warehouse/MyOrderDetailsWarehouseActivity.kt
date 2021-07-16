@@ -53,6 +53,7 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
         binding.tvOrderId.text = orderDetails.trackId
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
+        binding.tvOrderDate.text = DateUtils.formatToOrderDate(orderDetails.createDtm!!)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
         binding.tvOrderIdCard.text = orderDetails.trackId
 
