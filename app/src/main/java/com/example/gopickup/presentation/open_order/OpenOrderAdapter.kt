@@ -40,7 +40,7 @@ class OpenOrderAdapter(private val onItemClick: (order: Order) -> Unit) :
 
         fun bind(myOrder: Order) {
             with(binding) {
-                tvWarehouseName.text = myOrder.orderTo
+                tvWarehouseName.text = "To ${myOrder.orderTo}"
                 tvEstimate.text = myOrder.arrivalEstimate
                 tvOrderId.text = myOrder.trackId
                 tvDate.text = DateUtils.toFormatDate(myOrder.createDtm!!)
