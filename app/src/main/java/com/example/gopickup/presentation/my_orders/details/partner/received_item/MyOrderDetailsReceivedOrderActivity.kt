@@ -63,6 +63,8 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
+        binding.tvWarehouseFrom.text = orderDetails.orderFrom
+        binding.tvCreatedBy.text = orderDetails.createBy
         binding.tvOrderIdCard.text = orderDetails.trackId
         binding.tvReceipt.text = orderDetails.resiCode
         binding.tvWarehouseStatus.text = orderDetails.progressOrder?.get(4)?.status ?: "-"

@@ -48,23 +48,29 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
 
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
         binding.tvWarehouseName.text = orderDetails.orderTo
-        binding.tvOrderId.text = "Order ID#${orderDetails.trackId}"
+        binding.tvOrderId.text = orderDetails.trackId
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
         binding.tvOrderIdCard.text = orderDetails.trackId
 
-        // when status is not TAKE-ITEM
-        if (orderDetails.status.equals(OrderStatus.SEND_ITEM)) {
-            binding.btnOrderArrived.show()
-            binding.btnOrderArrived.setOnClickListener {
-                presenter.postOrderArrived(trackId = BaseRequest(
-                    guid = provideGUID(),
-                    code = "",
-                    data = TrackId(trackId = orderDetails.trackId)
-                ))
+        // when user is partner. Hide button arrived.
+        // when status is SEND-ITEM
+        if (preference.getString(Constants.KEY_USER_TYPE).equals(UserType.PARTNER)) {
+            binding.btnOrderArrived.hide()
+        } else {
+            if (orderDetails.status.equals(OrderStatus.SEND_ITEM)) {
+                binding.btnOrderArrived.show()
+                binding.btnOrderArrived.setOnClickListener {
+                    presenter.postOrderArrived(trackId = BaseRequest(
+                        guid = provideGUID(),
+                        code = "",
+                        data = TrackId(trackId = orderDetails.trackId)
+                    ))
+                }
             }
         }
+
     }
 
     override fun showOrderArrivedSuccess(message: String) {
