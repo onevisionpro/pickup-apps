@@ -43,6 +43,8 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             } else {
                 updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
             }
+
+            Log.d("TAG", "onMinusClicked: selectedItemSize: ${selectedItems.size}")
         }
 
         override fun onPlusClicked(selectedItem: SelectedItem) {
@@ -191,7 +193,7 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
 
                 selectedItemsAdapter.addItems(it)
                 binding.rvSelectedItems.apply {
-                    layoutManager = LinearLayoutManager(
+                    layoutManager = LinearLayoutManagerWrapper(
                         this@CreateOrderActivity,
                         RecyclerView.VERTICAL,
                         false
