@@ -24,4 +24,9 @@ object DateUtils {
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         return sdf.format(cal.time)
     }
+
+    fun formatCurrentDate(currentDate: Date): String {
+        val format = SimpleDateFormat("yyyy/MM/dd")
+        return format.format(currentDate)
+    }
 }

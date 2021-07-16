@@ -3,7 +3,6 @@ package com.example.gopickup.presentation.create_order
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
@@ -90,6 +89,8 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
         binding.toolbar.icBack.setOnClickListener { finish() }
 
         // button estimated date
+        val currentDate = DateUtils.formatCurrentDate(Calendar.getInstance().time)
+        binding.edtEstimatedDate.setText(currentDate)
         binding.edtEstimatedDate.setOnClickListener {
             DialogUtils.showDialogCalendar(this, object : IOnItemClicked<Date> {
                 override fun onItemClicked(data: Date) {
@@ -131,17 +132,22 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
         }
 
         binding.btnOrder.setOnClickListener {
-            val estimated = binding.edtEstimatedDate.text.toString()
-            if (estimated.isNotEmpty()) {
-                presenter.postCreateOrder(
-                    createOrder = BaseRequest(
-                        guid = provideGUID(),
-                        code = "",
-                        data = createOrder
+            val warehouseName = binding.edtChooseWarehouse.text.toString()
+            val selectedItems = selectedItems.size
+            val estimateDate = binding.edtEstimatedDate.text.toString()
+            when {
+                warehouseName.isEmpty() -> showToast("Pilih Warehouse Tujuan terlebih dahulu")
+                selectedItems == 0 -> showToast("Pilih item terlebih dahulu ")
+                estimateDate.isEmpty() -> showToast("Pilih Estimasi terlebih dahulu")
+                else -> {
+                    presenter.postCreateOrder(
+                        createOrder = BaseRequest(
+                            guid = provideGUID(),
+                            code = "",
+                            data = createOrder
+                        )
                     )
-                )
-            } else {
-                showToast("Harap masukan estimasi terlebih dahulu")
+                }
             }
         }
     }
