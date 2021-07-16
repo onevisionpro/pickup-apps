@@ -32,11 +32,13 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
 
         presenter = MyOrderDetailsWarehousePresenter(this, callApi())
         presenter.start()
-        presenter.getMyOrderDetails(trackId = BaseRequest(
-            guid = provideGUID(),
-            code = "",
-            data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
-        ))
+        presenter.getMyOrderDetails(
+            trackId = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = TrackId(trackId = intent.getStringExtra(TRACK_ID))
+            )
+        )
     }
 
     override fun initView() {
@@ -54,19 +56,23 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
         binding.tvOrderIdCard.text = orderDetails.trackId
 
-        // when user is partner. Hide button arrived.
+        // when user is partner OR user is sender, Hide button order arrived.
         // when status is SEND-ITEM
-        if (preference.getString(Constants.KEY_USER_TYPE).equals(UserType.PARTNER)) {
+        if (preference.getString(Constants.KEY_USER_TYPE).equals(UserType.PARTNER) ||
+            preference.getString(Constants.KEY_COMPANY_NAME).equals(orderDetails.orderFrom)
+        ) {
             binding.btnOrderArrived.hide()
         } else {
             if (orderDetails.status.equals(OrderStatus.SEND_ITEM)) {
                 binding.btnOrderArrived.show()
                 binding.btnOrderArrived.setOnClickListener {
-                    presenter.postOrderArrived(trackId = BaseRequest(
-                        guid = provideGUID(),
-                        code = "",
-                        data = TrackId(trackId = orderDetails.trackId)
-                    ))
+                    presenter.postOrderArrived(
+                        trackId = BaseRequest(
+                            guid = provideGUID(),
+                            code = "",
+                            data = TrackId(trackId = orderDetails.trackId)
+                        )
+                    )
                 }
             }
         }
