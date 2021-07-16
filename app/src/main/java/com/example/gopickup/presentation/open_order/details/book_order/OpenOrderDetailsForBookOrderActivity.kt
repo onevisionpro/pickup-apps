@@ -50,11 +50,12 @@ class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsCon
 
     override fun showOpenOrderDetails(orderDetails: OrderDetails) {
         binding.tvWarehouseName.text = orderDetails.orderTo
-        binding.tvOrderId.text = "Order ID #${orderDetails.trackId}"
+        binding.tvOrderId.text = orderDetails.trackId
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
-        binding.tvOrderIdCard.text = orderDetails.trackId
+        binding.tvWarehouseFrom.text = orderDetails.orderFrom
+        binding.tvCreatedBy.text = orderDetails.createBy
 
         binding.btnBookOrder.setOnClickListener {
             presenter.postBookOrder(
