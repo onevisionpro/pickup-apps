@@ -22,19 +22,23 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     private val myOrdersAdapter = MyOrdersAdapter {
         when (preference.getString(Constants.KEY_USER_TYPE)) {
             UserType.WAREHOUSE -> {
-                when (it.status) {
-                    OrderStatus.ORDER_CREATED -> {
-                        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                if (preference.getString(Constants.KEY_COMPANY_NAME).equals(it.orderFrom)) {
+                    when (it.status) {
+                        OrderStatus.ORDER_CREATED -> {
+                            NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                        }
+                        OrderStatus.BOOKED -> {
+                            NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                        }
+                        OrderStatus.TAKE_ITEM -> {
+                            NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                        }
+                        else -> {
+                            NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
+                        }
                     }
-                    OrderStatus.BOOKED -> {
-                        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
-                    }
-                    OrderStatus.TAKE_ITEM -> {
-                        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
-                    }
-                    else -> {
-                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
-                    }
+                } else {
+                    NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(this, it.trackId!!)
                 }
             }
             UserType.PARTNER -> {
