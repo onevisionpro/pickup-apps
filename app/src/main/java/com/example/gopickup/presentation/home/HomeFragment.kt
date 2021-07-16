@@ -14,6 +14,7 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentHomeBinding
 import com.example.gopickup.model.request.RecentOrder
 import com.example.gopickup.model.response.*
+import com.example.gopickup.presentation.my_orders.details.partner.take_item.MyOrderDetailsTakeOrderActivity
 import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
@@ -54,6 +55,14 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
                 when (it.status) {
                     OrderStatus.BOOKED -> {
                         NavigationUtils.navigateToMyOrderDetailsTakeOrderActivity(requireActivity(), it.trackId!!)
+                    }
+                    OrderStatus.TAKE_ITEM -> {
+                        NavigationUtils.navigateToSubmitBAOrderActivity(
+                            requireActivity(),
+                            trackId =  it.trackId!!,
+                            warehouseName = it.orderTo!!,
+                            status = it.status
+                        )
                     }
                     OrderStatus.ACCEPT_WH -> {
                         NavigationUtils.navigateToMyOrderDetailsReceivedOrderActivity(requireActivity(), it.trackId!!)
