@@ -43,7 +43,6 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             } else {
                 updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
             }
-            Log.d("TAG", "onMinusClicked: ${selectedItems.size}")
         }
 
         override fun onPlusClicked(selectedItem: SelectedItem) {
@@ -117,7 +116,6 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
                 selectedItems.add(selectedItem)
                 presenter.addToSelectedItems(selectedItems)
 
-                Log.d("TAG", "ITEM: $selectedItems")
             } else {
                 showToast("Pilih warehouse dan item terlebih dahulu!")
             }
@@ -136,7 +134,6 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             } else {
                 showToast("Harap masukan estimasi terlebih dahulu")
             }
-            Log.d("TAG", "initView: $createOrder")
         }
     }
 

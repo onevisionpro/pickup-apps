@@ -168,21 +168,20 @@ object DialogUtils {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val warehousesFilter = warehouseList.filter { it.whName == s.toString() }
-                warehouseAdapter.addItems(warehousesFilter)
+                warehouseAdapter.filter.filter(s)
                 binding.rvWarehouses.apply {
                     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                     adapter = warehouseAdapter
                 }
-
-                if (s?.length?.equals(0)!!) {
-                    warehouseAdapter.addItems(warehouseList)
-                    binding.rvWarehouses.apply {
-                        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-                        adapter = warehouseAdapter
-                    }
-
-                }
+//
+//                if (s?.length?.equals(0)!!) {
+//                    warehouseAdapter.addItems(warehouseList)
+//                    binding.rvWarehouses.apply {
+//                        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+//                        adapter = warehouseAdapter
+//                    }
+//
+//                }
             }
 
         })
