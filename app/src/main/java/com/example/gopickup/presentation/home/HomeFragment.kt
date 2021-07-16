@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import com.example.gopickup.BuildConfig
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
@@ -166,6 +167,9 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
 
     override fun showProfile(profile: Profile?) {
         profile?.let {
+            Glide.with(requireActivity())
+                .load(it.imageProfile)
+                .into(binding.toolbar.imgProfile)
             binding.toolbar.tvCompanyName.text = it.nama
         }
     }

@@ -7,16 +7,26 @@
     android:layout_marginTop="16dp"
     android:layout_height="wrap_content">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/img_profile"
+        tools:src="@drawable/ic_launcher_background"/>
+
     <TextView
+        android:layout_toEndOf="@id/img_profile"
         android:id="@+id/tv_toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="22sp"
+        android:layout_marginStart="16dp"
         android:textStyle="bold"
         tools:text="Good morning" />
 
     <TextView
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/img_profile"
         android:id="@+id/tv_company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
