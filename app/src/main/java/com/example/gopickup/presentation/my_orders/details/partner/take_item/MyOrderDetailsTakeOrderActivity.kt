@@ -54,11 +54,12 @@ class MyOrderDetailsTakeOrderActivity : BaseActivity(), MyOrderDetailsContract.V
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
         warehouseName = orderDetails.orderTo!!
         binding.tvWarehouseName.text = orderDetails.orderTo
-        binding.tvOrderId.text = "Order ID #${orderDetails.trackId}"
+        binding.tvOrderId.text = orderDetails.trackId
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
-        binding.tvOrderIdCard.text = orderDetails.trackId
+        binding.tvWarehouseFrom.text = orderDetails.orderFrom
+        binding.tvCreatedBy.text = orderDetails.createBy
         binding.edtReceipt.setText(orderDetails.resiCode)
         binding.edtNote.setText(orderDetails.notes)
 
