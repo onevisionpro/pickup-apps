@@ -70,8 +70,12 @@ class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsCon
     override fun showBookOrderSuccess(message: String) {
         val trackId = intent.getStringExtra(TRACK_ID)
         DialogUtils.showDialogOrderBooked(this, trackId!!, object : IOnDialogOrderBookedListener {
-            override fun onBackToHomeClicked() {
-                NavigationUtils.navigateToMainActivity(this@OpenOrderDetailsForBookOrderActivity)
+            override fun onBackToOpenOrderClicked() {
+                finish()
+            }
+
+            override fun onMyOrderClicked() {
+                NavigationUtils.navigateToMyOrdersActivity(this@OpenOrderDetailsForBookOrderActivity)
                 finish()
             }
 

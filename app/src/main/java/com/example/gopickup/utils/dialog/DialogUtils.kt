@@ -9,8 +9,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.Window
-import android.widget.ImageView
-import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gopickup.R
@@ -95,7 +93,7 @@ object DialogUtils {
 
     fun showDialogOrderBooked(context: Context, trackId: String, listener: IOnDialogOrderBookedListener) {
         val dialog = Dialog(context)
-        val binding = DialogOrderBookedBinding.inflate(LayoutInflater.from(context))
+        val binding = DialogOrderBookBinding.inflate(LayoutInflater.from(context))
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
@@ -104,8 +102,12 @@ object DialogUtils {
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.tvOrderId.text = trackId
-        binding.btnBackToHome.setOnClickListener {
-            listener.onBackToHomeClicked()
+        binding.btnBackToOpenOrder.setOnClickListener {
+            listener.onBackToOpenOrderClicked()
+            dialog.hide()
+        }
+        binding.btnMyOrder.setOnClickListener {
+            listener.onMyOrderClicked()
             dialog.hide()
         }
 
