@@ -98,26 +98,6 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
         binding.toolbar.tvToolbarTitle.text = "Change My Order"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
-        binding.btnAddItem.setOnClickListener {
-            val itemName = binding.edtChooseItem.text.toString()
-
-            items.add(this.item)
-            editOrder.items = items
-
-            if (itemName.isNotEmpty()) {
-                val selectedItem = SelectedItem(
-                    itemId = item.idItem!!,
-                    itemName = itemName,
-                    quantity = "1"
-                )
-                selectedItemsAdapter.addAnotherItem(0, selectedItem)
-                selectedItems.add(selectedItem)
-                presenter.getSelectedItems(selectedItems)
-            } else {
-                showToast("Pilih item terlebih dahulu")
-            }
-        }
-
         binding.btnCancelOrder.setOnClickListener {
             presenter.postCancelOrder(trackId = BaseRequest(
                 guid = provideGUID(),
@@ -147,8 +127,45 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
                 quantity = item.jumlah!!
             ))
         }
-        Log.d("TAG", "selectedItems: $selectedItems")
         presenter.getSelectedItems(selectedItemList = selectedItems)
+
+        // add item
+        binding.btnAddItem.setOnClickListener {
+            val itemName = binding.edtChooseItem.text.toString()
+
+            if (itemName.isNotEmpty()) {
+                val isAlreadyHave = selectedItems.filter { it.itemName == itemName }.size == 1
+                if (isAlreadyHave) {
+                    showToast("Anda telah memilih Item $itemName")
+                } else {
+
+                    val selectedItem = SelectedItem(
+                        itemId = item.idItem!!,
+                        itemName = itemName,
+                        quantity = "1"
+                    )
+                    items.add(this.item)
+                    editOrder.items = items
+
+                    selectedItemsAdapter.addAnotherItem(0, selectedItem)
+                    selectedItems.add(selectedItem)
+                    presenter.getSelectedItems(selectedItems)
+                }
+//                val selectedItem = SelectedItem(
+//                    itemId = item.idItem!!,
+//                    itemName = itemName,
+//                    quantity = "1"
+//                )
+//                items.add(this.item)
+//                editOrder.items = items
+//
+//                selectedItemsAdapter.addAnotherItem(0, selectedItem)
+//                selectedItems.add(selectedItem)
+//                presenter.getSelectedItems(selectedItems)
+            } else {
+                showToast("Pilih item terlebih dahulu")
+            }
+        }
 
         binding.btnUpdateOrder.setOnClickListener {
             editOrder.track_id = intent.getStringExtra(TRACK_ID)
