@@ -7,12 +7,13 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_order_item"
+        android:id="@+id/icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="8dp"
-        android:id="@+id/icon"/>
+        android:scaleType="fitXY"
+        tools:src="@drawable/ic_order_to" />
 
     <TextView
         android:id="@+id/tv_warehouse_name"
@@ -38,26 +39,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estimasi"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_estimate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="2021/06/03"
-            android:layout_marginStart="4dp"/>
+            android:layout_marginStart="4dp"
+            tools:text="2021/06/03" />
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_order_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout_estimate"
-        android:text="Order ID #12312-123123"
         android:layout_marginStart="16dp"
-        android:id="@+id/tv_order_id"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/icon"
-        android:layout_marginTop="8dp"/>
+        android:text="Order ID #12312-123123" />
 
     <TextView
         android:id="@+id/tv_date"

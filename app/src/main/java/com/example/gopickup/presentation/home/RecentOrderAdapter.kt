@@ -44,14 +44,13 @@ class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem)
                 tvOrderId.text = recentOrder.trackId
                 tvStatus.text = recentOrder.status
                 tvDate.text = DateUtils.toFormatDate(recentOrder.createDtm!!)
+                icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
 
                 when (recentOrder.status) {
                     OrderStatus.FINISH -> {
-                        viewStatusColor.background = ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_green)
                         tvStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
                     }
                     else -> {
-                        viewStatusColor.background = ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_gold)
                         tvStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.gold))
                     }
                 }

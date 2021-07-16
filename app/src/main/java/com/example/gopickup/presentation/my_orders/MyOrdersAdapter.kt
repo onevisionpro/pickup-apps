@@ -8,6 +8,7 @@ import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemMyOrderBinding
 import com.example.gopickup.model.response.Order
 import com.example.gopickup.utils.DateUtils
+import com.example.gopickup.utils.Flag
 import com.example.gopickup.utils.OrderStatus
 
 class MyOrdersAdapter(private val onItemClick: (myOrder: Order) -> Unit) :
@@ -40,10 +41,20 @@ class MyOrdersAdapter(private val onItemClick: (myOrder: Order) -> Unit) :
 
         fun bind(myOrder: Order) {
             with(binding) {
-                tvWarehouseName.text = myOrder.orderTo
                 tvEstimate.text = myOrder.estimateArrival
-                tvOrderId.text = "Order ID #${myOrder.trackId}"
+                tvOrderId.text = myOrder.trackId
                 tvDate.text = DateUtils.toFormatDate(myOrder.createDtm!!)
+
+                when (myOrder.flag) {
+                    Flag.FROM -> {
+                        tvWarehouseName.text = "From ${myOrder.orderFrom}"
+                        icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_from))
+                    }
+                    Flag.TO -> {
+                        tvWarehouseName.text = "To ${myOrder.orderTo}"
+                        icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
+                    }
+                }
             }
         }
     }

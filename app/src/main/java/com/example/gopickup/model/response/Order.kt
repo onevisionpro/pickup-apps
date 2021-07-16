@@ -17,5 +17,7 @@ data class Order(
     @Json(name = "status")
     val status: String? = "",
     @Json(name = "track_id")
-    val trackId: String? = ""
+    val trackId: String? = "",
+    @Json(name = "flag")
+    val flag: String? = null
 )
