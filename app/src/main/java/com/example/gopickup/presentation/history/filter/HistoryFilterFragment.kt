@@ -55,6 +55,10 @@ class HistoryFilterFragment : BottomSheetDialogFragment(), HistoryFilterContract
 
     override fun initView() {
         binding.layoutParent.setOnClickListener { requireActivity().hideKeyboard() }
+
+        val currentDate = DateUtils.formatCurrentDate(Calendar.getInstance().time)
+        binding.edtDateStart.setText(currentDate)
+        binding.edtDateEnd.setText(currentDate)
     }
 
     override fun showStatusList(statusList: List<String>) {
