@@ -23,7 +23,13 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
         when (preference.getString(Constants.KEY_USER_TYPE)) {
             UserType.WAREHOUSE -> {
                 when (it.status) {
+                    OrderStatus.ORDER_CREATED -> {
+                        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                    }
                     OrderStatus.BOOKED -> {
+                        NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
+                    }
+                    OrderStatus.TAKE_ITEM -> {
                         NavigationUtils.navigateToChangeOrderActivity(this, it.trackId!!)
                     }
                     else -> {

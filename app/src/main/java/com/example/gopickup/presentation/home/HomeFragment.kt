@@ -35,9 +35,14 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
         when (preference.getString(Constants.KEY_USER_TYPE)) {
             UserType.WAREHOUSE -> {
                 when (it.status) {
+                    OrderStatus.ORDER_CREATED -> {
+                        NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
+                    }
                     OrderStatus.BOOKED -> {
-                        NavigationUtils.navigateToChangeOrderActivity(
-                            requireActivity(), it.trackId!!)
+                        NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
+                    }
+                    OrderStatus.TAKE_ITEM -> {
+                        NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
                     }
                     else -> {
                         NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
