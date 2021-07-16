@@ -53,7 +53,6 @@ class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
         super.initView()
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Detail Order"
-        binding.toolbar.icBack.setOnClickListener { finish() }
         binding.tvWarehouseName.text = intent.getStringExtra(WH_NAME)
         binding.tvOrderId.text = "Order ID#${intent.getStringExtra(TRACK_ID)}"
 
@@ -138,6 +137,10 @@ class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
             }
 
         })
+    }
+
+    override fun onBackPressed() {
+        showToast("Anda tidak bisa kembali. Harap selesaikan order terlebih dahulu!")
     }
 
     override fun onDestroy() {
