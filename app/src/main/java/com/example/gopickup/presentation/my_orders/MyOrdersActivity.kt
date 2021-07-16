@@ -85,44 +85,50 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
         myOrderList?.let { orderList ->
             val trackId = intent.getStringExtra("track_id")
             val status = intent.getStringExtra("status")
-            when {
-                !trackId.isNullOrEmpty() && !status.isNullOrEmpty() -> {
-                    val myOrderListFilter = myOrderList.filter { it.trackId == trackId && it.status == status}
-                    myOrdersAdapter.addItems(myOrderListFilter)
-                    if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
 
-                    binding.layoutStatus.show()
-                    binding.tvStatus.text = status
-                    binding.layoutTrackId.show()
-                    binding.tvTrackId.text = trackId
-                }
-                !trackId.isNullOrEmpty() -> {
-                    val myOrderListFilter = myOrderList.filter { it.trackId == trackId }
-                    myOrdersAdapter.addItems(myOrderListFilter)
-                    if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
+            if (orderList.isNotEmpty()) {
+                when {
+                    !trackId.isNullOrEmpty() && !status.isNullOrEmpty() -> {
+                        val myOrderListFilter = myOrderList.filter { it.trackId == trackId && it.status == status }
+                        myOrdersAdapter.addItems(myOrderListFilter)
+                        if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
 
-                    binding.layoutTrackId.show()
-                    binding.tvTrackId.text = trackId
-                }
-                !status.isNullOrEmpty() -> {
-                    val myOrderListFilter = myOrderList.filter { it.status == status }
-                    myOrdersAdapter.addItems(myOrderListFilter)
-                    if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
+                        binding.layoutStatus.show()
+                        binding.tvStatus.text = status
+                        binding.layoutTrackId.show()
+                        binding.tvTrackId.text = trackId
+                    }
+                    !trackId.isNullOrEmpty() -> {
+                        val myOrderListFilter = myOrderList.filter { it.trackId == trackId }
+                        myOrdersAdapter.addItems(myOrderListFilter)
+                        if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
 
-                    binding.layoutStatus.show()
-                    binding.tvStatus.text = status
+                        binding.layoutTrackId.show()
+                        binding.tvTrackId.text = trackId
+                    }
+                    !status.isNullOrEmpty() -> {
+                        val myOrderListFilter = myOrderList.filter { it.status == status }
+                        myOrdersAdapter.addItems(myOrderListFilter)
+                        if (myOrderListFilter.isEmpty()) binding.tvNoOrderItems.show()
+
+                        binding.layoutStatus.show()
+                        binding.tvStatus.text = status
+                    }
+                    else -> {
+                        myOrdersAdapter.addItems(orderList)
+                    }
                 }
-                else -> {
-                    myOrdersAdapter.addItems(orderList)
+                binding.rvMyOrders.apply {
+                    layoutManager = LinearLayoutManager(
+                        this@MyOrdersActivity,
+                        RecyclerView.VERTICAL,
+                        false
+                    )
+                    adapter = myOrdersAdapter
                 }
-            }
-            binding.rvMyOrders.apply {
-                layoutManager = LinearLayoutManager(
-                    this@MyOrdersActivity,
-                    RecyclerView.VERTICAL,
-                    false
-                )
-                adapter = myOrdersAdapter
+            } else {
+                binding.tvNoOrderItems.show()
+                binding.rvMyOrders.hide()
             }
         }
     }

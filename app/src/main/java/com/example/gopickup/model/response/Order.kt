@@ -10,6 +10,8 @@ data class Order(
     val createDtm: String? = "",
     @Json(name = "estimate_arrival")
     val estimateArrival: String? = "",
+    @Json(name = "arrival_estimate")
+    val arrivalEstimate: String? = null,
     @Json(name = "order_from")
     val orderFrom: String? = "",
     @Json(name = "order_to")

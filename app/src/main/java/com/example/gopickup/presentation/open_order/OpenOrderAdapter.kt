@@ -41,21 +41,10 @@ class OpenOrderAdapter(private val onItemClick: (order: Order) -> Unit) :
         fun bind(myOrder: Order) {
             with(binding) {
                 tvWarehouseName.text = myOrder.orderTo
-                tvEstimate.text = myOrder.estimateArrival
-                tvOrderId.text = "Order ID #${myOrder.trackId}"
+                tvEstimate.text = myOrder.arrivalEstimate
+                tvOrderId.text = myOrder.trackId
                 tvDate.text = DateUtils.toFormatDate(myOrder.createDtm!!)
-
-                viewStatusColor.background = when (myOrder.status) {
-                    OrderStatus.FINISH -> {
-                        ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_green)
-                    }
-                    OrderStatus.CANCEL -> {
-                        ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_red)
-                    }
-                    else -> {
-                        ContextCompat.getDrawable(itemView.context, R.drawable.view_circle_gold)
-                    }
-                }
+                icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
             }
         }
     }
