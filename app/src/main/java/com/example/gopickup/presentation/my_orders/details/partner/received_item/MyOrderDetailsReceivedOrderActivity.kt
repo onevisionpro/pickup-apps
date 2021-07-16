@@ -1,5 +1,8 @@
 package com.example.gopickup.presentation.my_orders.details.partner.received_item
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -59,7 +62,14 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
         warehouseName = orderDetails.orderTo!!
         binding.tvWarehouseName.text = orderDetails.orderTo
-        binding.tvOrderId.text = "Order ID #${orderDetails.trackId}"
+        binding.tvOrderId.text = orderDetails.trackId
+        binding.icCopyOrderId.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("order_id", orderDetails.trackId)
+            clipboard.setPrimaryClip(clip)
+            showToast("Copied!")
+        }
+
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
