@@ -15,5 +15,7 @@ data class RecentOrderItem(
     @Json(name = "status")
     val status: String? = null,
     @Json(name = "track_id")
-    val trackId: String? = null
+    val trackId: String? = null,
+    @Json(name = "flag")
+    val flag: String? = null
 )

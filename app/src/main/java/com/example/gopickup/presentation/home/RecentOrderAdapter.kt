@@ -8,6 +8,7 @@ import com.example.gopickup.R
 import com.example.gopickup.databinding.ItemRecentOrderBinding
 import com.example.gopickup.model.response.RecentOrderItem
 import com.example.gopickup.utils.DateUtils
+import com.example.gopickup.utils.Flag
 import com.example.gopickup.utils.OrderStatus
 
 class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem) -> Unit) :
@@ -44,7 +45,17 @@ class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem)
                 tvOrderId.text = recentOrder.trackId
                 tvStatus.text = recentOrder.status
                 tvDate.text = DateUtils.toFormatDate(recentOrder.createDtm!!)
-                icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
+
+                when (recentOrder.flag) {
+                    Flag.FROM -> {
+                        tvWarehouseName.text = "From ${recentOrder.orderFrom}"
+                        icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_from))
+                    }
+                    Flag.TO -> {
+                        tvWarehouseName.text = "To ${recentOrder.orderTo}"
+                        icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
+                    }
+                }
 
                 when (recentOrder.status) {
                     OrderStatus.FINISH -> {

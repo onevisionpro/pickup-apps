@@ -34,20 +34,23 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     private val recentOrderAdapter = RecentOrderAdapter {
         when (preference.getString(Constants.KEY_USER_TYPE)) {
             UserType.WAREHOUSE -> {
-                when (it.status) {
-                    OrderStatus.ORDER_CREATED -> {
-                        NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
+                if (preference.getString(Constants.KEY_COMPANY_NAME).equals(it.orderFrom)) {
+                    when (it.status) {
+                        OrderStatus.ORDER_CREATED -> {
+                            NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
+                        }
+                        OrderStatus.BOOKED -> {
+                            NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
+                        }
+                        OrderStatus.TAKE_ITEM -> {
+                            NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
+                        }
+                        else -> {
+                            NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(requireActivity(), it.trackId!!)
+                        }
                     }
-                    OrderStatus.BOOKED -> {
-                        NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
-                    }
-                    OrderStatus.TAKE_ITEM -> {
-                        NavigationUtils.navigateToChangeOrderActivity(requireActivity(), it.trackId!!)
-                    }
-                    else -> {
-                        NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(
-                            requireActivity(), it.trackId!!)
-                    }
+                } else {
+                    NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(requireActivity(), it.trackId!!)
                 }
             }
             UserType.PARTNER -> {
