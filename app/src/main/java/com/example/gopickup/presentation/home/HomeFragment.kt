@@ -111,7 +111,6 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = setGreetingMessage()
         binding.swipeRefresh.setOnRefreshListener(this)
 
         binding.tvSeeAllRecentOrdersItems.setOnClickListener {
@@ -179,6 +178,7 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     }
 
     override fun showProfile(profile: Profile?) {
+        binding.toolbar.tvToolbarTitle.text = setGreetingMessage()
         profile?.let {
             Glide.with(requireActivity())
                 .load(it.imageProfile)
