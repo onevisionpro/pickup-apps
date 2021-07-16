@@ -107,16 +107,23 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             val qty = binding.tvQtyCounter.text.toString()
 
             if (warehouse.isNotEmpty() && itemName.isNotEmpty()) {
-                items.add(this.item)
-                createOrder.items = items
+                val isAlreadyHave = selectedItems.filter { it.itemName == itemName }.size == 1
+                if (isAlreadyHave) {
+                    showToast("Anda telah memilih Item $itemName")
+                } else {
 
-                val selectedItem = SelectedItem(
-                    itemId = item.idItem!!,
-                    itemName = itemName,
-                    quantity = qty
-                )
-                selectedItems.add(selectedItem)
-                presenter.addToSelectedItems(selectedItems)
+                    items.add(this.item)
+                    createOrder.items = items
+
+                    val selectedItem = SelectedItem(
+                        itemId = item.idItem!!,
+                        itemName = itemName,
+                        quantity = qty
+                    )
+                    selectedItems.add(selectedItem)
+                    presenter.addToSelectedItems(selectedItems)
+                }
+
 
             } else {
                 showToast("Pilih warehouse dan item terlebih dahulu!")
