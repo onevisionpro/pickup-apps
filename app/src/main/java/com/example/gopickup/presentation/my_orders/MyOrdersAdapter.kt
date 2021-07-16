@@ -41,7 +41,7 @@ class MyOrdersAdapter(private val onItemClick: (myOrder: Order) -> Unit) :
 
         fun bind(myOrder: Order) {
             with(binding) {
-                tvEstimate.text = myOrder.estimateArrival
+                tvStatus.text = myOrder.status
                 tvOrderId.text = myOrder.trackId
                 tvDate.text = DateUtils.toFormatDate(myOrder.createDtm!!)
 
@@ -53,6 +53,15 @@ class MyOrdersAdapter(private val onItemClick: (myOrder: Order) -> Unit) :
                     Flag.TO -> {
                         tvWarehouseName.text = "To ${myOrder.orderTo}"
                         icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
+                    }
+                }
+
+                when (myOrder.status) {
+                    OrderStatus.FINISH -> {
+                        tvStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.green))
+                    }
+                    else -> {
+                        tvStatus.setTextColor(ContextCompat.getColor(itemView.context, R.color.gold))
                     }
                 }
             }

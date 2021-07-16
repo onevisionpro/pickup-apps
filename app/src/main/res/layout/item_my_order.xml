@@ -26,35 +26,23 @@
         android:textStyle="bold"
         tools:text="Warehouse Bogor" />
 
-    <LinearLayout
-        android:id="@+id/layout_estimate"
+    <TextView
+        android:id="@+id/tv_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_warehouse_name"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/icon"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estimasi"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_estimate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            tools:text="2021/06/03" />
-
-    </LinearLayout>
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        tools:text="Selesai" />
 
     <TextView
         android:id="@+id/tv_order_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/layout_estimate"
+        android:layout_below="@id/tv_status"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_toEndOf="@id/icon"
