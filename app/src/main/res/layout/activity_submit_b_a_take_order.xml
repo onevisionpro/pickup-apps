@@ -102,15 +102,30 @@
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
-            <com.github.gcacace.signaturepad.views.SignaturePad
-                android:id="@+id/signature_warehouse"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+            <RelativeLayout
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_layout_rounded_16"
+                android:layout_width="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:penColor="@color/black" />
+                android:layout_height="wrap_content">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_warehouse"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/bg_layout_rounded_16"
+                    app:penColor="@color/black" />
+
+                <ImageView
+                    android:id="@+id/ic_remove_wh_signature"
+                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:padding="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delete_24" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,16 +138,31 @@
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
-            <com.github.gcacace.signaturepad.views.SignaturePad
-                android:id="@+id/signature_partner"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+            <RelativeLayout
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_layout_rounded_16"
-                app:penColor="@color/black"
-                android:layout_marginBottom="16dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_partner"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/bg_layout_rounded_16"
+                    app:penColor="@color/black"
+                    android:layout_marginBottom="16dp" />
+
+                <ImageView
+                    android:id="@+id/ic_remove_partner_signature"
+                    android:layout_marginEnd="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:padding="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_delete_24" />
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/btn_done"

@@ -98,6 +98,14 @@ class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
                 }
             }
         }
+
+        binding.icRemoveWhSignature.setOnClickListener {
+            binding.signatureWarehouse.clear()
+        }
+
+        binding.icRemovePartnerSignature.setOnClickListener {
+            binding.signaturePartner.clear()
+        }
     }
 
     override fun showPreviewBA(previewBA: PreviewBA) {
