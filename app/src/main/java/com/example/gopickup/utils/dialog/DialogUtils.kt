@@ -175,15 +175,6 @@ object DialogUtils {
                     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                     adapter = warehouseAdapter
                 }
-//
-//                if (s?.length?.equals(0)!!) {
-//                    warehouseAdapter.addItems(warehouseList)
-//                    binding.rvWarehouses.apply {
-//                        layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-//                        adapter = warehouseAdapter
-//                    }
-//
-//                }
             }
 
         })

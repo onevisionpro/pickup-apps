@@ -14,14 +14,12 @@ import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemWarehouse
 import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.model.response.Warehouse
-import com.example.gopickup.utils.NavigationUtils
+import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogCancelOrderListener
 import com.example.gopickup.utils.dialog.listener.IOnDialogChangeMyOrderListener
 import com.example.gopickup.utils.dialog.listener.IOnItemClicked
-import com.example.gopickup.utils.hide
-import com.example.gopickup.utils.show
-import com.example.gopickup.utils.showToast
+import java.util.*
 
 class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
 
@@ -132,6 +130,15 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
     override fun showOrderDetails(orderDetails: OrderDetails) {
         binding.edtChooseWarehouse.setText(orderDetails.orderTo)
         binding.edtEstimatedDate.setText(orderDetails.arrivalEstimate)
+        binding.edtEstimatedDate.setOnClickListener {
+            DialogUtils.showDialogCalendar(this, object : IOnItemClicked<Date> {
+                override fun onItemClicked(data: Date) {
+                    binding.edtEstimatedDate.setText(DateUtils.formatDate(data))
+                    editOrder.arrivalDate = binding.edtEstimatedDate.text.toString()
+                }
+
+            })
+        }
 
         for (item in orderDetails.items?.iterator()!!) {
             selectedItems.add(SelectedItem(
