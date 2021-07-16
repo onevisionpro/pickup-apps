@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "697920119063",
+    "project_id": "gaemis-cf",
+    "storage_bucket": "gaemis-cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697920119063:android:3e73b9f6508695a7521752",
+        "android_client_info": {
+          "package_name": "com.telkom.gaemis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697920119063-8rn232mvfgtsngp3mc4c7j6rcthcj1b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA5cXgfXZUc5djulIPJiDr-g8JM8oOXV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697920119063-8rn232mvfgtsngp3mc4c7j6rcthcj1b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
