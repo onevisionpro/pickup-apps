@@ -49,7 +49,7 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
     override fun showHistoryOrderDetails(details: OrderDetails) {
         binding.apply {
             tvWarehouseFrom.text = details.orderFrom
-            tvOrderId.text = "Order ID #${details.trackId}"
+            tvOrderId.text = details.trackId
             tvStatusHead.text = details.status
             when (details.status) {
                 OrderStatus.FINISH -> setupStatusOrderFinish()
@@ -58,10 +58,11 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
 
             tvWarehouseTo.text = details.orderTo
             setupItemsLayout(details.items)
-            tvEstimateArrived.text = "estimate date"
-            tvOrderIdDetails.text = details.trackId
+            tvEstimateArrived.text = details.arrivalEstimate
+            tvWarehouseFromCard.text = details.orderFrom
+            tvCreatedBy.text = details.createBy
             tvReceipt.text = details.resiCode
-            tvWarehouseStatus.text = details.status
+            tvStatusOrder.text = details.status
             tvNotes.text = details.notes
         }
     }
