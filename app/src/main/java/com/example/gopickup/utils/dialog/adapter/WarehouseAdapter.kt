@@ -52,12 +52,12 @@ class WarehouseAdapter(private val onItemClick: (warehouse: Warehouse) -> Unit) 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val charString = constraint?.toString() ?: ""
+                val charString = constraint?.toString()?.toUpperCase() ?: ""
                 if (charString.isEmpty()) warehouseFilterList = warehouseList else {
                     val filteredList = ArrayList<Warehouse>()
                     warehouseList
                         .filter {
-                            (it.whName!!.contains(constraint!!))
+                            (it.whName!!.contains(constraint!!.toString().toUpperCase()))
                         }
                         .forEach { filteredList.add(it) }
                     warehouseFilterList = filteredList
