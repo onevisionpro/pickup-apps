@@ -59,11 +59,6 @@ object DialogUtils {
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.tvOrderId.text = orderId
-        binding.btnTrackMyOrder.setOnClickListener {
-            dialog.hide()
-            listener.onTrackMyOrderClicked()
-        }
-
         binding.btnBackToHome.setOnClickListener {
             dialog.hide()
             listener.onBackToHomeClicked()

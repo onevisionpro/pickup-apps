@@ -1,12 +1,15 @@
 package com.example.gopickup.utils
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.gopickup.R
 import com.google.android.material.snackbar.Snackbar
@@ -70,4 +73,11 @@ fun AppCompatActivity.loadFragment(fragment: Fragment) {
         .replace(R.id.main_container, fragment)
         .addToBackStack(fragment.javaClass.name)
         .commit()
+}
+
+fun AppCompatActivity.copyTrackId(trackId: String) {
+    val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clip = ClipData.newPlainText("order_id", trackId)
+    clipboard.setPrimaryClip(clip)
+    showToast("Copied!")
 }

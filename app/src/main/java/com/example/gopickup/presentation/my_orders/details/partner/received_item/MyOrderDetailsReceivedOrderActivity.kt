@@ -64,10 +64,7 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
         binding.tvWarehouseName.text = orderDetails.orderTo
         binding.tvOrderId.text = orderDetails.trackId
         binding.icCopyOrderId.setOnClickListener {
-            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("order_id", orderDetails.trackId)
-            clipboard.setPrimaryClip(clip)
-            showToast("Copied!")
+            copyTrackId(trackId = orderDetails.trackId!!)
         }
 
         binding.tvWarehouseNameCard.text = orderDetails.orderTo

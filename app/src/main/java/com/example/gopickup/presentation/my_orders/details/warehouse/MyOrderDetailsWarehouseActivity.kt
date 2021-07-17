@@ -51,6 +51,9 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
     override fun showMyOrderDetails(orderDetails: OrderDetails) {
         binding.tvWarehouseName.text = orderDetails.orderTo
         binding.tvOrderId.text = orderDetails.trackId
+        binding.icCopyOrderId.setOnClickListener {
+            copyTrackId(trackId = orderDetails.trackId!!)
+        }
         binding.tvWarehouseNameCard.text = orderDetails.orderTo
         setupItemsLayout(orderDetails.items)
         binding.tvOrderDate.text = DateUtils.formatToOrderDate(orderDetails.createDtm!!)
