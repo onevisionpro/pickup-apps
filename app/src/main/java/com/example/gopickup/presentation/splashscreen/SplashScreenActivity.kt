@@ -3,10 +3,15 @@ package com.example.gopickup.presentation.splashscreen
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.databinding.ActivitySplashScreenBinding
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.NavigationUtils
+import com.example.gopickup.utils.SharedPreference
+import com.example.gopickup.utils.firebase.MyFirebaseMessagingService
+import com.example.gopickup.utils.firebase.NotificationListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
 
@@ -41,6 +46,17 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
                 }
             }
         }, 2000)
+
+        setNewFirebaseToken()
+    }
+
+    private fun setNewFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                val firebaseToken = it.result.toString()
+                Log.d("TAG", "setNewFirebaseToken NewToken: $firebaseToken")
+            }
+        }
     }
 
     override fun onDestroy() {

@@ -17,6 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GoPickup"
         android:usesCleartextTraffic="true">
+
+        <service
+            android:name=".utils.firebase.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".presentation.my_orders.details.partner.received_item.MyOrderDetailsReceivedOrderActivity"/>
         <activity android:name=".presentation.my_orders.details.warehouse.MyOrderDetailsWarehouseActivity" />
         <activity android:name=".presentation.my_orders.details.partner.ba_details.SubmitBAActivity" />
