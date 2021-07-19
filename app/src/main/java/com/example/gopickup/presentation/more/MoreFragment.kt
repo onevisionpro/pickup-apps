@@ -1,11 +1,14 @@
 package com.example.gopickup.presentation.more
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gopickup.base.BaseFragment
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentMoreBinding
+import com.example.gopickup.model.request.Logout
 import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.showToast
 
@@ -20,13 +23,14 @@ class MoreFragment : BaseFragment(), MoreContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = MorePresenter(this)
+        presenter = MorePresenter(this, callApi())
         presenter.start()
 
     }
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "More"
 
         binding.trackingMyOrder.setOnClickListener {
@@ -38,11 +42,23 @@ class MoreFragment : BaseFragment(), MoreContract.View {
         }
 
         binding.btnLogout.setOnClickListener {
-            preference.clearPreference()
-
-            NavigationUtils.navigateToLoginActivity(requireActivity())
-            requireActivity().finish()
+            val logout = Logout(devid = provideDeviceId())
+            presenter.postLogout(
+                BaseRequest(
+                    guid = provideGUID(),
+                    code = "0",
+                    data = logout
+                )
+            )
         }
+    }
+
+    override fun showLogoutSuccess(message: String) {
+        showToast(message)
+        preference.clearPreference()
+
+        NavigationUtils.navigateToLoginActivity(requireActivity())
+        requireActivity().finish()
     }
 
     override fun onDestroyView() {

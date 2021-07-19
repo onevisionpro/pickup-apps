@@ -51,7 +51,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
     @SuppressLint("HardwareIds")
     fun provideDeviceId(): String {
-        return Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        return preference.getString(Constants.KEY_FCM_TOKEN) ?: ""
     }
 
     fun provideGUID(): String {

@@ -12,6 +12,8 @@ interface AppRepository {
 
     fun postLoginAndOTP(login: Login): Observable<BaseResponse<User>>
 
+    fun postLogout(logout: BaseRequest<Logout>): Observable<BaseResponse<Any>>
+
     fun postOTP(login: Login): Observable<BaseResponse<User>>
 
     fun postResendOTP(resendOTPRequest: BaseRequest<ResendOTPRequest>): Observable<BaseResponse<Any>>

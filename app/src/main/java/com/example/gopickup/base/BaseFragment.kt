@@ -51,7 +51,7 @@ open class BaseFragment: Fragment(), BaseView {
 
     @SuppressLint("HardwareIds")
     fun provideDeviceId(): String {
-        return Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
+        return preference.getString(Constants.KEY_FCM_TOKEN) ?: ""
     }
 
     fun provideGUID(): String {

@@ -36,7 +36,7 @@ class ItemOrderAdapter : RecyclerView.Adapter<ItemOrderAdapter.ViewHolder>() {
 
         fun bind(itemOrder: ItemOrder) {
             with(binding) {
-                tvItemName.text = "${itemOrder.itemName} ${itemOrder.jumlah}"
+                tvItemName.text = "${itemOrder.itemName} (${itemOrder.jumlah})"
             }
         }
     }

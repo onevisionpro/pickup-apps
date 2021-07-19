@@ -16,6 +16,9 @@ interface ApiRest {
     @POST("api/login")
     fun postOTP(@Body login: Login): Observable<BaseResponse<User>>
 
+    @POST("api/logout")
+    fun postLogout(@Body logout: BaseRequest<Logout>): Observable<BaseResponse<Any>>
+
     @POST("api/login/resendOTP")
     fun postResendOTP(@Body baseRequest: BaseRequest<ResendOTPRequest>): Observable<BaseResponse<Any>>
 

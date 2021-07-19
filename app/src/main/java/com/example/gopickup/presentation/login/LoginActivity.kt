@@ -3,6 +3,7 @@ package com.example.gopickup.presentation.login
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import com.example.gopickup.BuildConfig
 import com.example.gopickup.base.BaseActivity
 import com.example.gopickup.base.BaseRequest
@@ -15,6 +16,7 @@ import com.example.gopickup.model.response.VersionChecker
 import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
+import com.google.firebase.messaging.FirebaseMessaging
 
 class LoginActivity : BaseActivity(), LoginContract.View {
 
@@ -43,6 +45,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         super.initView()
         binding.layoutParent.setOnClickListener { hideKeyboard() }
         initProgressBar(binding.progressBar)
+        setNewFirebaseToken()
 
         binding.btnLogin.setOnClickListener {
             val email = binding.edtEmail.text.toString()
@@ -120,6 +123,16 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun showSendOTPFailed(message: String) {
         showToast(message)
+    }
+
+    private fun setNewFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                val firebaseToken = it.result.toString()
+                preference.saveString(Constants.KEY_FCM_TOKEN, firebaseToken)
+                Log.d("TAG", "setNewFirebaseToken NewToken: $firebaseToken")
+            }
+        }
     }
 
     override fun onBackPressed() {

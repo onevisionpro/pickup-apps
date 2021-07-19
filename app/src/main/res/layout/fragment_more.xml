@@ -107,6 +107,14 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:theme="@style/ProgressBarTheme"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btn_logout"
         style="@style/ButtonRoundedPrimary"

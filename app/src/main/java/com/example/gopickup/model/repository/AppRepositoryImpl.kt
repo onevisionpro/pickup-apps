@@ -17,6 +17,10 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postLogin(login)
     }
 
+    override fun postLogout(logout: BaseRequest<Logout>): Observable<BaseResponse<Any>> {
+        return apiRest.postLogout(logout)
+    }
+
     override fun postOTP(login: Login): Observable<BaseResponse<User>> {
         return apiRest.postOTP(login)
     }

@@ -54,6 +54,7 @@ class SplashScreenActivity : BaseActivity(), SplashScreenContract.View {
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             if (it.isComplete) {
                 val firebaseToken = it.result.toString()
+                preference.saveString(Constants.KEY_FCM_TOKEN, firebaseToken)
                 Log.d("TAG", "setNewFirebaseToken NewToken: $firebaseToken")
             }
         }
