@@ -85,7 +85,7 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
 
     override fun showOrderArrivedSuccess(message: String) {
         val trackId = intent.getStringExtra(TRACK_ID)!!
-        DialogUtils.showDialogOrderArrived(this, trackId, object : IOnDialogOrderArrivedListener {
+        DialogUtils.showDialogOrderArrived(this, trackId, message, object : IOnDialogOrderArrivedListener {
             override fun onBackToHomeClicked() {
                 NavigationUtils.navigateToMainActivity(this@MyOrderDetailsWarehouseActivity)
                 finish()

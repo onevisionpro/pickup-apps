@@ -1,5 +1,7 @@
 package com.example.gopickup.presentation.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -69,6 +71,14 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
                     OrderStatus.ACCEPT_WH -> {
                         NavigationUtils.navigateToMyOrderDetailsReceivedOrderActivity(requireActivity(), it.trackId!!)
                     }
+                    OrderStatus.ARRIVED -> {
+                            NavigationUtils.navigateToSubmitBAOrderActivity(
+                                requireActivity(),
+                                it.trackId!!,
+                                it.orderTo!!,
+                                it.status
+                            )
+                    }
                     else -> {
                         NavigationUtils.navigateToMyOrderDetailsWarehouseActivity(requireActivity(), it.trackId!!)
                     }
@@ -128,7 +138,9 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
                 DialogUtils.showDialogNewUpdateVersion(requireContext(), versionChecker.updatedVersion!!,
                     object : IOnDialogUpdateVersionListener {
                         override fun onUpdateClicked() {
-                            showToast("clicked")
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data = Uri.parse(versionChecker.urlApps)
+                            startActivity(intent)
                         }
 
                     })

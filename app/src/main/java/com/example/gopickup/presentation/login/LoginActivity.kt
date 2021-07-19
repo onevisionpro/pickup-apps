@@ -1,5 +1,7 @@
 package com.example.gopickup.presentation.login
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.example.gopickup.BuildConfig
 import com.example.gopickup.base.BaseActivity
@@ -80,7 +82,9 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                 DialogUtils.showDialogNewUpdateVersion(this, versionChecker.updatedVersion!!,
                     object : IOnDialogUpdateVersionListener {
                         override fun onUpdateClicked() {
-                            showToast("clicked")
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data = Uri.parse(versionChecker.urlApps)
+                            startActivity(intent)
                         }
 
                     })

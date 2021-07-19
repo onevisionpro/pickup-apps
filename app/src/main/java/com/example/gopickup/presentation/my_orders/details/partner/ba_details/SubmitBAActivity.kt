@@ -54,7 +54,7 @@ class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
         initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Detail Order"
         binding.tvWarehouseName.text = intent.getStringExtra(WH_NAME)
-        binding.tvOrderId.text = "Order ID#${intent.getStringExtra(TRACK_ID)}"
+        binding.tvOrderId.text = intent.getStringExtra(TRACK_ID).toString()
 
         binding.btnDone.setOnClickListener {
             val signatureWarehouse = ImageUtils.toBase64(binding.signatureWarehouse.signatureBitmap)

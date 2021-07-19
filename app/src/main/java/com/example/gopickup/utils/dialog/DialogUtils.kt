@@ -248,7 +248,7 @@ object DialogUtils {
         dialog.show()
     }
 
-    fun showDialogOrderArrived(context: Context, trackId: String, listener: IOnDialogOrderArrivedListener) {
+    fun showDialogOrderArrived(context: Context, trackId: String, message: String, listener: IOnDialogOrderArrivedListener) {
         val dialog = Dialog(context)
         val binding = DialogOrderArrivedBinding.inflate(LayoutInflater.from(context))
 
@@ -258,6 +258,7 @@ object DialogUtils {
         Objects.requireNonNull(dialog.window)
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        binding.tvMessage.text = message
         binding.tvOrderId.text = trackId
         binding.btnBackToHome.setOnClickListener {
             listener.onBackToHomeClicked()
