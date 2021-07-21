@@ -91,6 +91,8 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
         // button estimated date
         val currentDate = DateUtils.formatCurrentDate(Calendar.getInstance().time)
         binding.edtEstimatedDate.setText(currentDate)
+        createOrder.arrivalDate = binding.edtEstimatedDate.text.toString()
+
         binding.edtEstimatedDate.setOnClickListener {
             DialogUtils.showDialogCalendar(this, object : IOnItemClicked<Date> {
                 override fun onItemClicked(data: Date) {
