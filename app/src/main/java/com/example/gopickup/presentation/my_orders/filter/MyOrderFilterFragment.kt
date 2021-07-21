@@ -101,11 +101,9 @@ class MyOrderFilterFragment : BottomSheetDialogFragment(), MyOrderFilterContract
         return StringUtils.toMd5("$token$devId")
     }
 
-    @SuppressLint("HardwareIds")
     fun provideDeviceId(): String {
-        return Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
+        return preference.getString(Constants.KEY_FCM_TOKEN) ?: ""
     }
-
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         bottomSheetFilterMyOrder = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
