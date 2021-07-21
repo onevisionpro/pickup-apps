@@ -21,6 +21,7 @@
 
             <TextView
                 style="@style/TextTitle"
+                android:fontFamily="@font/metropolis_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -31,12 +32,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:fontFamily="@font/metropolis_bold"
                 android:text="Your Order ID:" />
 
             <TextView
                 android:id="@+id/tv_order_id"
                 style="@style/TextSubTitle"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/metropolis_bold"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -51,6 +54,7 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginTop="24dp"
                 android:textAlignment="center"
+                android:fontFamily="@font/metropolis_medium"
                 android:textSize="16sp"
                 tools:text="Order berhasil di proses, Silakan info ke Mitra untuk menyelesaikan Order" />
 

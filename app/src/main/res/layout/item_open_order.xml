@@ -17,6 +17,9 @@
 
     <TextView
         android:id="@+id/tv_warehouse_name"
+        android:layout_toStartOf="@id/tv_date"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/metropolis_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -33,26 +36,32 @@
         android:layout_below="@id/tv_warehouse_name"
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@id/icon"
+        android:layout_toStartOf="@id/tv_date"
+        android:layout_marginEnd="8dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estimasi"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/metropolis_bold"/>
 
         <TextView
             android:id="@+id/tv_estimate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="2021/06/03"
+            android:fontFamily="@font/metropolis_regular"
             android:layout_marginStart="4dp"/>
 
     </LinearLayout>
 
     <TextView
+        android:layout_toStartOf="@id/tv_date"
+        android:layout_marginEnd="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/metropolis_regular"
         android:layout_below="@id/layout_estimate"
         android:text="Order ID #12312-123123"
         android:layout_marginStart="16dp"
@@ -62,6 +71,7 @@
 
     <TextView
         android:id="@+id/tv_date"
+        android:fontFamily="@font/metropolis_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

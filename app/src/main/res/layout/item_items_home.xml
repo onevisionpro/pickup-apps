@@ -19,6 +19,7 @@
         tools:text="Modemasdfasdfasdfasdf"
         android:maxLines="1"
         android:ellipsize="end"
+        android:fontFamily="@font/metropolis_bold"
         android:textColor="@color/black"
         android:id="@+id/tv_name_item"
         android:textAlignment="center"

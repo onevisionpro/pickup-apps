@@ -22,6 +22,7 @@
             <TextView
                 style="@style/TextTitle"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/metropolis_bold"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="Thank You!" />
@@ -29,6 +30,7 @@
             <TextView
                 style="@style/TextSubTitle"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/metropolis_bold"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="Your Order ID:" />
@@ -38,6 +40,7 @@
                 style="@style/TextSubTitle"
                 android:layout_width="match_parent"
                 android:textAlignment="center"
+                android:fontFamily="@font/metropolis_bold"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"

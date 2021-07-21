@@ -11,6 +11,7 @@
         android:layout_centerVertical="true"
         android:textColor="@color/black"
         android:textSize="22sp"
+        android:fontFamily="@font/metropolis_extra_bold"
         android:textStyle="bold"
         tools:text="Title" />
 

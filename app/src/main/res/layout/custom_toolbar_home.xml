@@ -16,6 +16,7 @@
     <TextView
         android:layout_toEndOf="@id/img_profile"
         android:id="@+id/tv_toolbar_title"
+        android:fontFamily="@font/metropolis_extra_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -28,6 +29,7 @@
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@id/img_profile"
         android:id="@+id/tv_company_name"
+        android:fontFamily="@font/metropolis_extra_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_toolbar_title"

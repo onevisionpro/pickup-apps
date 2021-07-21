@@ -16,6 +16,7 @@
 
     <TextView
         android:id="@+id/tv_warehouse_name"
+        android:fontFamily="@font/metropolis_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,6 +30,7 @@
         android:id="@+id/tv_order_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/metropolis_regular"
         android:layout_below="@id/tv_warehouse_name"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_order_id"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/metropolis_regular"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/view_status_color"
         android:textColor="@color/green"
@@ -53,6 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/metropolis_regular"
         tools:text="6th July" />
 
     <View

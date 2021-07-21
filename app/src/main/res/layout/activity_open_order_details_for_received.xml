@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/metropolis_bold"
             android:id="@+id/tv_warehouse_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,6 +31,7 @@
 
         <TextView
             android:id="@+id/tv_order_id"
+            android:fontFamily="@font/metropolis_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -78,6 +80,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:text="Warehouse Tujuan"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
@@ -88,6 +91,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:text="Warehouse Bogor"
+                                android:fontFamily="@font/metropolis_thin"
+
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
@@ -121,12 +126,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:text="Item 1"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="0dp"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:text="ZTE B760H V5 (qty 223)"
@@ -163,6 +170,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:text="Item 2"
+                                android:fontFamily="@font/metropolis_bold"
+
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -170,6 +179,7 @@
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:layout_weight="0.5"
                                 android:text="Fiberhome GPON (Qty 23)"
                                 android:textAlignment="textEnd"
@@ -207,6 +217,7 @@
                                 android:text="Estimated Arrival"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -214,6 +225,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:text="2021/06/03"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
@@ -249,6 +261,7 @@
                                 android:text="Order ID"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -256,6 +269,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.7"
                                 android:text="#1231201230-123"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="16sp" />
@@ -278,6 +292,7 @@
                     android:text="Evidence Item"
                     android:layout_marginTop="32dp"
                     android:layout_marginStart="16dp"
+                    android:fontFamily="@font/metropolis_bold"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -343,6 +358,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/metropolis_regular"
                     android:text="Photos of items that have been reveived by the warehouse" />
 
                 <Button

@@ -19,6 +19,7 @@
         <TextView
             android:id="@+id/tv_warehouse_name"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/metropolis_bold"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
@@ -30,6 +31,7 @@
 
         <TextView
             android:id="@+id/tv_order_id"
+            android:fontFamily="@font/metropolis_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -79,6 +81,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:text="Warehouse Tujuan"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
@@ -87,6 +90,7 @@
                             <TextView
                                 android:id="@id/tv_warehouse_name_card"
                                 android:layout_width="0dp"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:textAlignment="textEnd"
@@ -135,6 +139,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:text="Estimated Arrival"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -142,6 +147,7 @@
                             <TextView
                                 android:id="@+id/tv_estimate_arrived"
                                 android:layout_width="0dp"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:textAlignment="textEnd"
@@ -179,6 +185,7 @@
                                 android:layout_weight="0.5"
                                 android:text="Warehouse Asal"
                                 android:textColor="@color/black"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -186,6 +193,7 @@
                                 android:id="@+id/tv_warehouse_from"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:layout_weight="0.5"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
@@ -222,6 +230,7 @@
                                 android:layout_weight="0.3"
                                 android:text="Created By"
                                 android:textColor="@color/black"
+                                android:fontFamily="@font/metropolis_bold"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -230,6 +239,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.7"
+                                android:fontFamily="@font/metropolis_thin"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
@@ -265,10 +275,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Resi"
+                            android:fontFamily="@font/metropolis_bold"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                         <TextView
+                            android:fontFamily="@font/metropolis_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=" (Optional)" />
@@ -276,6 +288,7 @@
                     </LinearLayout>
 
                     <EditText
+                        android:fontFamily="@font/metropolis_regular"
                         android:id="@+id/edt_receipt"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -296,6 +309,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
                         android:text="Note"
+                        android:fontFamily="@font/metropolis_bold"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -304,6 +318,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="16dp"
+                        android:fontFamily="@font/metropolis_regular"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/bg_edt_rounded_50_gray"
@@ -315,6 +330,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:fontFamily="@font/metropolis_regular"
                         android:layout_marginTop="8dp"
                         android:text="Note can be used for the profile of the courier\ndelivered the order" />
 

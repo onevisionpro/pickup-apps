@@ -42,21 +42,25 @@
 
                     <TextView
                         style="@style/TextTitle"
+                        android:fontFamily="@font/metropolis_extra_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="8dp"
                         android:text="Order Description" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:fontFamily="@font/metropolis_regular"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="8dp"
                         android:text="Untuk membuat Order baru silakan isi kebutuhan data dibawah ini" />
 
                     <TextView
                         style="@style/TextSubTitle"
+                        android:fontFamily="@font/metropolis_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -74,12 +78,14 @@
                         android:background="@drawable/bg_edt_rounded_8_gray"
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:focusable="false"
+                        android:fontFamily="@font/metropolis_medium"
                         android:hint="- Pilih Warehouse -"
                         android:paddingStart="24dp"
                         android:paddingEnd="16dp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:fontFamily="@font/metropolis_bold"
                         style="@style/TextSubTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -94,6 +100,7 @@
                         android:layout_height="50dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="24dp"
+                        android:fontFamily="@font/metropolis_medium"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/bg_edt_rounded_8_gray"
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
@@ -175,6 +182,7 @@
                         android:layout_marginTop="32dp"
                         android:background="@drawable/bg_btn_rounded_primary_fill"
                         android:text="Add Item"
+                        android:fontFamily="@font/metropolis_semi_bold"
                         android:textAllCaps="false" />
 
                     <LinearLayout
@@ -212,6 +220,8 @@
                         android:layout_marginEnd="8dp"
                         android:text="Tanggal Estimasi Sampai"
                         android:textSize="16sp"
+                        android:fontFamily="@font/metropolis_bold"
+                        android:textColor="@color/black"
                         android:textStyle="bold"
                         tools:viewBindingIgnore="true" />
 
@@ -227,6 +237,7 @@
                         android:drawableEnd="@drawable/ic_baseline_calendar_today_24"
                         android:focusable="false"
                         android:hint="2021/06/03"
+                        android:fontFamily="@font/metropolis_medium"
                         android:paddingStart="24dp"
                         android:paddingEnd="24dp"
                         android:textStyle="bold" />
@@ -237,6 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="80dp"
+                        android:fontFamily="@font/metropolis_semi_bold"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_btn_rounded_primary_fill"

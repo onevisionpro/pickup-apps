@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:fontFamily="@font/metropolis_bold"
                 android:layout_marginTop="24dp"
                 android:text="Filter"
                 android:textSize="18sp"
@@ -41,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:fontFamily="@font/metropolis_bold"
                 android:layout_marginTop="32dp"
                 android:text="Order ID"
                 android:textSize="16sp"
@@ -49,6 +51,7 @@
             <EditText
                 android:id="@+id/edt_order_id"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/metropolis_regular"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
@@ -64,6 +67,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Status"
+                android:fontFamily="@font/metropolis_bold"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -77,6 +81,7 @@
                 android:background="@drawable/bg_edt_rounded_50_gray"
                 android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:focusable="false"
+                android:fontFamily="@font/metropolis_regular"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp" />
 
@@ -86,6 +91,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Periode"
+                android:fontFamily="@font/metropolis_bold"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -99,12 +105,14 @@
                 android:background="@drawable/bg_edt_rounded_50_gray"
                 android:drawableEnd="@drawable/ic_baseline_calendar_today_24"
                 android:focusable="false"
+                android:fontFamily="@font/metropolis_regular"
                 android:hint="24-04-2021"
                 android:paddingStart="24dp"
                 android:paddingEnd="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/metropolis_regular"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"

@@ -16,11 +16,14 @@
         tools:src="@drawable/ic_order_to" />
 
     <TextView
+        android:layout_toStartOf="@id/tv_date"
+        android:layout_marginEnd="8dp"
         android:id="@+id/tv_warehouse_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="14sp"
         android:layout_toEndOf="@id/icon"
+        android:fontFamily="@font/metropolis_bold"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -31,9 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_warehouse_name"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="14sp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/icon"
+        android:layout_toStartOf="@id/tv_date"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/metropolis_regular"
         tools:text="Order ID #123123123-12" />
 
     <TextView
@@ -41,9 +47,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_order_id"
+        android:layout_toStartOf="@id/tv_date"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@id/icon"
+        android:fontFamily="@font/metropolis_regular"
         android:textColor="@color/green"
         android:textStyle="bold"
         tools:text="Selesai" />
@@ -54,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/metropolis_regular"
         tools:text="6th July" />
 
     <View

@@ -15,6 +15,7 @@
         android:id="@+id/tv_toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/metropolis_extra_bold"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/ic_back"
         android:textColor="@color/black"

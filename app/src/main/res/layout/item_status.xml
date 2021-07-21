@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         tools:text="WH BEKASI"
         android:textSize="16sp"
+        android:fontFamily="@font/metropolis_medium"
         android:textAlignment="center"
         android:padding="8dp"
         android:id="@+id/tv_status"/>
