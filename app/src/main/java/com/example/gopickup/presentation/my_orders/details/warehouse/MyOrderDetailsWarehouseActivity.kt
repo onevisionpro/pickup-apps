@@ -44,7 +44,7 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Detail Order"
+        binding.toolbar.tvToolbarTitle.text = "Rincian Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
     }
 
@@ -58,7 +58,6 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
         setupItemsLayout(orderDetails.items)
         binding.tvOrderDate.text = DateUtils.formatToOrderDate(orderDetails.createDtm!!)
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
-        binding.tvOrderIdCard.text = orderDetails.trackId
 
         // when user is partner OR user is sender, Hide button order arrived.
         // when status is SEND-ITEM

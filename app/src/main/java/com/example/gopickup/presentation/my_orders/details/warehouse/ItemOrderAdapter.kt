@@ -28,7 +28,7 @@ class ItemOrderAdapter : RecyclerView.Adapter<ItemOrderAdapter.ViewHolder>() {
         val itemOrder = itemOrderList[position]
         holder.bind(itemOrder)
         holder.binding.apply {
-            tvItemCount.text = "Item ${position.plus(1)}"
+            tvItemCount.text = "Barang ${position.plus(1)}"
         }
     }
 

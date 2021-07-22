@@ -142,7 +142,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="50dp"
-        android:text="No History Order"
+        android:text="Tidak ada riwayat pesanan"
         android:textAlignment="center"
         android:visibility="gone" />
 

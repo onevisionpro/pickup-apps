@@ -46,7 +46,7 @@ class MyOrderDetailsTakeOrderActivity : BaseActivity(), MyOrderDetailsContract.V
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Detail Order"
+        binding.toolbar.tvToolbarTitle.text = "Rincian Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
         binding.layoutParent.setOnClickListener { hideKeyboard() }
     }
@@ -62,6 +62,10 @@ class MyOrderDetailsTakeOrderActivity : BaseActivity(), MyOrderDetailsContract.V
         binding.tvCreatedBy.text = orderDetails.createBy
         binding.edtReceipt.setText(orderDetails.resiCode)
         binding.edtNote.setText(orderDetails.notes)
+
+        binding.icCopyOrderId.setOnClickListener {
+            copyTrackId(trackId = orderDetails.trackId!!)
+        }
 
         binding.btnTakeItem.setOnClickListener {
             val receipt = binding.edtReceipt.text.toString()

@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Create Order"
+                android:text="Buat Pesanan"
                 android:textColor="@color/black"
                 android:fontFamily="@font/metropolis_semi_bold"
                 android:layout_toEndOf="@id/ic_create_order"
@@ -89,7 +89,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Orders"
+                android:text="Pesanan Saya"
                 android:textColor="@color/black"
                 android:fontFamily="@font/metropolis_semi_bold"
                 android:layout_toEndOf="@id/ic_my_orders"
@@ -138,7 +138,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Open Order"
+                android:text="Pesanan Tersedia"
                 android:fontFamily="@font/metropolis_semi_bold"
                 android:textColor="@color/black"
                 android:layout_toEndOf="@id/ic_open_order"

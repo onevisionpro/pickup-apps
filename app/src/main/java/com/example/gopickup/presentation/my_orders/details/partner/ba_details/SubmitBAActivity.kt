@@ -9,13 +9,10 @@ import com.example.gopickup.model.request.FinishOrder
 import com.example.gopickup.model.request.PreviewBARequest
 import com.example.gopickup.model.request.SendOrder
 import com.example.gopickup.model.response.PreviewBA
-import com.example.gopickup.utils.ImageUtils
-import com.example.gopickup.utils.NavigationUtils
-import com.example.gopickup.utils.OrderStatus
+import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogReceivedOrderListener
 import com.example.gopickup.utils.dialog.listener.IOnDialogSendOrderListener
-import com.example.gopickup.utils.showToast
 
 class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
 
@@ -52,9 +49,13 @@ class SubmitBAActivity : BaseActivity(), SubmitBATakeOrderContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Detail Order"
+        binding.toolbar.tvToolbarTitle.text = "Rincian Pesanan"
         binding.tvWarehouseName.text = intent.getStringExtra(WH_NAME)
         binding.tvOrderId.text = intent.getStringExtra(TRACK_ID).toString()
+
+        binding.icCopyOrderId.setOnClickListener {
+            copyTrackId(trackId = intent.getStringExtra(TRACK_ID)!!)
+        }
 
         binding.btnDone.setOnClickListener {
             val signatureWarehouse = ImageUtils.toBase64(binding.signatureWarehouse.signatureBitmap)

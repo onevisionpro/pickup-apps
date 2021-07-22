@@ -44,7 +44,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/metropolis_bold"
                 android:layout_marginTop="32dp"
-                android:text="Order ID"
+                android:text="Nomor Pesanan"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -117,7 +117,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="to"
+                android:text="sampai"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -155,7 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
-                        android:text="Apply"
+                        android:text="Terapkan"
                         android:textColor="@color/white"
                         android:layout_centerInParent="true" />
 

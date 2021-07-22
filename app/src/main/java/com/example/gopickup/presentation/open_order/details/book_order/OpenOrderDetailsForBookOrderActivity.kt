@@ -44,7 +44,7 @@ class OpenOrderDetailsForBookOrderActivity : BaseActivity(), OpenOrderDetailsCon
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Detail Order"
+        binding.toolbar.tvToolbarTitle.text = "Rincian Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
     }
 

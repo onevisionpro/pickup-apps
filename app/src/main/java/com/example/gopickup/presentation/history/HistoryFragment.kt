@@ -42,7 +42,7 @@ class HistoryFragment : BaseFragment(), HistoryContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "History"
+        binding.toolbar.tvToolbarTitle.text = "Riwayat"
 
         binding.filter.setOnClickListener {
             val bottomSheetFilter =

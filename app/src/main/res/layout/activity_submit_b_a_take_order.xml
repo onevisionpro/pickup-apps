@@ -34,14 +34,34 @@
                 tools:text="Warehouse Bogor"
                 android:id="@+id/tv_warehouse_name" />
 
-            <TextView
-                android:id="@+id/tv_order_id"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/metropolis_regular"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                tools:text="Order ID #123-123312-12" />
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_order_id"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    tools:text="GPID 123-123312-12" />
+
+                <ImageView
+                    android:id="@+id/ic_copy_order_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_alignParentEnd="true"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="0dp"
+                    android:paddingBottom="8dp"
+                    android:src="@drawable/ic_baseline_content_copy_24" />
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -86,7 +106,7 @@
                 android:id="@+id/tv_preview_ba"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Priview Berita Acara"
+                android:text="Pratinjau Berita Acara"
                 android:textSize="16sp"
                 android:fontFamily="@font/metropolis_bold"
                 android:textColor="@color/redPrimary"
@@ -101,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Warehouse Digital Signature"
+                android:text="Tanda tangan digital Warehouse"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/metropolis_bold"
                 android:textSize="16sp"
@@ -138,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Mitra Digital Signature"
+                android:text="Tanda tangan digital Mitra"
                 android:layout_marginTop="16dp"
                 android:textSize="16sp"
                 android:fontFamily="@font/metropolis_bold"
@@ -177,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Done"
+                android:text="Selesai"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 style="@style/ButtonRoundedPrimary"/>

@@ -76,7 +76,7 @@ class MyOrdersActivity : BaseActivity(), MyOrdersContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "My Order"
+        binding.toolbar.tvToolbarTitle.text = "Pesanan Saya"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
         binding.filter.setOnClickListener {

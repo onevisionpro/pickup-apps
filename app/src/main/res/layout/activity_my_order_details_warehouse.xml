@@ -158,7 +158,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                android:text="Order Date"
+                                android:text="Tanggal Pemesanan"
                                 android:fontFamily="@font/metropolis_bold"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
@@ -203,7 +203,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                android:text="Estimated Arrival"
+                                android:text="Estimasi Sampai"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:fontFamily="@font/metropolis_bold"
@@ -215,51 +215,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 tools:text="2021/06/03"
-                                android:fontFamily="@font/metropolis_thin"
-                                android:textAlignment="textEnd"
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:layout_marginTop="16dp"
-                            android:background="@android:color/darker_gray" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingStart="16dp"
-                        android:paddingTop="16dp"
-                        android:paddingEnd="16dp"
-                        android:paddingBottom="0dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.3"
-                                android:text="Order ID"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/metropolis_bold"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tv_order_id_card"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.7"
-                                tools:text="#1231201230-123"
                                 android:fontFamily="@font/metropolis_thin"
                                 android:textAlignment="textEnd"
                                 android:textColor="@color/black"
@@ -302,7 +257,7 @@
                     android:layout_marginTop="60dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Order Arrived" />
+                    android:text="Pesanan Diterima" />
 
             </LinearLayout>
 

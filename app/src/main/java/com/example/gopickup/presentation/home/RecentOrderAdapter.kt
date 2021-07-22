@@ -48,11 +48,11 @@ class RecentOrderAdapter(private val onItemClick: (recentOrder: RecentOrderItem)
 
                 when (recentOrder.flag) {
                     Flag.FROM -> {
-                        tvWarehouseName.text = "From ${recentOrder.orderFrom}"
+                        tvWarehouseName.text = "Dari ${recentOrder.orderFrom}"
                         icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_from))
                     }
                     Flag.TO -> {
-                        tvWarehouseName.text = "To ${recentOrder.orderTo}"
+                        tvWarehouseName.text = "Ke ${recentOrder.orderTo}"
                         icon.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.ic_order_to))
                     }
                 }

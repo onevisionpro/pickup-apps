@@ -138,7 +138,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
                                 android:fontFamily="@font/metropolis_bold"
-                                android:text="Estimated Arrival"
+                                android:text="Estimasi Sampai"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
@@ -227,7 +227,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.3"
-                                android:text="Created By"
+                                android:text="Dibuat oleh"
                                 android:textColor="@color/black"
                                 android:textSize="16sp"
                                 android:fontFamily="@font/metropolis_bold"
@@ -265,7 +265,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Book Order" />
+                    android:text="Ambil Pesanan" />
 
             </LinearLayout>
 

@@ -95,7 +95,7 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Change My Order"
+        binding.toolbar.tvToolbarTitle.text = "Ubah Pesanan Saya"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
         binding.btnCancelOrder.setOnClickListener {

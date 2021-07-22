@@ -52,7 +52,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         super.initView()
         initProgressBar(binding.progressBar)
         binding.layoutParent.setOnClickListener { requireActivity().hideKeyboard() }
-        binding.toolbar.tvToolbarTitle.text = "Profile"
+        binding.toolbar.tvToolbarTitle.text = "Profil"
 
         binding.tvEditPhoto.setOnClickListener {
 //            setupEditable()

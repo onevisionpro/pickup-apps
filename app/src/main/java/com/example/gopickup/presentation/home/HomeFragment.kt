@@ -132,8 +132,8 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     }
 
     override fun showVersionChecker(versionChecker: VersionChecker) {
-        val versionName = BuildConfig.VERSION_NAME
-        if (versionName != versionChecker.updatedVersion) {
+        val currentVersion = BuildConfig.VERSION_NAME
+        if (currentVersion != versionChecker.updatedVersion) {
             if (versionChecker.pushUpdate == PushUpdateStatus.YES) {
                 DialogUtils.showDialogNewUpdateVersion(requireContext(), versionChecker.updatedVersion!!,
                     object : IOnDialogUpdateVersionListener {
@@ -208,9 +208,10 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
         val c = Calendar.getInstance()
 
         return when (c.get(Calendar.HOUR_OF_DAY)) {
-            in 0..13 -> "Good Morning"
-            in 14..17 -> "Good Afternoon"
-            in 18..23 -> "Good Evening"
+            in 0..11 -> "Selamat Pagi"
+            in 12..15 -> "Selamat Siang"
+            in 16..19 -> "Selamat Sore"
+            in 20..23 -> "Selamat Malam"
             else -> "Hallo"
         }
     }

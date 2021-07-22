@@ -40,7 +40,7 @@
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:padding="16dp"
-                android:text="Edit Photo"
+                android:text="Ubah Foto"
                 android:textColor="@color/redPrimary" />
 
             <TextView
@@ -72,7 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:hint="Username"
+                    android:hint="Nama"
                     android:fontFamily="@font/metropolis_medium"
                     android:inputType="text"
                     android:maxLines="1"
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
                     android:focusable="false"
-                    android:hint="Mitra Kerja"
+                    android:hint="Nama Perusahaan"
                     android:fontFamily="@font/metropolis_medium"
                     android:paddingStart="24dp"
                     android:paddingEnd="24dp"
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
-                    android:hint="Phone"
+                    android:hint="No Hp"
                     android:inputType="phone"
                     android:maxLines="1"
                     android:fontFamily="@font/metropolis_medium"
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_edt_rounded_50_gray"
                     android:focusable="false"
-                    android:hint="Role"
+                    android:hint="Peran"
                     android:paddingStart="24dp"
                     android:fontFamily="@font/metropolis_medium"
                     android:paddingEnd="24dp"
@@ -168,7 +168,7 @@
                 android:id="@+id/tv_reset_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reset Password"
+                android:text="Ubah kata sandi"
                 android:textStyle="bold"
                 android:fontFamily="@font/metropolis_semi_bold"
                 android:textColor="@color/redPrimary"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="100dp"
-                android:text="Save" />
+                android:text="Simpan" />
 
         </LinearLayout>
 

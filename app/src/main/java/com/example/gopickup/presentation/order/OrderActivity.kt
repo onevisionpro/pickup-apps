@@ -23,7 +23,7 @@ class OrderActivity : BaseActivity(), OrderContract.View {
 
     override fun initView() {
         super.initView()
-        binding.toolbar.tvToolbarTitle.text = "Order"
+        binding.toolbar.tvToolbarTitle.text = "Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
         setupUserType()

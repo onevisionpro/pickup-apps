@@ -47,7 +47,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
                         android:layout_marginStart="8dp"
-                        android:text="Order Description" />
+                        android:text="Deskripsi Pesanan" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="48dp"
                         android:layout_marginEnd="8dp"
-                        android:text="Pilih Item" />
+                        android:text="Pilih Barang" />
 
                     <EditText
                         android:id="@+id/edt_choose_item"
@@ -105,7 +105,7 @@
                         android:background="@drawable/bg_edt_rounded_8_gray"
                         android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:focusable="false"
-                        android:hint="- Pilih Item -"
+                        android:hint="- Pilih Barang -"
                         android:paddingStart="24dp"
                         android:paddingEnd="16dp"
                         android:textStyle="bold" />
@@ -176,12 +176,12 @@
 
                     <Button
                         android:id="@+id/btn_add_item"
-                        android:layout_width="150dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="32dp"
                         android:background="@drawable/bg_btn_rounded_primary_fill"
-                        android:text="Add Item"
+                        android:text="Tambah Barang"
                         android:fontFamily="@font/metropolis_semi_bold"
                         android:textAllCaps="false" />
 
@@ -198,7 +198,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Item yang dipilih"
+                            android:text="Barang yang dipilih"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -252,7 +252,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_btn_rounded_primary_fill"
-                        android:text="Order"
+                        android:text="Pesan"
                         android:textAllCaps="false" />
 
                 </LinearLayout>

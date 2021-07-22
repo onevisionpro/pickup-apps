@@ -54,7 +54,7 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Detail Order"
+        binding.toolbar.tvToolbarTitle.text = "Rincian Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
         binding.layoutParent.setOnClickListener { hideKeyboard() }
     }
@@ -72,7 +72,6 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
         binding.tvEstimateArrived.text = orderDetails.arrivalEstimate
         binding.tvWarehouseFrom.text = orderDetails.orderFrom
         binding.tvCreatedBy.text = orderDetails.createBy
-        binding.tvOrderIdCard.text = orderDetails.trackId
         binding.tvReceipt.text = orderDetails.resiCode
         binding.tvWarehouseStatus.text = orderDetails.progressOrder?.get(4)?.status ?: "-"
         binding.tvNotes.text = orderDetails.notes

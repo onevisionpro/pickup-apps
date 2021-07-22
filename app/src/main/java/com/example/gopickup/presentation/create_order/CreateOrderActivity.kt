@@ -85,7 +85,7 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Create Order"
+        binding.toolbar.tvToolbarTitle.text = "Buat Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
         // button estimated date

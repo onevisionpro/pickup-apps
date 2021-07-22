@@ -42,7 +42,7 @@ class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Open Order"
+        binding.toolbar.tvToolbarTitle.text = "Pesanan Tersedia"
         binding.toolbar.icBack.setOnClickListener { finish() }
     }
 
@@ -64,6 +64,15 @@ class OpenOrderActivity : BaseActivity(), OpenOrderContract.View {
                 binding.rvOpenOrder.hide()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.getOpenOrderList(trackId = BaseRequest(
+            guid = provideGUID(),
+            code = "",
+            data = TrackId(trackId = "")
+        ))
     }
 
     override fun onDestroy() {
