@@ -32,7 +32,7 @@ class ResetPasswordActivity : BaseActivity(), ResetPasswordContract.View {
         super.initView()
         initProgressBar(binding.progressBar)
         binding.toolbar.icBack.setOnClickListener { finish() }
-        binding.toolbar.tvToolbarTitle.text = "Reset Password"
+        binding.toolbar.tvToolbarTitle.text = "Ubah Kata Sandi"
         binding.layoutParent.setOnClickListener { hideKeyboard() }
 
         binding.btnResetPassword.setOnClickListener {
@@ -41,11 +41,11 @@ class ResetPasswordActivity : BaseActivity(), ResetPasswordContract.View {
 
             when {
                 newPassword.isEmpty() -> {
-                    binding.edtNewPassword.error = "Harap isi password"
+                    binding.edtNewPassword.error = "Harap isi kata sandi"
                     binding.edtNewPassword.requestFocus()
                 }
                 confirmPassword.isEmpty() -> {
-                    binding.edtConfirmPassword.error = "Harap isi konfirmasi password"
+                    binding.edtConfirmPassword.error = "Harap isi konfirmasi kata sandi"
                     binding.edtConfirmPassword.requestFocus()
                 }
                 else -> {
