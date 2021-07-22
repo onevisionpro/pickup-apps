@@ -31,7 +31,7 @@ class MoreFragment : BaseFragment(), MoreContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-        binding.toolbar.tvToolbarTitle.text = "Info lain nya"
+        binding.toolbar.tvToolbarTitle.text = "Info"
 
         binding.trackingMyOrder.setOnClickListener {
             NavigationUtils.navigateToTrackMyOrderActivity(requireActivity())
