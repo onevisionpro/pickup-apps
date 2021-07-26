@@ -1,12 +1,16 @@
 package com.example.gopickup.presentation.history.BA.receipt
 
+import android.Manifest
 import android.app.ProgressDialog
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gopickup.R
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentReceiptBABinding
@@ -66,8 +70,44 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
     }
 
     override fun showDownloadBA(url: String) {
-        val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
-        downloadTask.execute(url)
+        if( Build.VERSION.SDK_INT >= 23 )
+            if( hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) )
+                if( hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ) {
+                    val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
+                    downloadTask.execute(url)
+                    return
+                }
+
+        ActivityCompat.requestPermissions(
+            requireActivity(), arrayOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ),
+            1
+        )
+//        val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
+//        downloadTask.execute(url)
+    }
+
+    fun hasPermission(strPerm: String?): Boolean {
+        return ContextCompat.checkSelfPermission(requireActivity(), strPerm!!) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            1 -> {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                    Log.wtf("TAG", "--> Permission granted.\n")
+//                    finish()
+//                    startActivity(getIntent())
+                } else {
+                    Log.wtf("TAG", "--> Permission denied. Quitting.\n")
+//                    finish()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

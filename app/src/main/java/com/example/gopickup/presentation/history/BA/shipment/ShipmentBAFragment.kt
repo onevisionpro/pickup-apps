@@ -45,6 +45,8 @@ class ShipmentBAFragment : BaseFragment(), ShipmentBAContract.View {
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
+
         binding.btnDownloadBA.setOnClickListener {
             presenter.getBA(trackId = BaseRequest(
                 guid = provideGUID(),
