@@ -126,15 +126,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     }
 
     private fun setNewFirebaseToken() {
-        preference.saveString(Constants.KEY_FCM_TOKEN, "c6864411929f2afe9b3ecf39f872099f")
-
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-//            if (it.isComplete) {
-//                val firebaseToken = it.result.toString()
-//                preference.saveString(Constants.KEY_FCM_TOKEN, firebaseToken)
-//                Log.d("TAG", "setNewFirebaseToken NewToken: $firebaseToken")
-//            }
-//        }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isComplete) {
+                val firebaseToken = it.result.toString()
+                preference.saveString(Constants.KEY_FCM_TOKEN, firebaseToken)
+                Log.d("TAG", "setNewFirebaseToken NewToken: $firebaseToken")
+            }
+        }
     }
 
     override fun onBackPressed() {

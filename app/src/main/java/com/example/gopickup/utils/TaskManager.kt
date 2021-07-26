@@ -41,7 +41,7 @@ class TaskManager(val context: Context?, val mProgressDialog: ProgressDialog?) :
 
             // download the file
             input = connection.inputStream
-            output = FileOutputStream("/sdcard/.pdf")
+            output = FileOutputStream("SDCARD")
             val data = ByteArray(4096)
             var total: Long = 0
             var count: Int
