@@ -17,6 +17,8 @@ import com.example.gopickup.databinding.FragmentReceiptBABinding
 import com.example.gopickup.model.request.PreviewBARequest
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.utils.OrderStatus
+import com.example.gopickup.utils.hide
+import com.example.gopickup.utils.show
 import com.example.gopickup.utils.showToast
 
 
@@ -71,22 +73,37 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
     }
 
     override fun showDownloadBA(url: String) {
-        binding.btnDownloadBA.setOnClickListener {
+        if (url != "") {
+            binding.btnDownloadBA.setOnClickListener {
 
-            if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+                if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                }
                 if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                   downloadFile(url)
+                    downloadFile(url)
                 }
 
-            ActivityCompat.requestPermissions(
-                requireActivity(), arrayOf(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                1
-            )
+                ActivityCompat.requestPermissions(
+                    requireActivity(), arrayOf(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ),
+                    1
+                )
+            }
+        } else {
+            binding.webViewPreviewBA.hide()
+            binding.tvNoBa.show()
+            binding.btnDownloadBA.hide()
         }
 
+    }
+
+    override fun showNoBA(message: String) {
+        binding.tvNoBa.show()
+        binding.tvNoBa.text = message
+
+        binding.webViewPreviewBA.hide()
+        binding.btnDownloadBA.hide()
     }
 
     private fun hasPermission(strPerm: String?): Boolean {

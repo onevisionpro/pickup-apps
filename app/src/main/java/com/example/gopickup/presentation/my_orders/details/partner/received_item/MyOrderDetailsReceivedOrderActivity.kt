@@ -89,6 +89,13 @@ class MyOrderDetailsReceivedOrderActivity : BaseActivity(),
                 data = receiveOrderRequest
             ))
         }
+
+        binding.tvSeeBA.setOnClickListener {
+            NavigationUtils.navigateToBAActivity(
+                this,
+                trackId = orderDetails.trackId!!
+            )
+        }
     }
 
     override fun showReceiveOrderSuccess(message: String) {
