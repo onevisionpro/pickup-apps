@@ -69,4 +69,6 @@ interface AppRepository {
     fun getStatusList(baseRequest: BaseRequest<String>): Observable<BaseResponse<List<String>>>
 
     fun postEditPhotoProfile(newImage: BaseRequest<NewImage>): Observable<BaseResponse<Any>>
+
+    fun postGenerateBA(trackId: BaseRequest<TrackId>): Observable<BaseResponse<BA>>
 }

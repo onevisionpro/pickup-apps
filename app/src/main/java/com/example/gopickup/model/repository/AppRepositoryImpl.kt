@@ -133,5 +133,9 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postEditPhotoProfile(newImage)
     }
 
+    override fun postGenerateBA(trackId: BaseRequest<TrackId>): Observable<BaseResponse<BA>> {
+        return apiRest.postGenerateBA(trackId)
+    }
+
 
 }

@@ -11,6 +11,7 @@ import com.example.gopickup.databinding.ActivityHistoryDetailsBinding
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.OrderDetails
 import com.example.gopickup.model.response.ItemOrder
+import com.example.gopickup.utils.NavigationUtils
 import com.example.gopickup.utils.OrderStatus
 
 class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
@@ -64,6 +65,13 @@ class HistoryDetailsActivity : BaseActivity(), HistoryDetailsContract.View {
             tvReceipt.text = details.resiCode
             tvStatusOrder.text = details.status
             tvNotes.text = details.notes
+
+            tvSeeBA.setOnClickListener {
+                NavigationUtils.navigateToBAActivity(
+                    this@HistoryDetailsActivity,
+                    trackId = intent.getStringExtra(TRACK_ID)!!
+                )
+            }
         }
     }
 

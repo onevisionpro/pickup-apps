@@ -112,6 +112,9 @@ interface ApiRest {
     @POST("api/order/finishOrder")
     fun postFinishOrder(@Body finishOrder: BaseRequest<FinishOrder>): Observable<BaseResponse<Any>>
 
+    @POST("api/order/generateBA")
+    fun postGenerateBA(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<BA>>
+
     /**
      * More
      */

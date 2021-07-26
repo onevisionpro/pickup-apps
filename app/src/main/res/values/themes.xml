@@ -66,4 +66,8 @@
         <item name="android:windowMinWidthMinor">90%</item>
     </style>
 
+    <style name="CustomTab" parent="Widget.MaterialComponents.TabLayout">
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>

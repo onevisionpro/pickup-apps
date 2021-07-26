@@ -5,6 +5,7 @@ import android.content.Intent
 import com.example.gopickup.presentation.about_apps.AboutAppsActivity
 import com.example.gopickup.presentation.change_order.ChangeOrderActivity
 import com.example.gopickup.presentation.create_order.CreateOrderActivity
+import com.example.gopickup.presentation.history.BA.BAActivity
 import com.example.gopickup.presentation.history.details.HistoryDetailsActivity
 import com.example.gopickup.presentation.open_order.details.book_order.OpenOrderDetailsForBookOrderActivity
 import com.example.gopickup.presentation.login.LoginActivity
@@ -112,4 +113,9 @@ object NavigationUtils {
         intent.putExtra(SubmitBAActivity.STATUS, status)
         activity.startActivity(intent)
     }
+
+    fun navigateToBAActivity(activity: Activity, trackId: String) {
+        val intent = Intent(activity, BAActivity::class.java)
+        intent.putExtra(BAActivity.TRACK_ID, trackId)
+        activity.startActivity(intent)    }
 }

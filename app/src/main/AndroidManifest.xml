@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -16,7 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoPickup"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
+        <activity android:name=".presentation.history.BA.BAActivity"></activity>
 
         <service
             android:name=".utils.firebase.MyFirebaseMessagingService"
@@ -26,7 +30,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".presentation.my_orders.details.partner.received_item.MyOrderDetailsReceivedOrderActivity"/>
+        <activity android:name=".presentation.my_orders.details.partner.received_item.MyOrderDetailsReceivedOrderActivity" />
         <activity android:name=".presentation.my_orders.details.warehouse.MyOrderDetailsWarehouseActivity" />
         <activity android:name=".presentation.my_orders.details.partner.ba_details.SubmitBAActivity" />
         <activity android:name=".presentation.reset_password.ResetPasswordActivity" />
