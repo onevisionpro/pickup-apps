@@ -73,6 +73,7 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        presenter.onDestroy()
     }
 
     override fun onCreateView(
