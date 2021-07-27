@@ -75,11 +75,10 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
     override fun showDownloadBA(url: String) {
         if (url != "") {
             binding.btnDownloadBA.setOnClickListener {
-
                 if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                }
-                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    downloadFile(url)
+                    if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        downloadFile(url)
+                    }
                 }
 
                 ActivityCompat.requestPermissions(
