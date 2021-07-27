@@ -11,6 +11,7 @@ interface ReceiptBAContract {
     interface View : BaseView {
         fun showPreviewBA(url: String)
         fun showDownloadBA(url: String)
+        fun showNoBA(message: String)
     }
 
     interface Presenter : BasePresenter {

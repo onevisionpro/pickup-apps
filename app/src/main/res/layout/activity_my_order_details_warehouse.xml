@@ -16,18 +16,41 @@
         android:layout_below="@id/toolbar"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_warehouse_name"
-            android:fontFamily="@font/metropolis_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            tools:text="Warehouse Bogor"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_warehouse_name"
+                android:fontFamily="@font/metropolis_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                tools:text="Warehouse Bogor"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:id="@+id/tv_see_b_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/metropolis_bold"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="0dp"
+                android:layout_toEndOf="@id/tv_warehouse_name"
+                android:textAlignment="textEnd"
+                android:paddingBottom="8dp"
+                android:text="Lihat Berita Acara"
+                android:textColor="@color/redPrimary" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

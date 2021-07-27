@@ -5,8 +5,10 @@ import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.model.request.*
 import com.example.gopickup.model.response.*
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.POST
+import okhttp3.ResponseBody
+import retrofit2.Response
+import retrofit2.http.*
+
 
 interface ApiRest {
 
@@ -114,6 +116,10 @@ interface ApiRest {
 
     @POST("api/order/generateBA")
     fun postGenerateBA(@Body trackId: BaseRequest<TrackId>): Observable<BaseResponse<BA>>
+
+    @Streaming
+    @GET
+    fun downloadFile(@Url fileUrl: String): Observable<Response<ResponseBody>>
 
     /**
      * More

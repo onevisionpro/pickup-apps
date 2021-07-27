@@ -10,6 +10,7 @@ import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.model.response.ItemOrder
 import com.example.gopickup.model.response.Order
 import com.example.gopickup.model.response.OrderDetails
+import com.example.gopickup.presentation.history.details.HistoryDetailsActivity
 import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogOrderArrivedListener
@@ -80,6 +81,12 @@ class MyOrderDetailsWarehouseActivity : BaseActivity(), MyOrderDetailsWarehouseC
             }
         }
 
+        binding.tvSeeBA.setOnClickListener {
+            NavigationUtils.navigateToBAActivity(
+                this,
+                trackId = orderDetails.trackId!!
+            )
+        }
     }
 
     override fun showOrderArrivedSuccess(message: String) {

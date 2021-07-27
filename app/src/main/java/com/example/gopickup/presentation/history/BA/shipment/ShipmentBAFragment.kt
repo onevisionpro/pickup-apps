@@ -1,11 +1,18 @@
 package com.example.gopickup.presentation.history.BA.shipment
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.esafirm.rxdownloader.RxDownloader
 import com.example.gopickup.R
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
@@ -13,8 +20,7 @@ import com.example.gopickup.databinding.FragmentShipmentBABinding
 import com.example.gopickup.model.request.PreviewBARequest
 import com.example.gopickup.model.request.TrackId
 import com.example.gopickup.presentation.history.BA.receipt.ReceiptBAFragment
-import com.example.gopickup.utils.OrderStatus
-import com.example.gopickup.utils.TaskManager
+import com.example.gopickup.utils.*
 
 
 class ShipmentBAFragment : BaseFragment(), ShipmentBAContract.View {
@@ -38,22 +44,19 @@ class ShipmentBAFragment : BaseFragment(), ShipmentBAContract.View {
             code = "",
             data = PreviewBARequest(
                 trackId = arguments?.getString(ReceiptBAFragment.TRACK_ID),
-                type = OrderStatus.ACCEPT_WH
+                type = OrderStatus.ARRIVED
             )
+        ))
+        presenter.getBA(trackId = BaseRequest(
+            guid = provideGUID(),
+            code = "",
+            data = TrackId(trackId = arguments?.getString(ReceiptBAFragment.TRACK_ID))
         ))
     }
 
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
-
-        binding.btnDownloadBA.setOnClickListener {
-            presenter.getBA(trackId = BaseRequest(
-                guid = provideGUID(),
-                code = "",
-                data = TrackId(trackId = arguments?.getString(ReceiptBAFragment.TRACK_ID))
-            ))
-        }
     }
 
     override fun showPreviewBA(url: String) {
@@ -67,8 +70,80 @@ class ShipmentBAFragment : BaseFragment(), ShipmentBAContract.View {
     }
 
     override fun showDownloadBA(url: String) {
-        val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
-        downloadTask.execute(url)
+        if (url != "") {
+            binding.btnDownloadBA.setOnClickListener {
+
+                if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                }
+                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    downloadFile(url)
+                }
+
+                ActivityCompat.requestPermissions(
+                    requireActivity(), arrayOf(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ),
+                    1
+                )
+
+            }
+        } else {
+            binding.webViewPreviewBA.hide()
+            binding.tvNoBa.show()
+            binding.btnDownloadBA.hide()
+        }
+    }
+
+    override fun showNoBA(message: String) {
+        binding.tvNoBa.show()
+        binding.tvNoBa.text = message
+
+        binding.webViewPreviewBA.hide()
+        binding.btnDownloadBA.hide()
+    }
+
+    private fun hasPermission(strPerm: String?): Boolean {
+        return ContextCompat.checkSelfPermission(
+            requireActivity(),
+            strPerm!!
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            1 -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                    showToast("Disetujui")
+                } else {
+                    showToast("Tidak Disetujui")
+                }
+            }
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun downloadFile(url: String) {
+        val fileName = url.substringAfter("pdf/")
+        RxDownloader(requireContext())
+            .download(
+                url,
+                fileName,
+                true
+            ) // url, filename, and mimeType
+            .subscribe(
+                { path -> showToast("Downloading $fileName")},
+                { throwable ->
+                    Log.d(
+                        "DOWNLOADER",
+                        "ERROR: ${throwable.localizedMessage}"
+                    )
+                })
     }
 
     override fun onDestroyView() {

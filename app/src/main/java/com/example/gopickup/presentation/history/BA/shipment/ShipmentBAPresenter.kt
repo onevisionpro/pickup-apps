@@ -49,8 +49,9 @@ class ShipmentBAPresenter(
                 {
                     view.hideLoading()
                     when (it.code) {
-                        StatusCode.SUCCESS -> view.showDownloadBA(it.data?.pdfBAPengambilan!!)
+                        StatusCode.SUCCESS -> view.showDownloadBA(it.data?.pdfBAPengiriman!!)
                         StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
+                        StatusCode.NO_BA -> view.showNoBA(it.info!!)
                         else -> view.showMessage(it.info)
                     }
                 },

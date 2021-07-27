@@ -6,4 +6,6 @@ object StatusCode {
     const val SUCCESS = "0"
 
     const val SESSION_EXPIRED = "403"
+
+    const val NO_BA = "303"
 }
