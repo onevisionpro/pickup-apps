@@ -18,29 +18,7 @@ class ReceiptBAPresenter(
 
     private val compositeDisposable = CompositeDisposable()
 
-    override fun getPreviewBA(previewBARequest: BaseRequest<PreviewBARequest>) {
-        view.showLoading()
-        compositeDisposable.add(appRepositoryImpl.getPreviewBA(previewBARequest)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                {
-                    view.hideLoading()
-                    when (it.code) {
-                        StatusCode.SUCCESS -> view.showPreviewBA(it.data?.contentHtml!!)
-                        StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
-                        else -> view.showMessage(it.info)
-                    }
-                },
-                {
-                    view.hideLoading()
-                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
-                    Log.e("ReceiptBAPresenter", "ERROR, getBA: ${it.localizedMessage}")
-                }
-            ))
-    }
-
-    override fun getBA(trackId: BaseRequest<TrackId>) {
+    override fun getGeneratedBA(trackId: BaseRequest<TrackId>) {
         view.showLoading()
         compositeDisposable.add(appRepositoryImpl.postGenerateBA(trackId)
             .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +27,7 @@ class ReceiptBAPresenter(
                 {
                     view.hideLoading()
                     when (it.code) {
-                        StatusCode.SUCCESS -> view.showDownloadBA(it.data?.pdfBAPengambilan!!)
+                        StatusCode.SUCCESS -> view.showGeneratedBA(it.data?.pdfBAPengambilan!!)
                         StatusCode.SESSION_EXPIRED -> view.showSessionExpired(it.info)
                         StatusCode.NO_BA -> view.showNoBA(it.info!!)
                         else -> view.showMessage(it.info)

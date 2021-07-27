@@ -3,23 +3,23 @@ package com.example.gopickup.presentation.history.BA.receipt
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.esafirm.rxdownloader.RxDownloader
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentReceiptBABinding
 import com.example.gopickup.model.request.PreviewBARequest
 import com.example.gopickup.model.request.TrackId
-import com.example.gopickup.utils.OrderStatus
-import com.example.gopickup.utils.hide
-import com.example.gopickup.utils.show
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 
 class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
@@ -38,17 +38,7 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
 
         presenter = ReceiptBAPresenter(this, callApi())
         presenter.start()
-        presenter.getPreviewBA(
-            previewBARequest = BaseRequest(
-                guid = provideGUID(),
-                code = "",
-                data = PreviewBARequest(
-                    trackId = arguments?.getString(TRACK_ID),
-                    type = OrderStatus.TAKE_ITEM
-                )
-            )
-        )
-        presenter.getBA(
+        presenter.getGeneratedBA(
             trackId = BaseRequest(
                 guid = provideGUID(),
                 code = "",
@@ -62,31 +52,25 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
         initProgressBar(binding.progressBar)
     }
 
-    override fun showPreviewBA(url: String) {
-        binding.webViewPreviewBA.loadDataWithBaseURL(
-            null,
-            url,
-            "text/html",
-            "UTF-8",
-            null
-        )
-    }
-
-    override fun showDownloadBA(url: String) {
+    override fun showGeneratedBA(url: String) {
         if (url != "") {
-            binding.btnDownloadBA.setOnClickListener {
+            val finalUrl = "http://docs.google.com/viewer?url=$url&embedded=true"
+            binding.webViewPreviewBA.settings.javaScriptEnabled = true
+            binding.webViewPreviewBA.webViewClient = AppWebViewClients(binding.progressBar)
+            binding.webViewPreviewBA.loadUrl(finalUrl)
 
+            binding.btnDownloadBA.setOnClickListener {
                 if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                }
-                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    downloadFile(url)
+                    if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        downloadFile(url)
+                    }
                 }
 
                 ActivityCompat.requestPermissions(
                     requireActivity(), arrayOf(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    ),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ),
                     1
                 )
             }
@@ -139,7 +123,7 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
                 true
             ) // url, filename, and mimeType
             .subscribe(
-                { path -> showToast("Downloading $fileName")},
+                { path -> showToast("Downloading $fileName") },
                 { throwable ->
                     Log.d(
                         "DOWNLOADER",

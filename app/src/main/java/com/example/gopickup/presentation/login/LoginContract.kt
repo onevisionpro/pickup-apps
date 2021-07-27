@@ -5,6 +5,7 @@ import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.base.BaseView
 import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.request.Type
 import com.example.gopickup.model.response.User
 import com.example.gopickup.model.response.VersionChecker
 
@@ -15,10 +16,12 @@ interface LoginContract {
         fun showLoginSuccessForWarehouse(baseResponse: BaseResponse<User>)
         fun showSendOTPSuccess(message: String)
         fun showSendOTPFailed(message: String)
+        fun showForgotPasswordDialog(message: String)
     }
 
     interface Presenter : BasePresenter {
         fun postVersionChecker(baseRequest: BaseRequest<String>)
         fun postLogin(login: Login)
+        fun getForgotPasswordWording(type: BaseRequest<Type>)
     }
 }

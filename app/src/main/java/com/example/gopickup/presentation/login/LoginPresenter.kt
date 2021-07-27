@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.model.repository.AppRepositoryImpl
 import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.request.Type
 import com.example.gopickup.utils.Constants
 import com.example.gopickup.utils.StatusCode
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -57,6 +58,27 @@ class LoginPresenter(
                     view.hideLoading()
                     view.showMessage(Constants.DEFAULT_ERROR_MSG)
                     Log.e("LoginPresenter", "ERROR, postLogin: ${it.localizedMessage}")
+                }
+            ))
+    }
+
+    override fun getForgotPasswordWording(type: BaseRequest<Type>) {
+        view.showLoading()
+        compositeDisposable.add(appRepositoryImpl.getWordings(type)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    view.hideLoading()
+                    when (it.code) {
+                        StatusCode.SUCCESS -> view.showForgotPasswordDialog(it.data?.get(0)?.html!!)
+                        else -> view.showMessage(it.info)
+                    }
+                },
+                {
+                    view.hideLoading()
+                    view.showMessage(Constants.DEFAULT_ERROR_MSG)
+                    Log.e("LoginPresenter", "ERROR, getForgotPasswordWording: ${it.localizedMessage}")
                 }
             ))
     }
