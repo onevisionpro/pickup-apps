@@ -44,19 +44,18 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
                 type = OrderStatus.TAKE_ITEM
             )
         ))
+        presenter.getBA(trackId = BaseRequest(
+            guid = provideGUID(),
+            code = "",
+            data = TrackId(trackId = arguments?.getString(TRACK_ID))
+        ))
     }
 
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
 
-        binding.btnDownloadBA.setOnClickListener {
-            presenter.getBA(trackId = BaseRequest(
-                guid = provideGUID(),
-                code = "",
-                data = TrackId(trackId = arguments?.getString(TRACK_ID))
-            ))
-        }
+
     }
 
     override fun showPreviewBA(url: String) {
@@ -70,21 +69,37 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
     }
 
     override fun showDownloadBA(url: String) {
-        if( Build.VERSION.SDK_INT >= 23 )
-            if( hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) )
-                if( hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ) {
-                    val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
-                    downloadTask.execute(url)
-                    return
-                }
+        binding.btnDownloadBA.setOnClickListener {
+            if( Build.VERSION.SDK_INT >= 23 )
+                if( hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) )
+                    if( hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ) {
+                        val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
+                        downloadTask.execute("https://subsystem.indihome.co.id//pickup-system//bank//files//pdf//BA-RECEIVE-GID-210722337085019-210725110827.pdf")
+                    }
 
-        ActivityCompat.requestPermissions(
-            requireActivity(), arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
-        ),
-            1
-        )
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ),
+                1
+            )
+        }
+//        if( Build.VERSION.SDK_INT >= 23 )
+//            if( hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) )
+//                if( hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ) {
+//                    val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
+//                    downloadTask.execute(url)
+//                    return
+//                }
+//
+//        ActivityCompat.requestPermissions(
+//            requireActivity(), arrayOf(
+//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.READ_EXTERNAL_STORAGE
+//        ),
+//            1
+//        )
 //        val downloadTask = TaskManager(requireContext(), ProgressDialog(requireContext()))
 //        downloadTask.execute(url)
     }
