@@ -6,72 +6,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.history.BA.shipment.ShipmentBAFragment">
 
-    <WebView
-        android:id="@+id/webViewPreviewBA"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btn_download_b_a"
-        android:layout_marginBottom="100dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order ini belum memiliki ttd draft Berita Acara Pengambilan."
-        android:layout_centerInParent="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:id="@+id/tv_no_ba"
-        android:visibility="gone"/>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btn_download_b_a"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        app:cardCornerRadius="50dp">
+        android:id="@+id/swipe_refresh"
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/redPrimary">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <WebView
+                android:id="@+id/webViewPreviewBA"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_above="@id/btn_download_b_a"
+                android:layout_marginBottom="50dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/metropolis_medium"
-                    android:text="Unduh Berita Acara"
-                    android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order ini belum memiliki ttd draft Berita Acara Pengambilan."
+                android:layout_centerInParent="true"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:id="@+id/tv_no_ba"
+                android:visibility="gone"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_baseline_file_download_24" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_download_b_a"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="50dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/redPrimary">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/metropolis_medium"
+                            android:text="Unduh Berita Acara"
+                            android:textColor="@color/white" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:src="@drawable/ic_baseline_file_download_24" />
 
 
-            </LinearLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:theme="@style/ProgressBarTheme"/>
 
         </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:theme="@style/ProgressBarTheme"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

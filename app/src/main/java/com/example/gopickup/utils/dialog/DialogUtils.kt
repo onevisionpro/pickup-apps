@@ -334,4 +334,25 @@ object DialogUtils {
 
         dialog.show()
     }
+
+    fun showDialogForgotPassword(context: Context, message: String) {
+        val dialog = Dialog(context)
+        val binding = DialogForgotPasswordBinding.inflate(LayoutInflater.from(context))
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(binding.root)
+        Objects.requireNonNull(dialog.window)
+            ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvMessage.loadDataWithBaseURL(
+            null,
+            message,
+            "text/html",
+            "UTF-8",
+            null
+        )
+
+        dialog.show()
+    }
 }

@@ -2,27 +2,29 @@ package com.example.gopickup.presentation.history.BA.receipt
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.esafirm.rxdownloader.RxDownloader
 import com.example.gopickup.base.BaseFragment
 import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.FragmentReceiptBABinding
 import com.example.gopickup.model.request.PreviewBARequest
 import com.example.gopickup.model.request.TrackId
-import com.example.gopickup.utils.OrderStatus
-import com.example.gopickup.utils.hide
-import com.example.gopickup.utils.show
-import com.example.gopickup.utils.showToast
+import com.example.gopickup.utils.*
 
 
-class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
+class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         const val TRACK_ID = "TRACK_ID"
@@ -38,17 +40,7 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
 
         presenter = ReceiptBAPresenter(this, callApi())
         presenter.start()
-        presenter.getPreviewBA(
-            previewBARequest = BaseRequest(
-                guid = provideGUID(),
-                code = "",
-                data = PreviewBARequest(
-                    trackId = arguments?.getString(TRACK_ID),
-                    type = OrderStatus.TAKE_ITEM
-                )
-            )
-        )
-        presenter.getBA(
+        presenter.getGeneratedBA(
             trackId = BaseRequest(
                 guid = provideGUID(),
                 code = "",
@@ -60,20 +52,14 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
+        binding.swipeRefresh.setOnRefreshListener(this)
     }
 
-    override fun showPreviewBA(url: String) {
-        binding.webViewPreviewBA.loadDataWithBaseURL(
-            null,
-            url,
-            "text/html",
-            "UTF-8",
-            null
-        )
-    }
-
-    override fun showDownloadBA(url: String) {
+    override fun showGeneratedBA(url: String) {
         if (url != "") {
+            val finalUrl = "https://docs.google.com/gview?embedded=true&url=$url"
+            startWebViewPDF(finalUrl)
+
             binding.btnDownloadBA.setOnClickListener {
                 if (hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -83,9 +69,9 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
 
                 ActivityCompat.requestPermissions(
                     requireActivity(), arrayOf(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    ),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ),
                     1
                 )
             }
@@ -94,7 +80,6 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
             binding.tvNoBa.show()
             binding.btnDownloadBA.hide()
         }
-
     }
 
     override fun showNoBA(message: String) {
@@ -139,13 +124,30 @@ class ReceiptBAFragment : BaseFragment(), ReceiptBAContract.View {
                 true
             ) // url, filename, and mimeType
             .subscribe(
-                { path -> showToast("Downloading $fileName")},
+                { path -> showToast("Downloading $fileName") },
                 { throwable ->
                     Log.d(
                         "DOWNLOADER",
                         "ERROR: ${throwable.localizedMessage}"
                     )
                 })
+    }
+
+    private fun startWebViewPDF(url: String) {
+        binding.webViewPreviewBA.settings.javaScriptEnabled = true
+        binding.webViewPreviewBA.webViewClient = AppWebViewClients(binding.progressBar)
+        binding.webViewPreviewBA.loadUrl(url)
+    }
+
+    override fun onRefresh() {
+        presenter.getGeneratedBA(
+            trackId = BaseRequest(
+                guid = provideGUID(),
+                code = "",
+                data = TrackId(trackId = arguments?.getString(TRACK_ID))
+            )
+        )
+        binding.swipeRefresh.isRefreshing = false
     }
 
     override fun onDestroyView() {

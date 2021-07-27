@@ -2,6 +2,7 @@ package com.example.gopickup.base
 
 import android.annotation.SuppressLint
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity

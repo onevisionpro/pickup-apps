@@ -11,6 +11,7 @@ import com.example.gopickup.base.BaseResponse
 import com.example.gopickup.databinding.ActivityLoginBinding
 import com.example.gopickup.model.request.Data
 import com.example.gopickup.model.request.Login
+import com.example.gopickup.model.request.Type
 import com.example.gopickup.model.response.User
 import com.example.gopickup.model.response.VersionChecker
 import com.example.gopickup.utils.*
@@ -76,6 +77,15 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                 }
             }
         }
+
+        Log.d("TAG", "onCreate: GUID: ${provideGUID()}")
+        presenter.getForgotPasswordWording(
+            type = BaseRequest(
+                guid = provideGUID(),
+                code = "0",
+                data = Type(type = MoreType.FORGOT_PASSWORD)
+            )
+        )
     }
 
     override fun showVersionChecker(versionChecker: VersionChecker) {
@@ -125,7 +135,14 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         showToast(message)
     }
 
+    override fun showForgotPasswordDialog(message: String) {
+        binding.btnForgotPassword.setOnClickListener {
+            DialogUtils.showDialogForgotPassword(this, message)
+        }
+    }
+
     private fun setNewFirebaseToken() {
+//        preference.saveString(Constants.KEY_FCM_TOKEN, "c6864411929f2afe9b3ecf39f872099f")
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
             if (it.isComplete) {
                 val firebaseToken = it.result.toString()
