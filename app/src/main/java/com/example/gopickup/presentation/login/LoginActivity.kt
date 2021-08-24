@@ -78,7 +78,6 @@ class LoginActivity : BaseActivity(), LoginContract.View {
             }
         }
 
-        Log.d("TAG", "onCreate: GUID: ${provideGUID()}")
         presenter.getForgotPasswordWording(
             type = BaseRequest(
                 guid = provideGUID(),

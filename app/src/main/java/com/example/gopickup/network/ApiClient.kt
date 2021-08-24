@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 class ApiClient {
 
     companion object {
-        const val BASE_URL = "https://subsystem.indihome.co.id/pickup-system/"
+        const val BASE_URL = "https://api-gaemis.bandorodimas.site/"
     }
 
     private fun provideBasicAuth(): String {
