@@ -71,4 +71,6 @@ interface AppRepository {
     fun postEditPhotoProfile(newImage: BaseRequest<NewImage>): Observable<BaseResponse<Any>>
 
     fun postGenerateBA(trackId: BaseRequest<TrackId>): Observable<BaseResponse<BA>>
+
+    fun getOrderCount(baseRequest: BaseRequest<String>): Observable<BaseResponse<OrderCount>>
 }

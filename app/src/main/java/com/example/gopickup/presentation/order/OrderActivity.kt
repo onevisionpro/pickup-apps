@@ -2,6 +2,7 @@ package com.example.gopickup.presentation.order
 
 import android.os.Bundle
 import com.example.gopickup.base.BaseActivity
+import com.example.gopickup.base.BaseRequest
 import com.example.gopickup.databinding.ActivityOrderBinding
 import com.example.gopickup.utils.*
 
@@ -17,12 +18,20 @@ class OrderActivity : BaseActivity(), OrderContract.View {
         _binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = OrderPresenter(this)
+        presenter = OrderPresenter(this, callApi())
         presenter.start()
+        presenter.getOrderCount(
+            baseRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "0",
+                data = ""
+            )
+        )
     }
 
     override fun initView() {
         super.initView()
+        initProgressBar(binding.progressBar)
         binding.toolbar.tvToolbarTitle.text = "Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
@@ -53,6 +62,36 @@ class OrderActivity : BaseActivity(), OrderContract.View {
             }
         }
     }
+
+    override fun showMyOrderCount(count: Int) {
+        if (count > 0) {
+            binding.tvCountMyOrder.show()
+            binding.tvCountMyOrder.text = count.toString()
+        } else {
+            binding.tvCountMyOrder.hide()
+        }
+    }
+
+    override fun showOpenOrderCount(count: Int) {
+        if (count > 0) {
+            binding.tvCountOpenOrder.show()
+            binding.tvCountOpenOrder.text = count.toString()
+        } else {
+            binding.tvCountOpenOrder.hide()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.getOrderCount(
+            baseRequest = BaseRequest(
+                guid = provideGUID(),
+                code = "0",
+                data = ""
+            )
+        )
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

@@ -137,5 +137,9 @@ class AppRepositoryImpl(private val apiRest: ApiRest) : AppRepository {
         return apiRest.postGenerateBA(trackId)
     }
 
+    override fun getOrderCount(baseRequest: BaseRequest<String>): Observable<BaseResponse<OrderCount>> {
+        return apiRest.postOrderCount(baseRequest)
+    }
+
 
 }

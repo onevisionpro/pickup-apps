@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,155 +7,198 @@
     android:orientation="vertical"
     tools:context=".presentation.order.OrderActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/custom_toolbar_back" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/create_order"
-        android:visibility="gone"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar_back" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/create_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
-            android:padding="16dp">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <ImageView
-                android:id="@+id/ic_create_order"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/view_rounded_50_darker_gray"
-                android:padding="16dp"
-                android:src="@drawable/ic_create_order"
-                tools:viewBindingIgnore="true" />
+                android:background="@color/gray"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buat Pesanan"
-                android:textColor="@color/black"
-                android:fontFamily="@font/metropolis_semi_bold"
-                android:layout_toEndOf="@id/ic_create_order"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/ic_create_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/view_rounded_50_darker_gray"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_create_order"
+                    tools:viewBindingIgnore="true" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@id/ic_create_order"
+                    android:fontFamily="@font/metropolis_semi_bold"
+                    android:text="Buat Pesanan"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-    </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:visibility="gone"
-        android:id="@+id/my_orders"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        </com.google.android.material.card.MaterialCardView>
 
-        <RelativeLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/my_orders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
-            android:padding="16dp">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <ImageView
-                android:id="@+id/ic_my_orders"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/view_rounded_50_darker_gray"
-                android:padding="16dp"
-                android:src="@drawable/ic_shopping"
-                tools:viewBindingIgnore="true" />
+                android:background="@color/gray"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pesanan Saya"
-                android:textColor="@color/black"
-                android:fontFamily="@font/metropolis_semi_bold"
-                android:layout_toEndOf="@id/ic_my_orders"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/ic_my_orders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/view_rounded_50_darker_gray"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_shopping"
+                    tools:viewBindingIgnore="true" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@id/ic_my_orders"
+                    android:fontFamily="@font/metropolis_semi_bold"
+                    android:text="Pesanan Saya"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_count_my_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@id/img_arrow_my_order"
+                    android:background="@drawable/bg_circle_tv"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    tools:text="9" />
 
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/img_arrow_my_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:visibility="gone"
-        android:id="@+id/open_order"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+            </RelativeLayout>
 
-        <RelativeLayout
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/open_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
-            android:padding="16dp">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-            <ImageView
-                android:id="@+id/ic_open_order"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/view_rounded_50_darker_gray"
-                android:padding="16dp"
-                android:src="@drawable/ic_open_order"
-                tools:viewBindingIgnore="true" />
+                android:background="@color/gray"
+                android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pesanan Tersedia"
-                android:fontFamily="@font/metropolis_semi_bold"
-                android:textColor="@color/black"
-                android:layout_toEndOf="@id/ic_open_order"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/ic_open_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/view_rounded_50_darker_gray"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_open_order"
+                    tools:viewBindingIgnore="true" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_toEndOf="@id/ic_open_order"
+                    android:fontFamily="@font/metropolis_semi_bold"
+                    android:text="Pesanan Tersedia"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_count_open_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@id/img_arrow_open_order"
+                    android:background="@drawable/bg_circle_tv"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    tools:text="9" />
 
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/img_arrow_open_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-</LinearLayout>
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:theme="@style/ProgressBarTheme"/>
+
+</RelativeLayout>

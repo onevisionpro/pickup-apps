@@ -121,6 +121,9 @@ interface ApiRest {
     @GET
     fun downloadFile(@Url fileUrl: String): Observable<Response<ResponseBody>>
 
+    @POST("api/order/countOrder")
+    fun postOrderCount(@Body baseRequest: BaseRequest<String>): Observable<BaseResponse<OrderCount>>
+
     /**
      * More
      */
