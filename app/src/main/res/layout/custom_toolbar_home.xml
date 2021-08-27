@@ -9,6 +9,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"
+        android:layout_centerVertical="true"
         android:layout_height="50dp"
         android:id="@+id/img_profile"
         tools:src="@drawable/ic_launcher_background"/>
@@ -16,19 +17,17 @@
     <TextView
         android:layout_toEndOf="@id/img_profile"
         android:id="@+id/tv_toolbar_title"
-        android:fontFamily="@font/metropolis_extra_bold"
+        android:fontFamily="@font/metropolis_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="22sp"
         android:layout_marginStart="16dp"
-        android:textStyle="bold"
         tools:text="Good morning" />
 
     <TextView
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@id/img_profile"
-        android:id="@+id/tv_company_name"
+        android:id="@+id/tv_name"
+        android:textSize="22sp"
         android:fontFamily="@font/metropolis_extra_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,5 +36,34 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         tools:text="Warehouse Bogor!" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/img_profile"
+        android:layout_below="@id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_company"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_company_red" />
+
+        <TextView
+            android:layout_marginStart="8dp"
+            android:visibility="visible"
+            android:id="@+id/tv_company_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="WH DEMO PENGIRIM"
+            android:textSize="10sp"
+            android:fontFamily="@font/metropolis_medium"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

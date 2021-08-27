@@ -41,8 +41,8 @@ class AboutAppsActivity : BaseActivity(), AboutAppsContract.View {
     }
 
     override fun showWordings(aboutApps: AboutApps) {
-        binding.tvWording.text = aboutApps.wording
-        binding.tvHtml.text = HtmlCompat.fromHtml(aboutApps.html!!, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.webview.settings.javaScriptEnabled = true
+        binding.webview.loadData(aboutApps.html!!, "text/html; charset=utf-8", "UTF-8");
     }
 
     override fun onDestroy() {

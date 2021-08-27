@@ -37,8 +37,8 @@ class BAActivity : AppCompatActivity() {
         shipmentBAFragment.arguments = bundle
 
         val pagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        pagerAdapter.populateFragment(receiptBAFragment, "Penerimaan")
-        pagerAdapter.populateFragment(shipmentBAFragment, "Pengiriman")
+        pagerAdapter.populateFragment(receiptBAFragment, "Pengambilan")
+        pagerAdapter.populateFragment(shipmentBAFragment, "Penerimaan")
 
         binding.apply {
             tvToolbar.icBack.setOnClickListener { finish() }

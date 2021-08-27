@@ -193,12 +193,14 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     }
 
     override fun showProfile(profile: Profile?) {
+        binding.toolbar.imgCompany.show()
         binding.toolbar.tvToolbarTitle.text = setGreetingMessage()
         profile?.let {
             Glide.with(requireActivity())
                 .load(it.imageProfile)
                 .into(binding.toolbar.imgProfile)
-            binding.toolbar.tvCompanyName.text = it.nama
+            binding.toolbar.tvName.text = it.nama
+            binding.toolbar.tvCompanyName.text = it.companyName
 
             preference.saveString(Constants.KEY_COMPANY_NAME, it.companyName!!)
         }

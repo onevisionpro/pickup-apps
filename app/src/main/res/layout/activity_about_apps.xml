@@ -17,52 +17,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <LinearLayout
+            <WebView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:id="@+id/webview" />
 
-                <ImageView
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/view_circle_red_8" />
-
-                <TextView
-                    android:id="@+id/tv_wording"
-                    android:layout_marginStart="4dp"
-                    android:fontFamily="@font/metropolis_regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/lorem_ipsum_text" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_marginTop="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/view_circle_red_8" />
-
-                <TextView
-                    android:id="@+id/tv_html"
-                    android:layout_marginStart="4dp"
-                    android:layout_width="match_parent"
-                    android:fontFamily="@font/metropolis_regular"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/lorem_ipsum_text" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

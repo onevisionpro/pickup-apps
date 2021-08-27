@@ -2,6 +2,7 @@ package com.example.gopickup.presentation.login
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import com.example.gopickup.BuildConfig
@@ -18,6 +19,7 @@ import com.example.gopickup.utils.*
 import com.example.gopickup.utils.dialog.DialogUtils
 import com.example.gopickup.utils.dialog.listener.IOnDialogUpdateVersionListener
 import com.google.firebase.messaging.FirebaseMessaging
+
 
 class LoginActivity : BaseActivity(), LoginContract.View {
 
@@ -65,7 +67,8 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                         devid = provideDeviceId(),
                         email = email,
                         password = password,
-                        otp = ""
+                        otp = "",
+                        devtype = getDeviceName()
                     )
                     val login = Login(
                         data = data
@@ -148,6 +151,28 @@ class LoginActivity : BaseActivity(), LoginContract.View {
                 preference.saveString(Constants.KEY_FCM_TOKEN, firebaseToken)
                 Log.d("TAG", "setNewFirebaseToken NewToken: $firebaseToken")
             }
+        }
+    }
+
+    private fun getDeviceName(): String? {
+        val manufacturer = Build.MANUFACTURER
+        val model = Build.MODEL
+        return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {
+            capitalize(model)
+        } else {
+            capitalize(manufacturer).toString() + " " + model
+        }
+    }
+
+    private fun capitalize(s: String?): String? {
+        if (s == null || s.isEmpty()) {
+            return ""
+        }
+        val first = s[0]
+        return if (Character.isUpperCase(first)) {
+            s
+        } else {
+            Character.toUpperCase(first).toString() + s.substring(1)
         }
     }
 
