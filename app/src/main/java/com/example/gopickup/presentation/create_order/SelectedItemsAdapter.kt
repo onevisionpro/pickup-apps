@@ -1,5 +1,8 @@
 package com.example.gopickup.presentation.create_order
 
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -30,12 +33,16 @@ class SelectedItemsAdapter(private val listener: IOnButtonCounter) :
         val item = itemList[position]
         holder.bind(item)
         holder.binding.apply {
-            var qty = item.quantity.toInt()
+            holder.binding.edtQtyCounter.setOnClickListener {
+                holder.binding.edtQtyCounter.isEnabled = true
+            }
+            var qty = holder.binding.edtQtyCounter.text.toString().toInt()
             btnQtyPlus.setOnClickListener {
                 qty++
                 item.quantity = qty.toString()
 
-                tvQtyCounter.text = qty.toString()
+//                tvQtyCounter.text = qty.toString()
+                edtQtyCounter.setText(qty.toString())
                 listener.onPlusClicked(item)
             }
             btnQtyMinus.setOnClickListener {
@@ -48,11 +55,39 @@ class SelectedItemsAdapter(private val listener: IOnButtonCounter) :
                     qty--
                     item.quantity = qty.toString()
 
-                    tvQtyCounter.text = qty.toString()
+//                    tvQtyCounter.text = qty.toString()
+                    edtQtyCounter.setText(qty.toString())
+
                     listener.onMinusClicked(item, position)
+
                 }
             }
+
+            edtQtyCounter.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s.toString() != "") {
+                        qty = s.toString().toInt()
+
+                        item.quantity = qty.toString()
+                        listener.onTextChanged(item)
+                    }
+                }
+
+            })
         }
+
     }
 
     inner class ViewHolder(val binding: ItemSelectedItemBinding) :
@@ -62,6 +97,12 @@ class SelectedItemsAdapter(private val listener: IOnButtonCounter) :
             with(binding) {
                 tvItemName.text = item.itemName
                 tvQtyCounter.text = item.quantity
+                edtQtyCounter.setText(item.quantity)
+
+                btnQtyPlus.setOnClickListener {
+                    edtQtyCounter.isEnabled = true
+                    edtQtyCounter.inputType = InputType.TYPE_CLASS_NUMBER
+                }
             }
         }
     }
@@ -70,4 +111,5 @@ class SelectedItemsAdapter(private val listener: IOnButtonCounter) :
 interface IOnButtonCounter {
     fun onMinusClicked(selectedItem: SelectedItem, position: Int)
     fun onPlusClicked(selectedItem: SelectedItem)
+    fun onTextChanged(selectedItem: SelectedItem)
 }

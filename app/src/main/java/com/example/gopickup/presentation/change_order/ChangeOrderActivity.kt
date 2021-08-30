@@ -54,6 +54,10 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
             updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
         }
 
+        override fun onTextChanged(selectedItem: SelectedItem) {
+            updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+        }
+
     })
 
     private fun updateSelectedItem(id: String, qty: String) {

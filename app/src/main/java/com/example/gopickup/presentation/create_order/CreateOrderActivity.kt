@@ -50,6 +50,10 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
             updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
         }
 
+        override fun onTextChanged(selectedItem: SelectedItem) {
+            updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+        }
+
     })
 
     private fun updateSelectedItem(id: String, qty: String) {
@@ -85,6 +89,7 @@ class CreateOrderActivity : BaseActivity(), CreateOrderContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
+        binding.layoutParent.setOnClickListener { hideKeyboard() }
         binding.toolbar.tvToolbarTitle.text = "Buat Pesanan"
         binding.toolbar.icBack.setOnClickListener { finish() }
 
