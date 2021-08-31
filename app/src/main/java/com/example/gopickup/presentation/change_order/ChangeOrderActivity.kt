@@ -55,7 +55,16 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
         }
 
         override fun onTextChanged(selectedItem: SelectedItem) {
-            updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+            if (selectedItem.quantity == "0") {
+                selectedItems.remove(selectedItem)
+
+                item = Item(idItem = selectedItem.itemId, jumlah = selectedItem.quantity)
+                items.remove(item)
+
+                updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+            } else {
+                updateSelectedItem(selectedItem.itemId, selectedItem.quantity)
+            }
         }
 
     })

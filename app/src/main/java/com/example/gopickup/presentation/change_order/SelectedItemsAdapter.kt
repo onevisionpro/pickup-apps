@@ -50,21 +50,28 @@ class SelectedItemsAdapter(private val listener: IOnButtonCounter) :
                 listener.onPlusClicked(item)
             }
             btnQtyMinus.setOnClickListener {
-                if (qty == 1) {
+                if (qty != 0) {
+                    if (qty == 1) {
+                        itemList.remove(item)
+                        notifyItemChanged(position)
+                        notifyItemRangeRemoved(position, itemList.size)
+                        listener.onMinusClicked(item, position)
+                    } else {
+                        qty--
+                        item.quantity = qty.toString()
+
+//                    tvQtyCounter.text = qty.toString()
+                        edtQtyCounter.setText(qty.toString())
+
+                        listener.onMinusClicked(item, position)
+
+                    }
+                } else {
                     itemList.remove(item)
                     notifyItemChanged(position)
                     notifyItemRangeRemoved(position, itemList.size)
-                    listener.onMinusClicked(item, position)
-                } else {
-                    qty--
-                    item.quantity = qty.toString()
-
-//                    tvQtyCounter.text = qty.toString()
-                    edtQtyCounter.setText(qty.toString())
-
-                    listener.onMinusClicked(item, position)
-
                 }
+
             }
 
             edtQtyCounter.addTextChangedListener(object : TextWatcher {
@@ -86,6 +93,12 @@ class SelectedItemsAdapter(private val listener: IOnButtonCounter) :
 
                         item.quantity = qty.toString()
                         listener.onTextChanged(item)
+
+                        if (s.toString() == "0") {
+                            itemList.remove(item)
+                            notifyItemChanged(position)
+                            notifyItemRangeRemoved(position, itemList.size)
+                        }
                     }
                 }
 
