@@ -66,7 +66,8 @@ class OrderActivity : BaseActivity(), OrderContract.View {
     override fun showMyOrderCount(count: Int) {
         if (count > 0) {
             binding.tvCountMyOrder.show()
-            binding.tvCountMyOrder.text = count.toString()
+            if (count > 99) binding.tvCountMyOrder.text = "99+"
+            else binding.tvCountMyOrder.text = count.toString()
         } else {
             binding.tvCountMyOrder.hide()
         }
@@ -75,7 +76,8 @@ class OrderActivity : BaseActivity(), OrderContract.View {
     override fun showOpenOrderCount(count: Int) {
         if (count > 0) {
             binding.tvCountOpenOrder.show()
-            binding.tvCountOpenOrder.text = count.toString()
+            if (count > 99) binding.tvCountOpenOrder.text = "99+"
+            else binding.tvCountOpenOrder.text = count.toString()
         } else {
             binding.tvCountOpenOrder.hide()
         }

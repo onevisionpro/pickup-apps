@@ -53,6 +53,8 @@
                 android:gravity="center"
                 android:id="@+id/edt_qty_counter"
                 android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="5"
                 android:paddingStart="8dp"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:paddingEnd="8dp"

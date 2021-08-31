@@ -92,6 +92,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     override fun showVersionChecker(versionChecker: VersionChecker) {
         val versionName = BuildConfig.VERSION_NAME
+        binding.tvVersionName.text = "v.$versionName"
         if (versionName != versionChecker.updatedVersion) {
             if (versionChecker.pushUpdate == PushUpdateStatus.YES) {
                 DialogUtils.showDialogNewUpdateVersion(this, versionChecker.updatedVersion!!,
