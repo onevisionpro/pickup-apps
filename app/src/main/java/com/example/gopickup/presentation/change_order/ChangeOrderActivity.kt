@@ -99,6 +99,7 @@ class ChangeOrderActivity : BaseActivity(), ChangeOrderContract.View {
     override fun initView() {
         super.initView()
         initProgressBar(binding.progressBar)
+        binding.layoutParent.setOnClickListener { hideKeyboard() }
         binding.toolbar.tvToolbarTitle.text = "Ubah Pesanan Saya"
         binding.toolbar.icBack.setOnClickListener { finish() }
 

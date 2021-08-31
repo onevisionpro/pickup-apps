@@ -25,25 +25,16 @@
                 android:fontFamily="@font/metropolis_bold"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="New Update" />
+                android:text="Tersedia Versi Terbaru" />
 
             <TextView
-                style="@style/TextSubTitle"
-                android:layout_width="wrap_content"
-                android:fontFamily="@font/metropolis_bold"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Version :" />
-
-            <TextView
-                android:id="@+id/tv_version"
-                style="@style/TextSubTitle"
-                android:fontFamily="@font/metropolis_bold"
+                android:id="@+id/tv_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                tools:text="1.0.0" />
+                tools:text="Untuk menggunakan Aplikasi GAEMis, kamu harus unduh aplikasi ke versi terbaru [ Versi v.1.0.1 ]"
+                android:fontFamily="@font/metropolis_medium"
+                android:textAlignment="center"
+                android:layout_marginTop="16dp" />
 
             <Button
                 android:id="@+id/btn_update"
@@ -54,7 +45,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="40dp"
-                android:text="Update" />
+                android:text="Unduh Sekarang" />
 
         </LinearLayout>
 

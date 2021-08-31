@@ -118,12 +118,12 @@ object DialogUtils {
         val binding = DialogNewUpdateBinding.inflate(LayoutInflater.from(context))
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(true)
+        dialog.setCancelable(false)
         dialog.setContentView(binding.root)
         Objects.requireNonNull(dialog.window)
             ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        binding.tvVersion.text = versionName
+        binding.tvDescription.text = "Untuk menggunakan Aplikasi GAEMis, kamu harus unduh aplikasi ke versi terbaru [ Versi $versionName ]"
         binding.btnUpdate.setOnClickListener {
             dialog.hide()
             listener.onUpdateClicked()
